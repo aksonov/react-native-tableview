@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		87D0FD551B83229F00B0DA60 /* RCTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */; };
 		87D0FD611B83235900B0DA60 /* RCTTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FD601B83235900B0DA60 /* RCTTableViewManager.m */; };
+		87D0FDC21B836BA300B0DA60 /* JSONDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FDC11B836BA300B0DA60 /* JSONDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTableView.m; sourceTree = "<group>"; };
 		87D0FD5F1B83235900B0DA60 /* RCTTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTableViewManager.h; sourceTree = "<group>"; };
 		87D0FD601B83235900B0DA60 /* RCTTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTableViewManager.m; sourceTree = "<group>"; };
+		87D0FDC01B836BA300B0DA60 /* JSONDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataSource.h; sourceTree = "<group>"; };
+		87D0FDC11B836BA300B0DA60 /* JSONDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 		87D0FD1C1B83229F00B0DA60 /* RCTTableView */ = {
 			isa = PBXGroup;
 			children = (
+				87D0FDC01B836BA300B0DA60 /* JSONDataSource.h */,
+				87D0FDC11B836BA300B0DA60 /* JSONDataSource.m */,
 				87D0FD391B83229F00B0DA60 /* RCTTableView.h */,
 				87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */,
 				87D0FD5F1B83235900B0DA60 /* RCTTableViewManager.h */,
@@ -133,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D0FDC21B836BA300B0DA60 /* JSONDataSource.m in Sources */,
 				87D0FD551B83229F00B0DA60 /* RCTTableView.m in Sources */,
 				87D0FD611B83235900B0DA60 /* RCTTableViewManager.m in Sources */,
 			);

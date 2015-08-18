@@ -9,6 +9,13 @@ var Item = TableView.Item;
 class TableViewExample extends React.Component {
     render(){
         return (
+            <TableView selectedValue="ES" style={{flex:1}} json="countries"
+                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                       onPress={(event) => console.log(event.nativeEvent)}/>
+        );
+    }
+    render2(){
+        return (
             <TableView style={{flex:1}}
                        tableViewStyle={TableView.Consts.Style.Grouped}
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}

@@ -1,17 +1,9 @@
 'use strict';
-var NativeMethodsMixin = require('NativeMethodsMixin');
-var React = require('React');
-var ReactChildren = require('ReactChildren');
-var ReactNativeViewAttributes = require('ReactNativeViewAttributes');
-var RCTTableViewConsts = require('NativeModules').UIManager.RCTTableView.Constants;
-var StyleSheet = require('StyleSheet');
-var View = require('View');
-
-var requireNativeComponent = require('requireNativeComponent');
-var merge = require('merge');
+var React = require('react-native');
+var {NativeMethodsMixin, ReactNativeViewAttributes, NativeModules, StyleSheet, View,requireNativeComponent} = React;
+var RCTTableViewConsts = NativeModules.UIManager.RCTTableView.Constants;
 
 var TABLEVIEW = 'tableview';
-
 var TableView = React.createClass({
     mixins: [NativeMethodsMixin],
 
@@ -36,11 +28,11 @@ var TableView = React.createClass({
         var selectedSection = props.selectedSection || 0;
 
         // iterate over sections
-        ReactChildren.forEach(props.children, function (section, index) {
+        React.Children.forEach(props.children, function (section, index) {
             var items=[];
-            ReactChildren.forEach(section.props.children, function(child, itemIndex){
-                if (child.props.selected) {
-                    console.log("SELCTED "+itemIndex+" "+index);
+            React.Children.forEach(section.props.children, function(child, itemIndex){
+                if (child.props.selected || props.selectedValue==child.props.value) {
+                    console.log("SELECT "+itemIndex+" "+index);
                     selectedIndex = itemIndex;
                     selectedSection = index;
                 }
@@ -61,8 +53,9 @@ var TableView = React.createClass({
                     selectedIndex={this.state.selectedIndex}
                     selectedSection={this.state.selectedSection}
                     onPress={this._onChange}
-                    tableViewStyle={this.props.tableViewStyle || TableView.Consts.Style.Plain}
-                    tableViewCellStyle={this.props.tableViewCellStyle || TableView.Consts.CellStyle.Subtitle}
+                    tableViewStyle={TableView.Consts.Style.Plain}
+                    tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                    {...this.props}
                     />
         );
     },

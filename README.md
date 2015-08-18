@@ -1,11 +1,5 @@
 # react-native-tableview
-Native iOS UITableView for React Native.
-
-## Why I need to use it?
-- To display long lists of data (like country list) - built-in list view has performance issues for long lists
-- To use built-in accessory types (checkmark or disclosure indicator)
-- Automatic scroll to initial selected value during component initialization
-- Automatic item selection with "checkmark" with old item de-selection (optionally), see demo, useful to select country/state/etc.
+Native iOS UITableView for React Native. Useful for displaying long lists of data and selection (like country list)
 
 ## Supports UITableView styles
 - UITableViewStylePlain (TableView.Consts.Style.Plain)
@@ -17,14 +11,7 @@ Native iOS UITableView for React Native.
 - UITableViewCellStyleValue2 (TableView.Consts.CellStyle.Value2)
 - UITableViewCellStyleSubtitle (TableView.Consts.CellStyle.Subtitle)
 
-## Supports accessory types
-- UITableViewCellAccessoryDisclosureIndicator ("arrow" attribute for TableView.Item or TableView.Section)
-- UITableViewCellAccessoryCheckmark ("selected" attribute for TableView.Item)
-
 ## Example
-![demo](https://cloud.githubusercontent.com/assets/1321329/9329083/cc77b4e0-45ae-11e5-9919-34f12e6d407c.gif)
-
-```
 'use strict';
 
 var React = require('react-native');
@@ -88,7 +75,14 @@ AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
 ## Getting started
 1. `npm install react-native-tableview --save`
 2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-3. add `./node_modules/react-native-tableview/RCTTableView.xcodeproj`
-4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRCTTableView.a**
-5. `var TableView = require('react-native-tableview')`
+3. add `./node_modules/react-native-svg-elements/RCTTableView.xcodeproj`
+4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRCTSvg.a**
+5. `var Svg = require('react-native-svg-elements'); var Path = Svg.Path`
 
+## Todo
+- [ ] Support Rect
+- [ ] Support onPress and other events
+
+## Credits
+Thanks to @GenerallyHelpfulSoftware for SVG rendering library (https://github.com/GenerallyHelpfulSoftware/SVGgh).
+Thanks to @brentvatne for React Native SVG library (https://github.com/brentvatne/react-native-svg) examples given from.

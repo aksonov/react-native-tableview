@@ -11,10 +11,12 @@
 #import "RCTEventDispatcher.h"
 #import "RCTUtils.h"
 #import "UIView+React.h"
+#import "JSONDataSource.h"
 
 @interface RCTTableView()<UITableViewDataSource, UITableViewDelegate> {
-    
+    id<RCTTableViewDatasource> datasource;
 }
+
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
@@ -49,11 +51,19 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 - (void)layoutSubviews {
     [self.tableView setFrame:self.frame];
-            if (_selectedIndex>=0){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:_selectedIndex inSection:_selectedSection] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-                });
-            }
+    
+    // if sections are not define, try to load JSON
+    if (![_sections count] && _json){
+        datasource = [[JSONDataSource alloc] initWithFilename:_json filter:_filter args:_filterArgs];
+        self.sections = [NSMutableArray arrayWithArray:[datasource sections]];
+    }
+    if (_selectedIndex>=0){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:_selectedSection];
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        });
+    }
 }
 
 #pragma mark - Private APIs
@@ -75,10 +85,17 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         NSMutableDictionary *sectionData = [NSMutableDictionary dictionaryWithDictionary:section];
         NSMutableArray *items = [NSMutableArray arrayWithCapacity:[sectionData[@"items"] count]];
         for (NSDictionary *item in sectionData[@"items"]){
-            [items addObject:[NSMutableDictionary dictionaryWithDictionary:item]];
+            NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithDictionary:item];
+            if (self.selectedValue && [self.selectedValue isEqualToString:item[@"value"]]){
+                _selectedSection = [_sections count];
+                _selectedIndex = [items count];
+                itemData[@"selected"] = @YES;
+            }
+            [items addObject:itemData];
         }
         sectionData[@"items"] = items;
         [_sections addObject:sectionData];
+        
     }
 }
 
@@ -91,7 +108,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     return count;
 }
 -(UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:@"Cell"];
@@ -118,6 +134,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSMutableDictionary *oldValue = self.selectedIndex>=0 ?[self dataForRow:self.selectedIndex section:self.selectedSection] : [NSMutableDictionary dictionaryWithDictionary:@{}];
     NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
     NSDictionary *event = @{
