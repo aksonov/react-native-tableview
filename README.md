@@ -21,6 +21,8 @@ Native iOS UITableView for React Native.
 - UITableViewCellAccessoryCheckmark ("selected" attribute for TableView.Item)
 
 ## Example
+![demo](https://cloud.githubusercontent.com/assets/1321329/9329083/cc77b4e0-45ae-11e5-9919-34f12e6d407c.gif)
+
 ```
 'use strict';
 
