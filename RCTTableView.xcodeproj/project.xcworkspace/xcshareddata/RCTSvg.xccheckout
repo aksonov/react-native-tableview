@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7347E3AC-5C8C-4DD5-9272-3FFFE9860DB1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RCTSvg</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>315E056E8429F8CF8B34998964C5F52485938FC8</key>
+		<string>https://github.com/aksonov/react-native-tableview.git</string>
+		<key>A72D15A13D4BC274BA37FFC66F348F91C5860448</key>
+		<string>https://github.com/aksonov/react-native-svg-elements.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RCTSvg.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>315E056E8429F8CF8B34998964C5F52485938FC8</key>
+		<string>../..</string>
+		<key>A72D15A13D4BC274BA37FFC66F348F91C5860448</key>
+		<string>../../../react-native-svg-elements</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/aksonov/react-native-tableview.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>315E056E8429F8CF8B34998964C5F52485938FC8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A72D15A13D4BC274BA37FFC66F348F91C5860448</string>
+			<key>IDESourceControlWCCName</key>
+			<string>react-native-svg-elements</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>315E056E8429F8CF8B34998964C5F52485938FC8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>react-native-tableview</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,26 +1,3 @@
-# react-native-tableview
-Native iOS UITableView for React Native.
-
-## Why I need to use it?
-- To display long lists of data and item selection (like country list) - built-in list view has performance issues for long lists
-- To use built-in accessory types (checkmark or disclosure indicator)
-- Automatic scroll to initial selected value during component initialization
-
-## Supports UITableView styles
-- UITableViewStylePlain (TableView.Consts.Style.Plain)
-- UITableViewStyleGrouped (TableView.Consts.Style.Grouped)
-
-## Supports UITableViewCell styles
-- UITableViewCellStyleDefault (TableView.Consts.CellStyle.Default)
-- UITableViewCellStyleValue1 (TableView.Consts.CellStyle.Value1)
-- UITableViewCellStyleValue2 (TableView.Consts.CellStyle.Value2)
-- UITableViewCellStyleSubtitle (TableView.Consts.CellStyle.Subtitle)
-
-## Supports accessory types
-- UITableViewCellAccessoryDisclosureIndicator ("arrow" attribute for TableView.Item or TableView.Section)
-- UITableViewCellAccessoryCheckmark ("selected" attribute for TableView.Item)
-
-## Example
 'use strict';
 
 var React = require('react-native');
@@ -79,12 +56,3 @@ class TableViewExample extends React.Component {
 }
 
 AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
-```
-
-## Getting started
-1. `npm install react-native-tableview --save`
-2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-3. add `./node_modules/react-native-tableview/RCTTableView.xcodeproj`
-4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRCTTableView.a**
-5. `var TableView = require('react-native-tableview')`
-

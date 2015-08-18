@@ -1,0 +1,5 @@
+node_modules
+RCTSVG.xcodeproj/xcuserdata
+RCTSVG.xcodeproj/project.xcworkspace
+
+.npm-debug.log
