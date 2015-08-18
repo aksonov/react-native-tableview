@@ -2,9 +2,10 @@
 Native iOS UITableView for React Native.
 
 ## Why I need to use it?
-- To display long lists of data and item selection (like country list) - built-in list view has performance issues for long lists
+- To display long lists of data (like country list) - built-in list view has performance issues for long lists
 - To use built-in accessory types (checkmark or disclosure indicator)
 - Automatic scroll to initial selected value during component initialization
+- Automatic item selection with "checkmark" with old item de-selection (optionally), see demo, useful to select country/state/etc.
 
 ## Supports UITableView styles
 - UITableViewStylePlain (TableView.Consts.Style.Plain)
