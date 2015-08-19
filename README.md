@@ -41,7 +41,7 @@ class TableViewExample extends React.Component {
             <TableView style={{flex:1}}
                        tableViewStyle={TableView.Consts.Style.Grouped}
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event.nativeEvent)}>
+                       onPress={(event) => console.log(event)}>
                 <Section label="Section 1" arrow={true}>
                     <Item value="1" detail="Detail1" >Item 1</Item>
                     <Item value="2">Item 2</Item>
@@ -94,7 +94,7 @@ AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
         return (
             <TableView selectedValue="ES" style={{flex:1}} json="countries"
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event.nativeEvent)}/>
+                       onPress={(event) => console.log(event)}/>
         );
     }
 ```
@@ -107,7 +107,7 @@ AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
         return (
             <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event.nativeEvent)}>
+                       onPress={(event) => console.log(event)}>
                 <Item value="">All states</Item>
             </TableView>
         );
