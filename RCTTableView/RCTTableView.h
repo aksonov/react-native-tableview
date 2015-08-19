@@ -24,6 +24,7 @@
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, copy) NSMutableArray *sections;
+@property (nonatomic, copy) NSArray *additionalItems;
 @property (nonatomic, strong) NSString *json;
 @property (nonatomic, strong) NSString *filter;
 @property (nonatomic, strong) NSArray *filterArgs;

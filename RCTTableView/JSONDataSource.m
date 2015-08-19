@@ -17,14 +17,16 @@
     NSData *data = [NSData dataWithContentsOfFile:jsonPath];
     NSError *error = nil;
     NSArray *json = (NSArray *)[NSJSONSerialization JSONObjectWithData:data
-                                                               options:kNilOptions
+                                                               options:NSJSONReadingMutableContainers
                                                                  error:&error];
     
     NSAssert(error==nil, @"JSON Error %@", [error description]);
     NSAssert([json isKindOfClass:[NSArray class]], @"JSON should be NSArray type");
     
     if (filter){
-        json = [json filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:filter argumentArray:filterArgs]];
+        for (NSMutableDictionary *sections in json){
+            sections[@"items"] = [sections[@"items"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:filter argumentArray:filterArgs]];
+        }
     }
     
     _sections = json;

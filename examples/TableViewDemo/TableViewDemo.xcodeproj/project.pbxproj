@@ -24,6 +24,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		87D0FD621B83239D00B0DA60 /* libRCTTableView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D0FD5E1B8322FA00B0DA60 /* libRCTTableView.a */; };
 		87D0FDC41B836F5500B0DA60 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 87D0FDC31B836F5500B0DA60 /* countries.json */; };
+		87D0FDC61B8471D200B0DA60 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 87D0FDC51B8471D200B0DA60 /* states.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		87D0FD591B8322FA00B0DA60 /* RCTTableView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTTableView.xcodeproj; path = "node_modules/react-native-tableview/RCTTableView.xcodeproj"; sourceTree = "<group>"; };
 		87D0FDC31B836F5500B0DA60 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		87D0FDC51B8471D200B0DA60 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 		13B07FAE1A68108700A75B9A /* TableViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				87D0FDC51B8471D200B0DA60 /* states.json */,
 				87D0FDC31B836F5500B0DA60 /* countries.json */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -469,6 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D0FDC61B8471D200B0DA60 /* states.json in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				87D0FDC41B836F5500B0DA60 /* countries.json in Resources */,

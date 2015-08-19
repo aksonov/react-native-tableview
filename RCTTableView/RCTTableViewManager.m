@@ -24,6 +24,7 @@ RCT_EXPORT_VIEW_PROPERTY(json, NSString)
 RCT_EXPORT_VIEW_PROPERTY(filter, NSString)
 RCT_EXPORT_VIEW_PROPERTY(selectedValue, NSString)
 RCT_EXPORT_VIEW_PROPERTY(filterArgs, NSArray)
+RCT_EXPORT_VIEW_PROPERTY(additionalItems, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(selectedIndex, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(selectedSection, NSInteger)
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RCTTableView) {

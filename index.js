@@ -4,6 +4,13 @@ var {NativeMethodsMixin, ReactNativeViewAttributes, NativeModules, StyleSheet, V
 var RCTTableViewConsts = NativeModules.UIManager.RCTTableView.Constants;
 
 var TABLEVIEW = 'tableview';
+
+function clone(map){
+    var el = {};
+    for (var i in map)
+        el[i] = map[i];
+    return el;
+}
 var TableView = React.createClass({
     mixins: [NativeMethodsMixin],
 
@@ -25,23 +32,39 @@ var TableView = React.createClass({
     _stateFromProps: function(props) {
         var selectedIndex = -1;
         var sections = [];
+        var additionalItems = [];
         var selectedSection = props.selectedSection || 0;
 
         // iterate over sections
         React.Children.forEach(props.children, function (section, index) {
             var items=[];
-            React.Children.forEach(section.props.children, function(child, itemIndex){
-                if (child.props.selected || props.selectedValue==child.props.value) {
-                    console.log("SELECT "+itemIndex+" "+index);
-                    selectedIndex = itemIndex;
-                    selectedSection = index;
+            if (section.type==TableView.Section) {
+                React.Children.forEach(section.props.children, function (child, itemIndex) {
+                    if (child.props.selected || props.selectedValue == child.props.value) {
+                        selectedIndex = itemIndex;
+                        selectedSection = index;
+                    }
+                    var el = clone(child.props);
+
+                    if (section.props.arrow){
+                        el.arrow = section.props.arrow;
+                    }
+                    if (!el.label){
+                        el.label = el.children;
+                    }
+                    items.push(el);
+                });
+                sections.push({label:section.props.label, items: items});
+            }
+            if (section.type==TableView.Item){
+                var el = clone(section.props);
+                if (!el.label){
+                    el.label = el.children;
                 }
-                items.push({value: child.props.value, label: child.props.children, detail:child.props.detail,
-                    selected: child.props.selected, arrow:section.props.arrow | child.props.arrow});
-            });
-            sections.push({label:section.props.label, items: items});
+                additionalItems.push(el);
+            }
         });
-        return {selectedIndex, selectedSection, sections};
+        return {selectedIndex, selectedSection, sections, additionalItems};
     },
 
     render: function() {
@@ -52,6 +75,7 @@ var TableView = React.createClass({
                     sections={this.state.sections}
                     selectedIndex={this.state.selectedIndex}
                     selectedSection={this.state.selectedSection}
+                    additionalItems={this.state.additionalItems}
                     onPress={this._onChange}
                     tableViewStyle={TableView.Consts.Style.Plain}
                     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
@@ -61,7 +85,6 @@ var TableView = React.createClass({
     },
 
     _onChange: function(event) {
-        console.log("onPress!");
         if (this.props.onPress) {
             this.props.onPress(event);
         }

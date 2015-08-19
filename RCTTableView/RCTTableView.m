@@ -83,8 +83,14 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _sections = [NSMutableArray arrayWithCapacity:[sections count]];
     for (NSDictionary *section in sections){
         NSMutableDictionary *sectionData = [NSMutableDictionary dictionaryWithDictionary:section];
-        NSMutableArray *items = [NSMutableArray arrayWithCapacity:[sectionData[@"items"] count]];
-        for (NSDictionary *item in sectionData[@"items"]){
+        NSMutableArray *allItems = [NSMutableArray array];
+        if (self.additionalItems){
+            [allItems addObjectsFromArray:self.additionalItems];
+        }
+        [allItems addObjectsFromArray:sectionData[@"items"]];
+        
+        NSMutableArray *items = [NSMutableArray arrayWithCapacity:[allItems count]];
+        for (NSDictionary *item in allItems){
             NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithDictionary:item];
             if (self.selectedValue && [self.selectedValue isEqualToString:item[@"value"]]){
                 _selectedSection = [_sections count];

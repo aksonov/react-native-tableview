@@ -7,14 +7,28 @@ var Section = TableView.Section;
 var Item = TableView.Item;
 
 class TableViewExample extends React.Component {
+
+    // list spanish provinces and add 'All states' item at the beginning
     render(){
+        var country = "ES";
+        return (
+            <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}
+                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                       onPress={(event) => console.log(event.nativeEvent)}>
+                <Item value="">All states</Item>
+            </TableView>
+        );
+    }
+
+    // list all countries, select Spain
+    render2(){
         return (
             <TableView selectedValue="ES" style={{flex:1}} json="countries"
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
                        onPress={(event) => console.log(event.nativeEvent)}/>
         );
     }
-    render2(){
+    render3(){
         return (
             <TableView style={{flex:1}}
                        tableViewStyle={TableView.Consts.Style.Grouped}

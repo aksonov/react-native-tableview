@@ -1,9 +1,9 @@
 var fs = require('fs');
-var obj = JSON.parse(fs.readFileSync('countries.json', 'utf8'));
+var obj = JSON.parse(fs.readFileSync('states.json', 'utf8'));
 var items=[];
-obj[0].items.sort(function(a,b){
-    var A=a.label;
-    var B=b.label;
+obj.sort(function(a,b){
+    var A=a.name;
+    var B=b.name;
     if (A < B){
         return -1;
     }else if (A > B){
@@ -11,5 +11,10 @@ obj[0].items.sort(function(a,b){
     }else{
         return 0;
     }});
-
-fs.writeFileSync('countries.json',JSON.stringify(obj))
+obj.forEach(function(el){
+    if (el.name) {
+        items.push({label: el.name, value: el.ident, country: el.country});
+    }
+});
+console.log(items);
+fs.writeFileSync('states.json',JSON.stringify([{items:items}]));

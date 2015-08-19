@@ -7,6 +7,7 @@ Native iOS UITableView for React Native with JSON support.
 - Automatic scroll to initial selected value during component initialization
 - Automatic item selection with "checkmark" with old item de-selection (optionally), see demo, useful to select country/state/etc.
 - Native JSON support for datasource. If you need to display large dataset, generated Javascript will became very large and impact js loading time. To solve this problem the component could read JSON directly from app bundle without JS!
+- Filter JSON datasources using NSPredicate syntax. For example you could select states for given country only (check demo)
 
 ## Supports UITableView styles
 - UITableViewStylePlain (TableView.Consts.Style.Plain)
@@ -94,6 +95,21 @@ AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
             <TableView selectedValue="ES" style={{flex:1}} json="countries"
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
                        onPress={(event) => console.log(event.nativeEvent)}/>
+        );
+    }
+```
+
+### Example 3 (JSON filter and optional items at the beginning)
+```
+    // list spanish provinces and add 'All states' item at the beginning
+    render(){
+        var country = "ES";
+        return (
+            <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}
+                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                       onPress={(event) => console.log(event.nativeEvent)}>
+                <Item value="">All states</Item>
+            </TableView>
         );
     }
 ```
