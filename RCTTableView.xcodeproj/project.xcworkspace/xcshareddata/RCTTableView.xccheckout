@@ -14,11 +14,11 @@
 		<string>https://github.com/aksonov/react-native-tableview.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>examples/TableViewDemo/node_modules/react-native-tableview/RCTTableView.xcodeproj</string>
+	<string>RCTTableView.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>315E056E8429F8CF8B34998964C5F52485938FC8</key>
-		<string>../../../../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/aksonov/react-native-tableview.git</string>

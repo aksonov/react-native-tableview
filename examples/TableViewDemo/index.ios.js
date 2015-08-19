@@ -14,7 +14,7 @@ class TableViewExample extends React.Component {
         return (
             <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event.nativeEvent)}>
+                       onPress={(event) => alert(JSON.stringify(event))}>
                 <Item value="">All states</Item>
             </TableView>
         );
@@ -25,7 +25,7 @@ class TableViewExample extends React.Component {
         return (
             <TableView selectedValue="ES" style={{flex:1}} json="countries"
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event.nativeEvent)}/>
+                       onPress={(event) => alert(JSON.stringify(event))}/>
         );
     }
     render3(){
@@ -33,7 +33,7 @@ class TableViewExample extends React.Component {
             <TableView style={{flex:1}}
                        tableViewStyle={TableView.Consts.Style.Grouped}
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event.nativeEvent)}>
+                       onPress={(event) => alert(JSON.stringify(event))}>
                 <Section label="Section 1" arrow={true}>
                     <Item value="1" detail="Detail1" >Item 1</Item>
                     <Item value="2">Item 2</Item>

@@ -3,3 +3,4 @@ RCTSVG.xcodeproj/xcuserdata
 RCTSVG.xcodeproj/project.xcworkspace
 
 .npm-debug.log
+.DS_Store

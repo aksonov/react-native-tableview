@@ -515,7 +515,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/node_modules/react-native/React/**",
-					"$(SRCROOT)/node_modules/react-native-tableview/**",
+					"$(SRCROOT)/node_modules/react-native-tableview",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -532,7 +532,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/node_modules/react-native/React/**",
-					"$(SRCROOT)/node_modules/react-native-tableview/**",
+					"$(SRCROOT)/node_modules/react-native-tableview",
 				);
 				INFOPLIST_FILE = iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
