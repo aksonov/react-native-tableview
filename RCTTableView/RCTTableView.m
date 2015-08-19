@@ -81,6 +81,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 - (void)setSections:(NSArray *)sections
 {
     _sections = [NSMutableArray arrayWithCapacity:[sections count]];
+    BOOL found = NO;
     for (NSDictionary *section in sections){
         NSMutableDictionary *sectionData = [NSMutableDictionary dictionaryWithDictionary:section];
         NSMutableArray *allItems = [NSMutableArray array];
@@ -96,12 +97,18 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
                 _selectedSection = [_sections count];
                 _selectedIndex = [items count];
                 itemData[@"selected"] = @YES;
+                found = YES;
             }
             [items addObject:itemData];
         }
         sectionData[@"items"] = items;
         [_sections addObject:sectionData];
-        
+    }
+    // check first element if no match
+    if (!found && self.selectedValue && [_sections count] && [_sections[0][@"items"] count]){
+        _selectedSection = 0;
+        _selectedIndex = 0;
+        _sections[0][@"items"][0][@"selected"] = @YES;
     }
 }
 
@@ -143,16 +150,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSMutableDictionary *oldValue = self.selectedIndex>=0 ?[self dataForRow:self.selectedIndex section:self.selectedSection] : [NSMutableDictionary dictionaryWithDictionary:@{}];
     NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
-    NSDictionary *event = @{
-                            @"target": self.reactTag,
-                            @"oldValue": oldValue,
-                            @"newValue": newValue,
-                            @"indexPath": @{
-                                    @"section": @([indexPath section]),
-                                    @"row": @([indexPath row])
-                                    }
-                            };
-    [_eventDispatcher sendInputEventWithName:@"topTap" body:event];
+    newValue[@"target"] = self.reactTag;
+    newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
+    newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
+    
+    
+    [_eventDispatcher sendInputEventWithName:@"topTap" body:newValue];
     if (oldValue[@"selected"]){
         [oldValue removeObjectForKey:@"selected"];
         [newValue setObject:@1 forKey:@"selected"];

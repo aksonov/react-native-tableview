@@ -76,17 +76,18 @@ var TableView = React.createClass({
                     selectedIndex={this.state.selectedIndex}
                     selectedSection={this.state.selectedSection}
                     additionalItems={this.state.additionalItems}
-                    onPress={this._onChange}
                     tableViewStyle={TableView.Consts.Style.Plain}
                     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
                     {...this.props}
+                    onPress={this._onChange}
                     />
         );
     },
 
     _onChange: function(event) {
+        console.log("_ONCHANGE:")
         if (this.props.onPress) {
-            this.props.onPress(event);
+            this.props.onPress(event.nativeEvent);
         }
         //if (this.props.onValueChange) {
         //    this.props.onValueChange(event.nativeEvent.newValue);

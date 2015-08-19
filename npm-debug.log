@@ -1,0 +1,99 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/aksonov/.nvm/versions/io.js/v2.5.0/bin/iojs',
+1 verbose cli   '/Users/aksonov/.nvm/versions/io.js/v2.5.0/bin/npm',
+1 verbose cli   'publish',
+1 verbose cli   './' ]
+2 info using npm@2.13.2
+3 info using node@v2.5.0
+4 verbose publish [ './' ]
+5 silly cache add args [ './', null ]
+6 verbose cache add spec ./
+7 silly cache add parsed spec { raw: './',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: './',
+7 silly cache add   spec: '/Users/aksonov/Documents/react-native-tableview',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/aksonov/.npm/react-native-tableview/1.0.2/package.tgz not in flight; packing
+9 verbose tar pack [ '/Users/aksonov/.npm/react-native-tableview/1.0.2/package.tgz',
+9 verbose tar pack   '/Users/aksonov/Documents/react-native-tableview' ]
+10 verbose tarball /Users/aksonov/.npm/react-native-tableview/1.0.2/package.tgz
+11 verbose folder /Users/aksonov/Documents/react-native-tableview
+12 info prepublish react-native-tableview@1.0.2
+13 verbose addLocalTarball adding from inside cache /Users/aksonov/.npm/react-native-tableview/1.0.2/package.tgz
+14 silly cache afterAdd react-native-tableview@1.0.2
+15 verbose afterAdd /Users/aksonov/.npm/react-native-tableview/1.0.2/package/package.json not in flight; writing
+16 verbose afterAdd /Users/aksonov/.npm/react-native-tableview/1.0.2/package/package.json written
+17 silly publish { name: 'react-native-tableview',
+17 silly publish   version: '1.0.2',
+17 silly publish   description: 'Native iOS TableView wrapper for React Native',
+17 silly publish   main: 'index.js',
+17 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+17 silly publish   repository:
+17 silly publish    { type: 'git',
+17 silly publish      url: 'git+https://github.com/aksonov/react-native-tableview.git' },
+17 silly publish   keywords: [ 'react-native', 'UITableView', 'iOS' ],
+17 silly publish   author:
+17 silly publish    { name: 'Pavlo Aksonov',
+17 silly publish      email: 'akso.nov@gmail.com',
+17 silly publish      url: 'http://aksonov.com' },
+17 silly publish   license: 'ISC',
+17 silly publish   bugs: { url: 'https://github.com/aksonov/react-native-tableview/issues' },
+17 silly publish   homepage: 'https://github.com/aksonov/react-native-tableview#readme',
+17 silly publish   dependencies: { 'react-native': '^0.9.0' },
+17 silly publish   readme: '# react-native-tableview\nNative iOS UITableView for React Native with JSON support.\n\n## Why I need to use it?\n- To display long lists of data (like country list) - built-in list view has performance issues for long lists\n- To use built-in accessory types (checkmark or disclosure indicator)\n- Automatic scroll to initial selected value during component initialization\n- Automatic item selection with "checkmark" with old item de-selection (optionally), see demo, useful to select country/state/etc.\n- Native JSON support for datasource. If you need to display large dataset, generated Javascript will became very large and impact js loading time. To solve this problem the component could read JSON directly from app bundle without JS!\n- Filter JSON datasources using NSPredicate syntax. For example you could select states for given country only (check demo)\n\n## Supports UITableView styles\n- UITableViewStylePlain (TableView.Consts.Style.Plain)\n- UITableViewStyleGrouped (TableView.Consts.Style.Grouped)\n\n## Supports UITableViewCell styles\n- UITableViewCellStyleDefault (TableView.Consts.CellStyle.Default)\n- UITableViewCellStyleValue1 (TableView.Consts.CellStyle.Value1)\n- UITableViewCellStyleValue2 (TableView.Consts.CellStyle.Value2)\n- UITableViewCellStyleSubtitle (TableView.Consts.CellStyle.Subtitle)\n\n## Supports accessory types\n- UITableViewCellAccessoryDisclosureIndicator ("arrow" attribute for TableView.Item or TableView.Section)\n- UITableViewCellAccessoryCheckmark ("selected" attribute for TableView.Item)\n\n## Example 1\n![demo](https://cloud.githubusercontent.com/assets/1321329/9329083/cc77b4e0-45ae-11e5-9919-34f12e6d407c.gif)\n\n```\n\'use strict\';\n\nvar React = require(\'react-native\');\nvar { AppRegistry } = React;\nvar TableView = require(\'react-native-tableview\');\nvar Section = TableView.Section;\nvar Item = TableView.Item;\n\nclass TableViewExample extends React.Component {\n    render(){\n        return (\n            <TableView style={{flex:1}}\n                       tableViewStyle={TableView.Consts.Style.Grouped}\n                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}\n                       onPress={(event) => console.log(event.nativeEvent)}>\n                <Section label="Section 1" arrow={true}>\n                    <Item value="1" detail="Detail1" >Item 1</Item>\n                    <Item value="2">Item 2</Item>\n                    <Item>Item 3</Item>\n                    <Item>Item 4</Item>\n                    <Item>Item 5</Item>\n                    <Item>Item 6</Item>\n                    <Item>Item 7</Item>\n                    <Item>Item 8</Item>\n                    <Item>Item 9</Item>\n                    <Item>Item 10</Item>\n                    <Item>Item 11</Item>\n                    <Item>Item 12</Item>\n                    <Item>Item 13</Item>\n                    <Item>Item 14</Item>\n                    <Item>Item 15</Item>\n                    <Item>Item 16</Item>\n                    <Item>Item 17</Item>\n                    <Item>Item 18</Item>\n                    <Item>Item 19</Item>\n                    <Item>Item 20</Item>\n                    <Item>Item 21</Item>\n                    <Item>Item 22</Item>\n                    <Item>Item 23</Item>\n                    <Item>Item 24</Item>\n                    <Item>Item 25</Item>\n                    <Item>Item 26</Item>\n                    <Item>Item 27</Item>\n                    <Item>Item 28</Item>\n                    <Item>Item 29</Item>\n                    <Item>Item 30</Item>\n                </Section>\n                <Section label="Section 2" arrow={false}>\n                    <Item selected={true}>Item 1</Item>\n                    <Item>Item 2</Item>\n                    <Item>Item 3</Item>\n                </Section>\n            </TableView>\n        );\n    }\n}\n\nAppRegistry.registerComponent(\'TableViewExample\', () => TableViewExample);\n```\n## Example 2 (JSON source support), reads country list JSON from app bundle and display UITableView with selected value checkmarked\n![demo2](https://cloud.githubusercontent.com/assets/1321329/9335801/7a4d42ca-45d6-11e5-860c-969db80413ca.gif)\n\n```\n    render(){\n        return (\n            <TableView selectedValue="ES" style={{flex:1}} json="countries"\n                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}\n                       onPress={(event) => console.log(event.nativeEvent)}/>\n        );\n    }\n```\n\n### Example 3 (JSON filter and optional items at the beginning)\n```\n    // list spanish provinces and add \'All states\' item at the beginning\n    render(){\n        var country = "ES";\n        return (\n            <TableView selectedValue="" style={{flex:1}} json="states" filter={`country==\'${country}\'`}\n                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}\n                       onPress={(event) => console.log(event.nativeEvent)}>\n                <Item value="">All states</Item>\n            </TableView>\n        );\n    }\n```\n\n## Getting started\n1. `npm install react-native-tableview --save`\n2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project\'s name]`\n3. add `./node_modules/react-native-tableview/RCTTableView.xcodeproj`\n4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRCTTableView.a**\n5. (optional) If you will use JSON file, add it to iOS application bundle\n6. `var TableView = require(\'react-native-tableview\')`\n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: 'e61701a8e00a08d5f84322b56f0960ab1f2829ef',
+17 silly publish   _id: 'react-native-tableview@1.0.2',
+17 silly publish   _shasum: '6acf284d2e17dd1cb7e7cf273f8558c8718ef62e',
+17 silly publish   _from: '.' }
+18 verbose getPublishConfig undefined
+19 silly mapToRegistry name react-native-tableview
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/react-native-tableview
+23 verbose publish registryBase https://registry.npmjs.org/
+24 silly publish uploading /Users/aksonov/.npm/react-native-tableview/1.0.2/package.tgz
+25 verbose request uri https://registry.npmjs.org/react-native-tableview
+26 verbose request sending authorization for write operation
+27 info attempt registry request try #1 at 10:42:55
+28 verbose request using bearer token for auth
+29 verbose request id 6d9c98d7edde9759
+30 http request PUT https://registry.npmjs.org/react-native-tableview
+31 http 403 https://registry.npmjs.org/react-native-tableview
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=60',
+32 verbose headers   'content-length': '95',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Wed, 19 Aug 2015 08:42:57 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-fra1221-FRA',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1439973776.026287,VS0,VE1072' }
+33 verbose request invalidating /Users/aksonov/.npm/registry.npmjs.org/react-native-tableview on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 1.0.2." : react-native-tableview
+35 verbose stack     at CachingRegistryClient.<anonymous> (/Users/aksonov/.nvm/versions/io.js/v2.5.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:247:14)
+35 verbose stack     at Request._callback (/Users/aksonov/.nvm/versions/io.js/v2.5.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+35 verbose stack     at Request.self.callback (/Users/aksonov/.nvm/versions/io.js/v2.5.0/lib/node_modules/npm/node_modules/request/request.js:197:22)
+35 verbose stack     at emitTwo (events.js:87:13)
+35 verbose stack     at Request.emit (events.js:172:7)
+35 verbose stack     at Request.<anonymous> (/Users/aksonov/.nvm/versions/io.js/v2.5.0/lib/node_modules/npm/node_modules/request/request.js:1050:14)
+35 verbose stack     at emitOne (events.js:82:20)
+35 verbose stack     at Request.emit (events.js:169:7)
+35 verbose stack     at IncomingMessage.<anonymous> (/Users/aksonov/.nvm/versions/io.js/v2.5.0/lib/node_modules/npm/node_modules/request/request.js:996:12)
+35 verbose stack     at emitNone (events.js:72:20)
+36 verbose statusCode 403
+37 verbose pkgid react-native-tableview
+38 verbose cwd /Users/aksonov/Documents/react-native-tableview
+39 error Darwin 14.4.0
+40 error argv "/Users/aksonov/.nvm/versions/io.js/v2.5.0/bin/iojs" "/Users/aksonov/.nvm/versions/io.js/v2.5.0/bin/npm" "publish" "./"
+41 error node v2.5.0
+42 error npm  v2.13.2
+43 error code E403
+44 error "You cannot publish over the previously published version 1.0.2." : react-native-tableview
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]

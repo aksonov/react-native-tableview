@@ -1,5 +1,5 @@
 var fs = require('fs');
-var obj = JSON.parse(fs.readFileSync('states.json', 'utf8'));
+var obj = JSON.parse(fs.readFileSync('cities.json', 'utf8'));
 var items=[];
 obj.sort(function(a,b){
     var A=a.name;
