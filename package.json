@@ -1,6 +1,6 @@
 {
   "name": "react-native-tableview",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Native iOS TableView wrapper for React Native",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,9 @@
   },
   "keywords": [
     "react-native",
+    "react-component",
     "UITableView",
+    "tableview",
     "iOS"
   ],
   "author": "Pavlo Aksonov <akso.nov@gmail.com> (http://aksonov.com)",
