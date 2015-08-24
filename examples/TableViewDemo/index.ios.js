@@ -9,7 +9,6 @@ var Cell = TableView.Cell;
 
 class TableViewExample extends React.Component {
     render(){
-        console.log("RENDER");
         return (
             <TableView style={{flex:1}}  onPress={(event) => alert(JSON.stringify(event))} selectedValue="1">
                 <Section label="section 1">
