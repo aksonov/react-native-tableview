@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		877F18941B8B03560015449A /* RCTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877F18931B8B03560015449A /* RCTCellView.m */; };
+		877F18971B8B03B40015449A /* RCTCellViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 877F18961B8B03B40015449A /* RCTCellViewManager.m */; };
+		877F189A1B8B0F000015449A /* RCTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877F18991B8B0F000015449A /* RCTTableViewCell.m */; };
 		87D0FD551B83229F00B0DA60 /* RCTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */; };
 		87D0FD611B83235900B0DA60 /* RCTTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FD601B83235900B0DA60 /* RCTTableViewManager.m */; };
 		87D0FDC21B836BA300B0DA60 /* JSONDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FDC11B836BA300B0DA60 /* JSONDataSource.m */; };
@@ -26,6 +29,12 @@
 
 /* Begin PBXFileReference section */
 		873769951B7CD6E900F7C3C2 /* libRCTTableView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTTableView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		877F18921B8B03560015449A /* RCTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTCellView.h; sourceTree = "<group>"; };
+		877F18931B8B03560015449A /* RCTCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTCellView.m; sourceTree = "<group>"; };
+		877F18951B8B03B40015449A /* RCTCellViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTCellViewManager.h; sourceTree = "<group>"; };
+		877F18961B8B03B40015449A /* RCTCellViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTCellViewManager.m; sourceTree = "<group>"; };
+		877F18981B8B0F000015449A /* RCTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTableViewCell.h; sourceTree = "<group>"; };
+		877F18991B8B0F000015449A /* RCTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTableViewCell.m; sourceTree = "<group>"; };
 		87D0FD391B83229F00B0DA60 /* RCTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTableView.h; sourceTree = "<group>"; };
 		87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTableView.m; sourceTree = "<group>"; };
 		87D0FD5F1B83235900B0DA60 /* RCTTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTableViewManager.h; sourceTree = "<group>"; };
@@ -78,6 +87,12 @@
 				87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */,
 				87D0FD5F1B83235900B0DA60 /* RCTTableViewManager.h */,
 				87D0FD601B83235900B0DA60 /* RCTTableViewManager.m */,
+				877F18921B8B03560015449A /* RCTCellView.h */,
+				877F18931B8B03560015449A /* RCTCellView.m */,
+				877F18951B8B03B40015449A /* RCTCellViewManager.h */,
+				877F18961B8B03B40015449A /* RCTCellViewManager.m */,
+				877F18981B8B0F000015449A /* RCTTableViewCell.h */,
+				877F18991B8B0F000015449A /* RCTTableViewCell.m */,
 			);
 			path = RCTTableView;
 			sourceTree = "<group>";
@@ -139,8 +154,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				87D0FDC21B836BA300B0DA60 /* JSONDataSource.m in Sources */,
+				877F189A1B8B0F000015449A /* RCTTableViewCell.m in Sources */,
+				877F18941B8B03560015449A /* RCTCellView.m in Sources */,
 				87D0FD551B83229F00B0DA60 /* RCTTableView.m in Sources */,
 				87D0FD611B83235900B0DA60 /* RCTTableViewManager.m in Sources */,
+				877F18971B8B03B40015449A /* RCTCellViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

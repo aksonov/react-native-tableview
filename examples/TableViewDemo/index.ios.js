@@ -1,15 +1,43 @@
 'use strict';
 
 var React = require('react-native');
-var { AppRegistry } = React;
+var { AppRegistry, Text, Dimensions,View } = React;
 var TableView = require('react-native-tableview');
 var Section = TableView.Section;
 var Item = TableView.Item;
+var Cell = TableView.Cell;
 
 class TableViewExample extends React.Component {
+    render(){
+        console.log("RENDER");
+        return (
+            <TableView style={{flex:1}}  onPress={(event) => alert(JSON.stringify(event))} selectedValue="1">
+                <Section label="section 1">
+                    <Cell style={{backgroundColor:'gray'}} value="">
+                        <Text style={{color:'white', textAlign:'right'}}>Cell 1</Text>
+                        <Text style={{color:'white', textAlign:'left'}}>Cell 1</Text>
+                    </Cell>
+                    <Cell style={{height:200, backgroundColor:'red'}}><Text>Cell 2</Text></Cell>
+                    <Cell><Text>Cell 3</Text></Cell>
+                    <Cell style={{height:100}}><Text>Cell 4</Text></Cell>
+                    <Cell><Text>Cell 5</Text></Cell>
+                </Section>
+                <Section label="section 2">
+                    <Cell style={{backgroundColor:'gray'}} value="1">
+                        <Text style={{color:'white', textAlign:'right'}}>Cell 1.1</Text>
+                        <Text style={{color:'white', textAlign:'left'}}>Cell 1.1</Text>
+                    </Cell>
+                    <Cell style={{height:200, backgroundColor:'red'}}><Text>Cell 1.2</Text></Cell>
+                    <Cell><Text>Cell 3</Text></Cell>
+                    <Cell style={{height:100}}><Text>Cell 4</Text></Cell>
+                    <Cell><Text>Cell 5</Text></Cell>
+                </Section>
+            </TableView>
+        );
+    }
 
     // list spanish provinces and add 'All states' item at the beginning
-    render(){
+    render4(){
         var country = "ES";
         return (
             <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}

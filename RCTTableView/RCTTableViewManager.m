@@ -21,12 +21,15 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_VIEW_PROPERTY(sections, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(json, NSString)
+RCT_EXPORT_VIEW_PROPERTY(customCells, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(filter, NSString)
 RCT_EXPORT_VIEW_PROPERTY(selectedValue, NSString)
 RCT_EXPORT_VIEW_PROPERTY(filterArgs, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(additionalItems, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(selectedIndex, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(selectedSection, NSInteger)
+RCT_EXPORT_VIEW_PROPERTY(cellHeight, float)
+
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RCTTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
 }

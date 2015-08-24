@@ -12,6 +12,7 @@
 #import "RCTUtils.h"
 #import "UIView+React.h"
 #import "JSONDataSource.h"
+#import "RCTCellView.h"
 
 @interface RCTTableView()<UITableViewDataSource, UITableViewDelegate> {
     id<RCTTableViewDatasource> datasource;
@@ -25,6 +26,27 @@
     RCTEventDispatcher *_eventDispatcher;
     NSArray *_items;
     NSInteger _selectedIndex;
+    NSMutableArray *_cells;
+}
+
+- (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
+{
+    // will not insert because we don't need to draw them
+ //   [super insertSubview:subview atIndex:atIndex];
+    
+    // just add them to registry
+    if ([subview isKindOfClass:[RCTCellView class]]){
+        RCTCellView *cellView = (RCTCellView *)subview;
+        cellView.tableView = self.tableView;
+        while (cellView.section >= [_cells count]){
+            [_cells addObject:[NSMutableArray array]];
+        }
+        [_cells[cellView.section] addObject:subview];
+        if (cellView.section == [_sections count]-1 && cellView.row == [_sections[cellView.section][@"count"] integerValue]-1){
+            [self.tableView reloadData];
+        }
+    }
+    
 }
 
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
@@ -35,6 +57,8 @@
         _eventDispatcher = eventDispatcher;
         _selectedIndex = -1;
         _selectedSection = 0;
+        _cellHeight = 44;
+        _cells = [NSMutableArray array];
     }
     return self;
 }
@@ -56,13 +80,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (![_sections count] && _json){
         datasource = [[JSONDataSource alloc] initWithFilename:_json filter:_filter args:_filterArgs];
         self.sections = [NSMutableArray arrayWithArray:[datasource sections]];
-    }
-    if (_selectedIndex>=0){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:_selectedSection];
-            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        });
     }
 }
 
@@ -93,7 +110,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         NSMutableArray *items = [NSMutableArray arrayWithCapacity:[allItems count]];
         for (NSDictionary *item in allItems){
             NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithDictionary:item];
-            if (self.selectedValue && [self.selectedValue isEqualToString:item[@"value"]]){
+            if (itemData[@"selected"] || (self.selectedValue && [self.selectedValue isEqualToString:item[@"value"]])){
                 _selectedSection = [_sections count];
                 _selectedIndex = [items count];
                 itemData[@"selected"] = @YES;
@@ -104,12 +121,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         sectionData[@"items"] = items;
         [_sections addObject:sectionData];
     }
-    // check first element if no match
-    if (!found && self.selectedValue && [_sections count] && [_sections[0][@"items"] count]){
-        _selectedSection = 0;
-        _selectedIndex = 0;
-        _sections[0][@"items"][0][@"selected"] = @YES;
-    }
+//  check first element if no match
+//    if (!found && self.selectedValue && [_sections count] && [_sections[0][@"items"] count]){
+//        _selectedSection = 0;
+//        _selectedIndex = 0;
+//        _sections[0][@"items"][0][@"selected"] = @YES;
+//    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -118,16 +135,42 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger count = [_sections[section][@"items"] count];
+    // if we have custom cells, additional processing is necessary
+    if (self.customCells){
+        if ([_cells count]<=section){
+            return 0;
+        }
+        // don't display cells until their's height is not calculated (TODO: maybe it is possible to optimize??)
+        for (RCTCellView *view in _cells[section]){
+            if (!view.componentHeight){
+                return 0;
+            }
+        }
+        count = [_cells[section] count];
+    }
+    if (count && _selectedIndex>=0){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:_selectedSection];
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        });
+    }
     return count;
 }
 -(UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:@"Cell"];
-    }
     NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
-    cell.textLabel.text = item[@"label"];
-    cell.detailTextLabel.text = item[@"detail"];
+    
+    // check if it is standard cell or user-defined UI
+    if (![_cells count]){
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:@"Cell"];
+        }
+        cell.textLabel.text = item[@"label"];
+        cell.detailTextLabel.text = item[@"detail"];
+    } else {
+        cell = ((RCTCellView *)_cells[indexPath.section][indexPath.row]).tableViewCell;
+    }
     if ([item[@"selected"] intValue]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else if ([item[@"arrow"] intValue]) {
@@ -144,6 +187,17 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 -(NSMutableDictionary *)dataForRow:(NSInteger)row section:(NSInteger)section {
     return (NSMutableDictionary *)_sections[section][@"items"][row];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![_cells count]){
+        return _cellHeight;
+    } else {
+        RCTCellView *cell = (RCTCellView *)_cells[indexPath.section][indexPath.row];
+        CGFloat height =  cell.componentHeight;
+        return height;
+    }
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
