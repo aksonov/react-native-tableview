@@ -247,7 +247,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
     
     
-    [_eventDispatcher sendInputEventWithName:@"topTap" body:newValue];
+    [_eventDispatcher sendInputEventWithName:@"press" body:newValue];
     if (oldValue[@"selected"]){
         [oldValue removeObjectForKey:@"selected"];
         [newValue setObject:@1 forKey:@"selected"];

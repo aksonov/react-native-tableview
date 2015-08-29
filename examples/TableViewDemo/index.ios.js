@@ -8,7 +8,7 @@ var Item = TableView.Item;
 var Cell = TableView.Cell;
 
 class TableViewExample extends React.Component {
-    render(){
+    render4(){
         return (
             <TableView style={{flex:1}}  onPress={(event) => alert(JSON.stringify(event))} selectedValue="1">
                 <Section label="section 1">
@@ -36,7 +36,7 @@ class TableViewExample extends React.Component {
     }
 
     // list spanish provinces and add 'All states' item at the beginning
-    render4(){
+    render(){
         var country = "ES";
         return (
             <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}

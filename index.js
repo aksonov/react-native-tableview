@@ -91,6 +91,7 @@ var TableView = React.createClass({
     },
 
     _onChange: function(event) {
+        console.log("ONCHANGE");
         if (this.props.onPress) {
             this.props.onPress(event.nativeEvent);
         }
