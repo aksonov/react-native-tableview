@@ -93,6 +93,44 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [self addSubview:_tableView];
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section]-1){
+        // Remove seperator inset
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            [cell setSeparatorInset:UIEdgeInsetsZero];
+        }
+        
+        // Prevent the cell from inheriting the Table View's margin settings
+        if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+            [cell setPreservesSuperviewLayoutMargins:NO];
+        }
+        
+        // Explictly set your cell's layout margins
+        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+            [cell setLayoutMargins:UIEdgeInsetsZero];
+        }
+    }
+    if (self.font){
+        cell.detailTextLabel.font = self.font;
+        cell.textLabel.font = self.font;
+    }
+    if (self.tintColor){
+        cell.tintColor = self.tintColor;
+    }
+    
+    NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
+    if (self.selectedTextColor && [item[@"selected"] intValue]){
+        cell.textLabel.textColor = self.selectedTextColor;
+        cell.detailTextLabel.textColor = self.selectedTextColor;
+    } else {
+        if (self.textColor){
+            cell.textLabel.textColor=self.textColor;
+            cell.detailTextLabel.textColor=self.textColor;
+        }
+    }
+}
+
 
 
 - (void)setSections:(NSArray *)sections

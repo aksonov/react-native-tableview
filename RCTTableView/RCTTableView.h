@@ -35,5 +35,9 @@
 @property (nonatomic, assign) BOOL customCells;
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
 @property (nonatomic, assign) UITableViewCellStyle tableViewCellStyle;
+@property (nonatomic, strong) UIFont *font;
+@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *tintColor;
+@property (nonatomic, strong) UIColor *selectedTextColor;
 
 @end

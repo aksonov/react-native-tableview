@@ -29,6 +29,9 @@ RCT_EXPORT_VIEW_PROPERTY(additionalItems, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(selectedIndex, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(selectedSection, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(cellHeight, float)
+RCT_EXPORT_VIEW_PROPERTY(textColor, UIColor)
+RCT_EXPORT_VIEW_PROPERTY(tintColor, UIColor)
+RCT_EXPORT_VIEW_PROPERTY(selectedTextColor, UIColor)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RCTTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
@@ -53,6 +56,24 @@ RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RCTTableView) {
                      }
              };
 }
+
+RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RCTTableView)
+{
+    view.font = [RCTConvert UIFont:view.font withSize:json ?: @(defaultView.font.pointSize)];
+}
+RCT_CUSTOM_VIEW_PROPERTY(fontWeight, NSString, RCTTableView)
+{
+    view.font = [RCTConvert UIFont:view.font withWeight:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(fontStyle, NSString, RCTTableView)
+{
+    view.font = [RCTConvert UIFont:view.font withStyle:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(fontFamily, NSString, RCTTableView)
+{
+    view.font = [RCTConvert UIFont:view.font withFamily:json ?: defaultView.font.familyName];
+}
+
 
 //
 //- (NSDictionary *)constantsToExport
