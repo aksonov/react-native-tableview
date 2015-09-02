@@ -81,6 +81,13 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         datasource = [[JSONDataSource alloc] initWithFilename:_json filter:_filter args:_filterArgs];
         self.sections = [NSMutableArray arrayWithArray:[datasource sections]];
     }
+        if (_selectedIndex>=0 ){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:_selectedSection];
+                [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+                [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+            });
+        }
 }
 
 #pragma mark - Private APIs
@@ -185,13 +192,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
             }
         }
         count = [_cells[section] count];
-    }
-    if (count && _selectedIndex>=0){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:_selectedSection];
-            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-        });
     }
     return count;
 }
