@@ -60,7 +60,12 @@ var TableView = React.createClass({
                     }
 
                 });
-                sections.push({label:section.props.label, items: items, count: count});
+                sections.push({
+                  label: section.props.label,
+                  footerLabel: section.props.footerLabel,
+                  items: items,
+                  count: count
+                });
             }
             if (section.type==TableView.Item){
                 var el = clone(section.props);

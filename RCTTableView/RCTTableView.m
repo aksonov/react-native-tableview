@@ -223,6 +223,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     return _sections[section][@"label"];
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    return _sections[section][@"footerLabel"];
+}
+
 -(NSMutableDictionary *)dataForRow:(NSInteger)row section:(NSInteger)section {
     return (NSMutableDictionary *)_sections[section][@"items"][row];
 }
