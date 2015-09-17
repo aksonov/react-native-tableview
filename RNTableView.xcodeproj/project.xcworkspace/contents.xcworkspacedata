@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/aksonov/Documents/react-native-tableview/RCTTableView.xcodeproj">
+      location = "self:/Users/aksonov/Documents/react-native-tableview/RNTableView.xcodeproj">
    </FileRef>
 </Workspace>

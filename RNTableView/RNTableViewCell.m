@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Pavlo Aksonov. All rights reserved.
 //
 
-#import "RCTTableViewCell.h"
+#import "RNTableViewCell.h"
 
-@implementation RCTTableViewCell
+@implementation RNTableViewCell
 
--(void)setCellView:(RCTCellView *)cellView {
+-(void)setCellView:(RNCellView *)cellView {
     _cellView = cellView;
     [self.contentView addSubview:cellView];
 }

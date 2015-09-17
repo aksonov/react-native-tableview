@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "react-native": "^0.10.0",
-    "react-native-tableview": "^1.0.4"
+    "react-native-tableview": ">=1.1.5"
   }
 }

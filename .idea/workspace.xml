@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fd900c30-7de1-450e-af03-02676649b320" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/project.xcworkspace/xcuserdata/aksonov.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/JSONDataSource.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/JSONDataSource.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNCellView.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNCellView.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNCellViewManager.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNCellViewManager.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNTableView.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNTableView.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/project.xcworkspace/xcshareddata/RNTableView.xccheckout" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNTableViewCell.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNTableViewCell.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNTableViewManager.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RNTableView/RNTableViewManager.m" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/project.xcworkspace/xcuserdata/aksonov.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/JSONDataSource.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/JSONDataSource.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNCellView.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNCellView.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNCellViewManager.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNCellViewManager.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNTableView.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNTableView.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNTableViewCell.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNTableViewCell.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNTableViewManager.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/RCTTableView/RNTableViewManager.m" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/project.pbxproj" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/project.xcworkspace/contents.xcworkspacedata" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/project.xcworkspace/xcshareddata/RCTSvg.xccheckout" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/project.xcworkspace/xcshareddata/RCTSvg.xccheckout" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/project.xcworkspace/xcshareddata/RCTTableView.xccheckout" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/project.xcworkspace/xcshareddata/RCTTableView.xccheckout" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/project.xcworkspace/xcuserdata/aksonov.xcuserdatad/WorkspaceSettings.xcsettings" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/project.xcworkspace/xcuserdata/aksonov.xcuserdatad/WorkspaceSettings.xcsettings" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/xcuserdata/aksonov.xcuserdatad/xcschemes/RCTTableView.xcscheme" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/xcuserdata/aksonov.xcuserdatad/xcschemes/RCTTableView.xcscheme" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/RCTTableView.xcodeproj/xcuserdata/aksonov.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/RNTableView.xcodeproj/xcuserdata/aksonov.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/TableViewDemo/package.json" afterPath="$PROJECT_DIR$/examples/TableViewDemo/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/TableViewDemo/TableViewDemo.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/examples/TableViewDemo/TableViewDemo.xcodeproj/project.pbxproj" />
+    </list>
+    <ignored path="react-native-tableview.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="react-native-tableview" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider editor-type-id="MultiMarkdownHtmlEditor">
+            <state />
+          </provider>
+          <provider editor-type-id="MultiMarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.172414">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.39297125">
+              <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/index.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="177" />
+    <option name="y" value="23" />
+    <option name="width" value="1273" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-native-tableview" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-native-tableview" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-native-tableview" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="JavaScriptLanguageLevel" value="JSX" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fd900c30-7de1-450e-af03-02676649b320" name="Default" comment="" />
+      <created>1442484175359</created>
+      <option name="number" value="Default" />
+      <updated>1442484175359</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="177" y="23" width="1273" height="1057" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MultiMarkdownHtmlEditor">
+        <state />
+      </provider>
+      <provider editor-type-id="MultiMarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.172414">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39297125">
+          <caret line="128" column="34" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

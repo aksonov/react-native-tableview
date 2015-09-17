@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class RCTEventDispatcher;
 
-@protocol RCTTableViewDatasource <NSObject>
+@protocol RNTableViewDatasource <NSObject>
 
 // create method with params dictionary
 -(id)initWithDictionary:(NSDictionary *)params ;
@@ -19,7 +19,7 @@
 
 @end
 
-@interface RCTTableView : UIView
+@interface RNTableView : UIView
 
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher NS_DESIGNATED_INITIALIZER;
 

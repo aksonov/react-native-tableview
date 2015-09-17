@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 Pavlo Aksonov. All rights reserved.
 //
 
-#import "RCTCellView.h"
+#import "RNCellView.h"
 
-@implementation RCTCellView
+@implementation RNCellView
 
 
 -(void)setTableView:(UITableView *)tableView {
     _tableView = tableView;
-    _tableViewCell = [[RCTTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomCell"];
+    _tableViewCell = [[RNTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomCell"];
     _tableViewCell.cellView = self;
 }
 

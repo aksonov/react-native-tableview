@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCTTableViewCell.h"
+#import "RNTableViewCell.h"
 
-@class RCTTableViewCell;
+@class RNTableViewCell;
 
-@interface RCTCellView : UIView
+@interface RNCellView : UIView
 
 @property (nonatomic) NSInteger row;
 @property (nonatomic) NSInteger section;
 @property (nonatomic) float componentHeight;
 @property (nonatomic) float componentWidth;
 @property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic, strong) RCTTableViewCell *tableViewCell;
+@property (nonatomic, strong) RNTableViewCell *tableViewCell;
 
 @end

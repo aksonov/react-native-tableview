@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "873769941B7CD6E900F7C3C2"
-               BuildableName = "libRCTTableView.a"
-               BlueprintName = "RCTTableView"
-               ReferencedContainer = "container:RCTTableView.xcodeproj">
+               BuildableName = "libRNTableView.a"
+               BlueprintName = "RNTableView"
+               ReferencedContainer = "container:RNTableView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "8737699F1B7CD6E900F7C3C2"
                BuildableName = "RCTSvgTests.xctest"
                BlueprintName = "RCTSvgTests"
-               ReferencedContainer = "container:RCTTableView.xcodeproj">
+               ReferencedContainer = "container:RNTableView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "8737699F1B7CD6E900F7C3C2"
                BuildableName = "RCTSvgTests.xctest"
                BlueprintName = "RCTSvgTests"
-               ReferencedContainer = "container:RCTTableView.xcodeproj">
+               ReferencedContainer = "container:RNTableView.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "873769941B7CD6E900F7C3C2"
-            BuildableName = "libRCTTableView.a"
-            BlueprintName = "RCTTableView"
-            ReferencedContainer = "container:RCTTableView.xcodeproj">
+            BuildableName = "libRNTableView.a"
+            BlueprintName = "RNTableView"
+            ReferencedContainer = "container:RNTableView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "873769941B7CD6E900F7C3C2"
-            BuildableName = "libRCTTableView.a"
-            BlueprintName = "RCTTableView"
-            ReferencedContainer = "container:RCTTableView.xcodeproj">
+            BuildableName = "libRNTableView.a"
+            BlueprintName = "RNTableView"
+            ReferencedContainer = "container:RNTableView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "873769941B7CD6E900F7C3C2"
-            BuildableName = "libRCTTableView.a"
-            BlueprintName = "RCTTableView"
-            ReferencedContainer = "container:RCTTableView.xcodeproj">
+            BuildableName = "libRNTableView.a"
+            BlueprintName = "RNTableView"
+            ReferencedContainer = "container:RNTableView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

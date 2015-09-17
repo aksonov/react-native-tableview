@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 Pavlo Aksonov. All rights reserved.
 //
 
-#import "RCTCellViewManager.h"
-#import "RCTCellView.h"
+#import "RNCellViewManager.h"
+#import "RNCellView.h"
 
-@implementation RCTCellViewManager
+@implementation RNCellViewManager
 RCT_EXPORT_MODULE()
 - (UIView *)view
 {
-    return [[RCTCellView alloc] init];
+    return [[RNCellView alloc] init];
 }
 
 RCT_EXPORT_VIEW_PROPERTY(row, NSInteger)

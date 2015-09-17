@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RCTCellView.h"
-@class RCTCellView;
+#import "RNCellView.h"
+@class RNCellView;
 
-@interface RCTTableViewCell : UITableViewCell
+@interface RNTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) RCTCellView *cellView;
+@property (nonatomic, weak) RNCellView *cellView;
 
 @end

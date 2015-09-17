@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 Pavlo Aksonov. All rights reserved.
 //
 
-#import "RCTTableViewManager.h"
-#import "RCTTableView.h"
+#import "RNTableViewManager.h"
+#import "RNTableView.h"
 #import "RCTBridge.h"
 #import "RCTConvert.h"
 
-@implementation RCTTableViewManager
+@implementation RNTableViewManager
 
 RCT_EXPORT_MODULE()
 - (UIView *)view
 {
-    return [[RCTTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+    return [[RNTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
 }
 
 RCT_EXPORT_VIEW_PROPERTY(sections, NSArray)
@@ -33,12 +33,12 @@ RCT_EXPORT_VIEW_PROPERTY(textColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(tintColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(selectedTextColor, UIColor)
 
-RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RCTTableView) {
+RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
 }
 RCT_EXPORT_VIEW_PROPERTY(cellForRowAtIndexPath, NSArray)
 
-RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RCTTableView) {
+RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RNTableView) {
     [view setTableViewCellStyle:[RCTConvert NSInteger:json]];
 }
 
@@ -57,19 +57,19 @@ RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RCTTableView) {
              };
 }
 
-RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RCTTableView)
+RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RNTableView)
 {
     view.font = [RCTConvert UIFont:view.font withSize:json ?: @(defaultView.font.pointSize)];
 }
-RCT_CUSTOM_VIEW_PROPERTY(fontWeight, NSString, RCTTableView)
+RCT_CUSTOM_VIEW_PROPERTY(fontWeight, NSString, RNTableView)
 {
     view.font = [RCTConvert UIFont:view.font withWeight:json]; // defaults to normal
 }
-RCT_CUSTOM_VIEW_PROPERTY(fontStyle, NSString, RCTTableView)
+RCT_CUSTOM_VIEW_PROPERTY(fontStyle, NSString, RNTableView)
 {
     view.font = [RCTConvert UIFont:view.font withStyle:json]; // defaults to normal
 }
-RCT_CUSTOM_VIEW_PROPERTY(fontFamily, NSString, RCTTableView)
+RCT_CUSTOM_VIEW_PROPERTY(fontFamily, NSString, RNTableView)
 {
     view.font = [RCTConvert UIFont:view.font withFamily:json ?: defaultView.font.familyName];
 }

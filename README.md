@@ -64,17 +64,6 @@ class TableViewExample extends React.Component {
                     <Item>Item 17</Item>
                     <Item>Item 18</Item>
                     <Item>Item 19</Item>
-                    <Item>Item 20</Item>
-                    <Item>Item 21</Item>
-                    <Item>Item 22</Item>
-                    <Item>Item 23</Item>
-                    <Item>Item 24</Item>
-                    <Item>Item 25</Item>
-                    <Item>Item 26</Item>
-                    <Item>Item 27</Item>
-                    <Item>Item 28</Item>
-                    <Item>Item 29</Item>
-                    <Item>Item 30</Item>
                 </Section>
                 <Section label="Section 2" arrow={false}>
                     <Item selected={true}>Item 1</Item>
@@ -119,7 +108,7 @@ AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
 ## Getting started
 1. `npm install react-native-tableview --save`
 2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-3. add `./node_modules/react-native-tableview/RCTTableView.xcodeproj`
-4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRCTTableView.a**
+3. add `./node_modules/react-native-tableview/RNTableView.xcodeproj`
+4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRNTableView.a**
 5. (optional) If you will use JSON file, add it to iOS application bundle
 6. `var TableView = require('react-native-tableview')`

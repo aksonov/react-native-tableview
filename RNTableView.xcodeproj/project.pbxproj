@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		877F18941B8B03560015449A /* RCTCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877F18931B8B03560015449A /* RCTCellView.m */; };
-		877F18971B8B03B40015449A /* RCTCellViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 877F18961B8B03B40015449A /* RCTCellViewManager.m */; };
-		877F189A1B8B0F000015449A /* RCTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 877F18991B8B0F000015449A /* RCTTableViewCell.m */; };
-		87D0FD551B83229F00B0DA60 /* RCTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */; };
-		87D0FD611B83235900B0DA60 /* RCTTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FD601B83235900B0DA60 /* RCTTableViewManager.m */; };
-		87D0FDC21B836BA300B0DA60 /* JSONDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D0FDC11B836BA300B0DA60 /* JSONDataSource.m */; };
+		872545E11BAAC85D00889249 /* JSONDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545D61BAAC85D00889249 /* JSONDataSource.m */; };
+		872545E21BAAC85D00889249 /* RNCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545D81BAAC85D00889249 /* RNCellView.m */; };
+		872545E31BAAC85D00889249 /* RNCellViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545DA1BAAC85D00889249 /* RNCellViewManager.m */; };
+		872545E41BAAC85D00889249 /* RNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545DC1BAAC85D00889249 /* RNTableView.m */; };
+		872545E51BAAC85D00889249 /* RNTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545DE1BAAC85D00889249 /* RNTableViewCell.m */; };
+		872545E61BAAC85D00889249 /* RNTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545E01BAAC85D00889249 /* RNTableViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,19 +28,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		873769951B7CD6E900F7C3C2 /* libRCTTableView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTTableView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		877F18921B8B03560015449A /* RCTCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTCellView.h; sourceTree = "<group>"; };
-		877F18931B8B03560015449A /* RCTCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTCellView.m; sourceTree = "<group>"; };
-		877F18951B8B03B40015449A /* RCTCellViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTCellViewManager.h; sourceTree = "<group>"; };
-		877F18961B8B03B40015449A /* RCTCellViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTCellViewManager.m; sourceTree = "<group>"; };
-		877F18981B8B0F000015449A /* RCTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTableViewCell.h; sourceTree = "<group>"; };
-		877F18991B8B0F000015449A /* RCTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTableViewCell.m; sourceTree = "<group>"; };
-		87D0FD391B83229F00B0DA60 /* RCTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTableView.h; sourceTree = "<group>"; };
-		87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTableView.m; sourceTree = "<group>"; };
-		87D0FD5F1B83235900B0DA60 /* RCTTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTableViewManager.h; sourceTree = "<group>"; };
-		87D0FD601B83235900B0DA60 /* RCTTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTableViewManager.m; sourceTree = "<group>"; };
-		87D0FDC01B836BA300B0DA60 /* JSONDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataSource.h; sourceTree = "<group>"; };
-		87D0FDC11B836BA300B0DA60 /* JSONDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDataSource.m; sourceTree = "<group>"; };
+		872545D51BAAC85D00889249 /* JSONDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataSource.h; sourceTree = "<group>"; };
+		872545D61BAAC85D00889249 /* JSONDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDataSource.m; sourceTree = "<group>"; };
+		872545D71BAAC85D00889249 /* RNCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCellView.h; sourceTree = "<group>"; };
+		872545D81BAAC85D00889249 /* RNCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCellView.m; sourceTree = "<group>"; };
+		872545D91BAAC85D00889249 /* RNCellViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCellViewManager.h; sourceTree = "<group>"; };
+		872545DA1BAAC85D00889249 /* RNCellViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCellViewManager.m; sourceTree = "<group>"; };
+		872545DB1BAAC85D00889249 /* RNTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTableView.h; sourceTree = "<group>"; };
+		872545DC1BAAC85D00889249 /* RNTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTableView.m; sourceTree = "<group>"; };
+		872545DD1BAAC85D00889249 /* RNTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTableViewCell.h; sourceTree = "<group>"; };
+		872545DE1BAAC85D00889249 /* RNTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTableViewCell.m; sourceTree = "<group>"; };
+		872545DF1BAAC85D00889249 /* RNTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTableViewManager.h; sourceTree = "<group>"; };
+		872545E01BAAC85D00889249 /* RNTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTableViewManager.m; sourceTree = "<group>"; };
+		873769951B7CD6E900F7C3C2 /* libRNTableView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNTableView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +54,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		872545D41BAAC85D00889249 /* RNTableView */ = {
+			isa = PBXGroup;
+			children = (
+				872545D51BAAC85D00889249 /* JSONDataSource.h */,
+				872545D61BAAC85D00889249 /* JSONDataSource.m */,
+				872545D71BAAC85D00889249 /* RNCellView.h */,
+				872545D81BAAC85D00889249 /* RNCellView.m */,
+				872545D91BAAC85D00889249 /* RNCellViewManager.h */,
+				872545DA1BAAC85D00889249 /* RNCellViewManager.m */,
+				872545DB1BAAC85D00889249 /* RNTableView.h */,
+				872545DC1BAAC85D00889249 /* RNTableView.m */,
+				872545DD1BAAC85D00889249 /* RNTableViewCell.h */,
+				872545DE1BAAC85D00889249 /* RNTableViewCell.m */,
+				872545DF1BAAC85D00889249 /* RNTableViewManager.h */,
+				872545E01BAAC85D00889249 /* RNTableViewManager.m */,
+			);
+			path = RNTableView;
+			sourceTree = "<group>";
+		};
 		8737698C1B7CD6E900F7C3C2 = {
 			isa = PBXGroup;
 			children = (
-				87D0FD1C1B83229F00B0DA60 /* RCTTableView */,
+				872545D41BAAC85D00889249 /* RNTableView */,
 				873769961B7CD6E900F7C3C2 /* Products */,
 				873769AF1B7CD88700F7C3C2 /* Frameworks */,
 			);
@@ -66,7 +85,7 @@
 		873769961B7CD6E900F7C3C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				873769951B7CD6E900F7C3C2 /* libRCTTableView.a */,
+				873769951B7CD6E900F7C3C2 /* libRNTableView.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,31 +97,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		87D0FD1C1B83229F00B0DA60 /* RCTTableView */ = {
-			isa = PBXGroup;
-			children = (
-				87D0FDC01B836BA300B0DA60 /* JSONDataSource.h */,
-				87D0FDC11B836BA300B0DA60 /* JSONDataSource.m */,
-				87D0FD391B83229F00B0DA60 /* RCTTableView.h */,
-				87D0FD3A1B83229F00B0DA60 /* RCTTableView.m */,
-				87D0FD5F1B83235900B0DA60 /* RCTTableViewManager.h */,
-				87D0FD601B83235900B0DA60 /* RCTTableViewManager.m */,
-				877F18921B8B03560015449A /* RCTCellView.h */,
-				877F18931B8B03560015449A /* RCTCellView.m */,
-				877F18951B8B03B40015449A /* RCTCellViewManager.h */,
-				877F18961B8B03B40015449A /* RCTCellViewManager.m */,
-				877F18981B8B0F000015449A /* RCTTableViewCell.h */,
-				877F18991B8B0F000015449A /* RCTTableViewCell.m */,
-			);
-			path = RCTTableView;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		873769941B7CD6E900F7C3C2 /* RCTTableView */ = {
+		873769941B7CD6E900F7C3C2 /* RNTableView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 873769A91B7CD6E900F7C3C2 /* Build configuration list for PBXNativeTarget "RCTTableView" */;
+			buildConfigurationList = 873769A91B7CD6E900F7C3C2 /* Build configuration list for PBXNativeTarget "RNTableView" */;
 			buildPhases = (
 				873769911B7CD6E900F7C3C2 /* Sources */,
 				873769921B7CD6E900F7C3C2 /* Frameworks */,
@@ -112,9 +112,9 @@
 			);
 			dependencies = (
 			);
-			name = RCTTableView;
+			name = RNTableView;
 			productName = RCTSvg;
-			productReference = 873769951B7CD6E900F7C3C2 /* libRCTTableView.a */;
+			productReference = 873769951B7CD6E900F7C3C2 /* libRNTableView.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -131,7 +131,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 873769901B7CD6E900F7C3C2 /* Build configuration list for PBXProject "RCTTableView" */;
+			buildConfigurationList = 873769901B7CD6E900F7C3C2 /* Build configuration list for PBXProject "RNTableView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -143,7 +143,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				873769941B7CD6E900F7C3C2 /* RCTTableView */,
+				873769941B7CD6E900F7C3C2 /* RNTableView */,
 			);
 		};
 /* End PBXProject section */
@@ -153,12 +153,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87D0FDC21B836BA300B0DA60 /* JSONDataSource.m in Sources */,
-				877F189A1B8B0F000015449A /* RCTTableViewCell.m in Sources */,
-				877F18941B8B03560015449A /* RCTCellView.m in Sources */,
-				87D0FD551B83229F00B0DA60 /* RCTTableView.m in Sources */,
-				87D0FD611B83235900B0DA60 /* RCTTableViewManager.m in Sources */,
-				877F18971B8B03B40015449A /* RCTCellViewManager.m in Sources */,
+				872545E21BAAC85D00889249 /* RNCellView.m in Sources */,
+				872545E31BAAC85D00889249 /* RNCellViewManager.m in Sources */,
+				872545E51BAAC85D00889249 /* RNTableViewCell.m in Sources */,
+				872545E61BAAC85D00889249 /* RNTableViewManager.m in Sources */,
+				872545E11BAAC85D00889249 /* JSONDataSource.m in Sources */,
+				872545E41BAAC85D00889249 /* RNTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +257,7 @@
 					"$(SRCROOT)/../../React/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RCTTableView;
+				PRODUCT_NAME = RNTableView;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -276,7 +276,7 @@
 					"$(SRCROOT)/../../React/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RCTTableView;
+				PRODUCT_NAME = RNTableView;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -284,7 +284,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		873769901B7CD6E900F7C3C2 /* Build configuration list for PBXProject "RCTTableView" */ = {
+		873769901B7CD6E900F7C3C2 /* Build configuration list for PBXProject "RNTableView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				873769A71B7CD6E900F7C3C2 /* Debug */,
@@ -293,7 +293,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		873769A91B7CD6E900F7C3C2 /* Build configuration list for PBXNativeTarget "RCTTableView" */ = {
+		873769A91B7CD6E900F7C3C2 /* Build configuration list for PBXNativeTarget "RNTableView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				873769AA1B7CD6E900F7C3C2 /* Debug */,

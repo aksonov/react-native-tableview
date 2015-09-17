@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react-native');
 var {NativeMethodsMixin, ReactNativeViewAttributes, NativeModules, StyleSheet, View,requireNativeComponent} = React;
-var RCTTableViewConsts = NativeModules.UIManager.RCTTableView.Constants;
+var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
 
 var TABLEVIEW = 'tableview';
 
@@ -28,7 +28,7 @@ var TableView = React.createClass({
         this.setState(this._stateFromProps(nextProps));
     },
 
-    // Translate TableView prop and children into stuff that RCTTableView understands.
+    // Translate TableView prop and children into stuff that RNTableView understands.
     _stateFromProps: function(props) {
         var sections = [];
         var additionalItems = [];
@@ -80,7 +80,7 @@ var TableView = React.createClass({
 
     render: function() {
         return (
-                <RCTTableView
+                <RNTableView
                     customCells={this.state.customCells}
                     ref={TABLEVIEW}
                     style={this.props.style}
@@ -91,7 +91,7 @@ var TableView = React.createClass({
                     {...this.props}
                     onPress={this._onChange}>
                     {this.state.children}
-                </RCTTableView>
+                </RNTableView>
         );
     },
 
@@ -129,10 +129,10 @@ TableView.Cell = React.createClass({
         return {width:0, height:0}
     },
     render: function() {
-        return <RCTCellView onLayout={(event)=>{this.setState(event.nativeEvent.layout)}} {...this.props} componentWidth={this.state.width} componentHeight={this.state.height}/>
+        return <RNCellView onLayout={(event)=>{this.setState(event.nativeEvent.layout)}} {...this.props} componentWidth={this.state.width} componentHeight={this.state.height}/>
     },
 });
-var RCTCellView = requireNativeComponent('RCTCellView', null);
+var RNCellView = requireNativeComponent('RNCellView', null);
 
 TableView.Section = React.createClass({
     propTypes: {
@@ -150,11 +150,11 @@ var styles = StyleSheet.create({
         // The picker will conform to whatever width is given, but we do
         // have to set the component's height explicitly on the
         // surrounding view to ensure it gets rendered.
-        //height: RCTTableViewConsts.ComponentHeight,
+        //height: RNTableViewConsts.ComponentHeight,
     },
 });
-TableView.Consts = RCTTableViewConsts;
+TableView.Consts = RNTableViewConsts;
 
-var RCTTableView = requireNativeComponent('RCTTableView', null);
+var RNTableView = requireNativeComponent('RNTableView', null);
 
 module.exports = TableView;

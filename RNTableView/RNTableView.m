@@ -6,23 +6,23 @@
 //  Copyright (c) 2015 Pavlo Aksonov. All rights reserved.
 //
 
-#import "RCTTableView.h"
+#import "RNTableView.h"
 #import "RCTConvert.h"
 #import "RCTEventDispatcher.h"
 #import "RCTUtils.h"
 #import "UIView+React.h"
 #import "JSONDataSource.h"
-#import "RCTCellView.h"
+#import "RNCellView.h"
 
-@interface RCTTableView()<UITableViewDataSource, UITableViewDelegate> {
-    id<RCTTableViewDatasource> datasource;
+@interface RNTableView()<UITableViewDataSource, UITableViewDelegate> {
+    id<RNTableViewDatasource> datasource;
 }
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation RCTTableView {
+@implementation RNTableView {
     RCTEventDispatcher *_eventDispatcher;
     NSArray *_items;
     NSInteger _selectedIndex;
@@ -35,8 +35,8 @@
  //   [super insertSubview:subview atIndex:atIndex];
     
     // just add them to registry
-    if ([subview isKindOfClass:[RCTCellView class]]){
-        RCTCellView *cellView = (RCTCellView *)subview;
+    if ([subview isKindOfClass:[RNCellView class]]){
+        RNCellView *cellView = (RNCellView *)subview;
         cellView.tableView = self.tableView;
         while (cellView.section >= [_cells count]){
             [_cells addObject:[NSMutableArray array]];
@@ -186,7 +186,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
             return 0;
         }
         // don't display cells until their's height is not calculated (TODO: maybe it is possible to optimize??)
-        for (RCTCellView *view in _cells[section]){
+        for (RNCellView *view in _cells[section]){
             if (!view.componentHeight){
                 return 0;
             }
@@ -207,7 +207,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         cell.textLabel.text = item[@"label"];
         cell.detailTextLabel.text = item[@"detail"];
     } else {
-        cell = ((RCTCellView *)_cells[indexPath.section][indexPath.row]).tableViewCell;
+        cell = ((RNCellView *)_cells[indexPath.section][indexPath.row]).tableViewCell;
     }
     if ([item[@"selected"] intValue]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -235,7 +235,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (![_cells count]){
         return _cellHeight;
     } else {
-        RCTCellView *cell = (RCTCellView *)_cells[indexPath.section][indexPath.row];
+        RNCellView *cell = (RNCellView *)_cells[indexPath.section][indexPath.row];
         CGFloat height =  cell.componentHeight;
         return height;
     }

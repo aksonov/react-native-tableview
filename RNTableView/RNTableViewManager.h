@@ -8,6 +8,6 @@
 
 #import "RCTViewManager.h"
 
-@interface RCTTableViewManager : RCTViewManager
+@interface RNTableViewManager : RCTViewManager
 
 @end

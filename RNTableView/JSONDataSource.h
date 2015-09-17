@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RCTTableView.h"
+#import "RNTableView.h"
 
-@interface JSONDataSource : NSObject<RCTTableViewDatasource>
+@interface JSONDataSource : NSObject<RNTableViewDatasource>
 
 -(id)initWithDictionary:(NSDictionary *)params;
 -(id)initWithFilename:(NSString *)file filter:(NSString *)filter args:(NSArray *)args;
