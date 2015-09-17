@@ -6,11 +6,18 @@ var TableView = require('react-native-tableview');
 var Section = TableView.Section;
 var Item = TableView.Item;
 var Cell = TableView.Cell;
+var {Actions, Router, Route, Schema} = require('react-native-router-flux');
+var NavigationBar = require('react-native-navbar');
 
-class TableViewExample extends React.Component {
-    render4(){
+class NavBar extends React.Component {
+    render(){
+        return <NavigationBar style={{backgroundColor: '#0db0d9'}} titleColor='white' buttonsColor='white' statusBar='lightContent' {...this.props}/>
+    }
+}
+class Example1 extends React.Component {
+    render() {
         return (
-            <TableView style={{flex:1}}  onPress={(event) => alert(JSON.stringify(event))} selectedValue="1">
+            <TableView style={{flex:1}} onPress={(event) => alert(JSON.stringify(event))}>
                 <Section label="section 1">
                     <Cell style={{backgroundColor:'gray'}} value="">
                         <Text style={{color:'white', textAlign:'right'}}>Cell 1</Text>
@@ -34,9 +41,11 @@ class TableViewExample extends React.Component {
             </TableView>
         );
     }
+}
 
+class Example2 extends React.Component {
     // list spanish provinces and add 'All states' item at the beginning
-    render(){
+    render() {
         var country = "ES";
         return (
             <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}
@@ -46,16 +55,10 @@ class TableViewExample extends React.Component {
             </TableView>
         );
     }
+}
 
-    // list all countries, select Spain
-    render2(){
-        return (
-            <TableView selectedValue="ES" style={{flex:1}} json="countries"
-                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => alert(JSON.stringify(event))}/>
-        );
-    }
-    render3(){
+class Example3 extends React.Component {
+    render(){
         return (
             <TableView style={{flex:1}}
                        tableViewStyle={TableView.Consts.Style.Grouped}
@@ -78,27 +81,47 @@ class TableViewExample extends React.Component {
                     <Item>Item 14</Item>
                     <Item>Item 15</Item>
                     <Item>Item 16</Item>
-                    <Item>Item 17</Item>
-                    <Item>Item 18</Item>
-                    <Item>Item 19</Item>
-                    <Item>Item 20</Item>
-                    <Item>Item 21</Item>
-                    <Item>Item 22</Item>
-                    <Item>Item 23</Item>
-                    <Item>Item 24</Item>
-                    <Item>Item 25</Item>
-                    <Item>Item 26</Item>
-                    <Item>Item 27</Item>
-                    <Item>Item 28</Item>
-                    <Item>Item 29</Item>
-                    <Item>Item 30</Item>
                 </Section>
                 <Section label="Section 2" arrow={false}>
                     <Item selected={true}>Item 1</Item>
                     <Item>Item 2</Item>
                     <Item>Item 3</Item>
                 </Section>
+                <Section label="Section 3" arrow={false}>
+                    <Item>Item 1</Item>
+                    <Item selected={true}>Item 2</Item>
+                    <Item>Item 3</Item>
+                </Section>
             </TableView>
+        );
+    }
+}
+
+class Launch extends React.Component {
+    render(){
+        return (
+            <TableView style={{flex:1}}>
+                <Section arrow={true}>
+                    <Item onPress={Actions.example1}>Example with custom cells</Item>
+                    <Item onPress={Actions.example2}>Example with app bundle JSON data</Item>
+                    <Item onPress={Actions.example3}>Example with multiple sections</Item>
+                </Section>
+            </TableView>
+        );
+    }
+}
+
+class TableViewExample extends React.Component {
+    render(){
+        return (
+            <Router>
+                <Schema name="default" navBar={NavBar}/>
+                <Route name="launch" component={Launch} title="TableView Demo"/>
+                <Route name="example1" component={Example1} title="Example 1"/>
+                <Route name="example2" component={Example2} title="Example 2"/>
+                <Route name="example3" component={Example3} title="Example 3"/>
+            </Router>
+
         );
     }
 }

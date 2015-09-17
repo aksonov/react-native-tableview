@@ -17,7 +17,7 @@
 @interface RNTableView()<UITableViewDataSource, UITableViewDelegate> {
     id<RNTableViewDatasource> datasource;
 }
-
+@property (strong, nonatomic) NSMutableArray *selectedIndexes;
 @property (strong, nonatomic) UITableView *tableView;
 
 @end
@@ -25,14 +25,13 @@
 @implementation RNTableView {
     RCTEventDispatcher *_eventDispatcher;
     NSArray *_items;
-    NSInteger _selectedIndex;
     NSMutableArray *_cells;
 }
 
 - (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
 {
     // will not insert because we don't need to draw them
- //   [super insertSubview:subview atIndex:atIndex];
+    //   [super insertSubview:subview atIndex:atIndex];
     
     // just add them to registry
     if ([subview isKindOfClass:[RNCellView class]]){
@@ -55,10 +54,9 @@
     
     if ((self = [super initWithFrame:CGRectZero])) {
         _eventDispatcher = eventDispatcher;
-        _selectedIndex = -1;
-        _selectedSection = 0;
         _cellHeight = 44;
         _cells = [NSMutableArray array];
+        _autoFocus = YES;
     }
     return self;
 }
@@ -81,13 +79,23 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         datasource = [[JSONDataSource alloc] initWithFilename:_json filter:_filter args:_filterArgs];
         self.sections = [NSMutableArray arrayWithArray:[datasource sections]];
     }
-        if (_selectedIndex>=0 ){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:_selectedSection];
-                [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-                [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-            });
+    
+    // find first section with selection
+    NSInteger selectedSection = -1;
+    for (int i=0;i<[_selectedIndexes count];i++){
+        if ([_selectedIndexes[i] intValue] != -1){
+            selectedSection = i;
+            break;
         }
+    }
+    // focus of first selected value
+    if (_autoFocus && selectedSection>=0 && [self numberOfSectionsInTableView:self.tableView] && [self tableView:self.tableView numberOfRowsInSection:selectedSection]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[_selectedIndexes[selectedSection] intValue ]inSection:selectedSection];
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+            [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        });
+    }
 }
 
 #pragma mark - Private APIs
@@ -143,6 +151,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 - (void)setSections:(NSArray *)sections
 {
     _sections = [NSMutableArray arrayWithCapacity:[sections count]];
+    
+    // create selected indexes
+    _selectedIndexes = [NSMutableArray arrayWithCapacity:[sections count]];
+    
     BOOL found = NO;
     for (NSDictionary *section in sections){
         NSMutableDictionary *sectionData = [NSMutableDictionary dictionaryWithDictionary:section];
@@ -153,25 +165,21 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         [allItems addObjectsFromArray:sectionData[@"items"]];
         
         NSMutableArray *items = [NSMutableArray arrayWithCapacity:[allItems count]];
+        NSInteger selectedIndex = -1;
         for (NSDictionary *item in allItems){
             NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithDictionary:item];
             if (itemData[@"selected"] || (self.selectedValue && [self.selectedValue isEqualToString:item[@"value"]])){
-                _selectedSection = [_sections count];
-                _selectedIndex = [items count];
+                selectedIndex = [items count];
                 itemData[@"selected"] = @YES;
                 found = YES;
             }
             [items addObject:itemData];
         }
+        [_selectedIndexes addObject:[NSNumber numberWithUnsignedInteger:selectedIndex]];
+        
         sectionData[@"items"] = items;
         [_sections addObject:sectionData];
     }
-//  check first element if no match
-//    if (!found && self.selectedValue && [_sections count] && [_sections[0][@"items"] count]){
-//        _selectedSection = 0;
-//        _selectedIndex = 0;
-//        _sections[0][@"items"][0][@"selected"] = @YES;
-//    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -244,7 +252,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    NSMutableDictionary *oldValue = self.selectedIndex>=0 ?[self dataForRow:self.selectedIndex section:self.selectedSection] : [NSMutableDictionary dictionaryWithDictionary:@{}];
+    
+    NSInteger selectedIndex = [self.selectedIndexes[indexPath.section] integerValue];
+    NSMutableDictionary *oldValue = selectedIndex>=0 ?[self dataForRow:selectedIndex section:indexPath.section] : [NSMutableDictionary dictionaryWithDictionary:@{}];
+    
     NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
     newValue[@"target"] = self.reactTag;
     newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
@@ -252,13 +263,14 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     
     
     [_eventDispatcher sendInputEventWithName:@"press" body:newValue];
-    if (oldValue[@"selected"]){
+    
+    // unselect old, select new
+    if (oldValue[@"selected"] || self.selectedValue){
         [oldValue removeObjectForKey:@"selected"];
         [newValue setObject:@1 forKey:@"selected"];
         [self.tableView reloadData];
     }
-    self.selectedIndex = indexPath.item;
-    self.selectedSection = indexPath.section;
+    self.selectedIndexes[indexPath.section] = [NSNumber numberWithInteger:indexPath.item];
 }
 
 

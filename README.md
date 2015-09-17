@@ -5,11 +5,12 @@ Native iOS UITableView for React Native with JSON support.
 - Look and feel native iOS TableView (with group/plain tableview type, sections headers, etc)
 - To display long lists of data (like country list) - built-in list view has performance issues for long lists
 - To use built-in accessory types (checkmark or disclosure indicator)
-- Automatic scroll to initial selected value during component initialization
+- Automatic scroll to initial selected value during component initialization (autoFocus property)
 - Automatic item selection with "checkmark" with old item de-selection (optionally), see demo, useful to select country/state/etc.
 - Native JSON support for datasource. If you need to display large dataset, generated Javascript will became very large and impact js loading time. To solve this problem the component could read JSON directly from app bundle without JS!
 - Filter JSON datasources using NSPredicate syntax. For example you could select states for given country only (check demo)
 - Create custom UITableView cells with flexible height using React Native syntax (TableView.Cell tag)
+- Use tableview as menu to navigate to other app screen, see demo with ![Flux router for easier navigation](https://github.com/aksonov/react-native-form-flux)
 
 ## Supports UITableView styles
 - UITableViewStylePlain (TableView.Consts.Style.Plain)

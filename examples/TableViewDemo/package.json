@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "react-native": "^0.10.0",
+    "react-native-navbar": "^0.8.2",
+    "react-native-router-flux": "^0.1.6",
     "react-native-tableview": ">=1.1.5"
   }
 }

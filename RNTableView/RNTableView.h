@@ -29,8 +29,6 @@
 @property (nonatomic, strong) NSString *filter;
 @property (nonatomic, strong) NSArray *filterArgs;
 @property (nonatomic, strong) NSString *selectedValue;
-@property (nonatomic, assign) NSInteger selectedIndex;
-@property (nonatomic, assign) NSInteger selectedSection;
 @property (nonatomic, assign) float cellHeight;
 @property (nonatomic, assign) BOOL customCells;
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
@@ -39,5 +37,6 @@
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, strong) UIColor *selectedTextColor;
+@property (nonatomic) BOOL autoFocus;
 
 @end

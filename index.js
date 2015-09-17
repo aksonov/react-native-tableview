@@ -18,6 +18,10 @@ var TableView = React.createClass({
     propTypes: {
         onPress: React.PropTypes.func,
         selectedValue: React.PropTypes.any, // string or integer basically
+        autoFocus: React.PropTypes.bool,
+        json: React.PropTypes.string,
+        textColor: React.PropTypes.string,
+        tintColor: React.PropTypes.string
     },
 
     getInitialState: function() {
@@ -61,10 +65,10 @@ var TableView = React.createClass({
 
                 });
                 sections.push({
-                  label: section.props.label,
-                  footerLabel: section.props.footerLabel,
-                  items: items,
-                  count: count
+                    label: section.props.label,
+                    footerLabel: section.props.footerLabel,
+                    items: items,
+                    count: count
                 });
             }
             if (section.type==TableView.Item){
@@ -75,11 +79,13 @@ var TableView = React.createClass({
                 additionalItems.push(el);
             }
         });
+        this.sections = sections;
         return {sections, additionalItems, children, customCells};
     },
 
     render: function() {
         return (
+            <View style={[{flex:1},this.props.style]}>
                 <RNTableView
                     customCells={this.state.customCells}
                     ref={TABLEVIEW}
@@ -92,23 +98,19 @@ var TableView = React.createClass({
                     onPress={this._onChange}>
                     {this.state.children}
                 </RNTableView>
+            </View>
         );
     },
 
     _onChange: function(event) {
-        console.log("ONCHANGE");
-        if (this.props.onPress) {
-            this.props.onPress(event.nativeEvent);
+        var data = event.nativeEvent;
+        if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
+            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onPress){
+            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onPress(data);
         }
-        //if (this.props.onValueChange) {
-        //    this.props.onValueChange(event.nativeEvent.newValue);
-        //}
-        //
-        //if (this.state.selectedIndex !== event.nativeEvent.newIndex) {
-        //    this.refs[TABLEVIEW].setNativeProps({
-        //        selectedIndex: this.state.selectedIndex
-        //    });
-        //}
+        if (this.props.onPress) {
+            this.props.onPress(data);
+        }
     },
 });
 
