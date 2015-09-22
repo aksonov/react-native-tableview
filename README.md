@@ -27,7 +27,7 @@ Native iOS UITableView for React Native with JSON support.
 - UITableViewCellAccessoryCheckmark ("selected" attribute for TableView.Item)
 
 ## Example 1
-![demo](https://cloud.githubusercontent.com/assets/1321329/9329083/cc77b4e0-45ae-11e5-9919-34f12e6d407c.gif)
+![demo-3](https://cloud.githubusercontent.com/assets/1321329/10022633/2bcad30e-614e-11e5-987d-28dbbb9d2739.gif)
 
 ```
 'use strict';
