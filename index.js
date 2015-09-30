@@ -96,7 +96,6 @@ var TableView = React.createClass({
                     tableViewStyle={TableView.Consts.Style.Plain}
                     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
                     {...this.props}
-                    selectedValue={this.props.selectedValue ? this.props.selectedValue+"" : null}
                     json={this.state.json}
                     onPress={this._onChange}>
                     {this.state.children}

@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *json;
 @property (nonatomic, strong) NSString *filter;
 @property (nonatomic, strong) NSArray *filterArgs;
-@property (nonatomic, strong) NSString *selectedValue;
+@property (nonatomic, strong) id selectedValue;
 @property (nonatomic, assign) float cellHeight;
 @property (nonatomic, assign) BOOL customCells;
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
