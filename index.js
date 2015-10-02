@@ -5,12 +5,13 @@ var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
 
 var TABLEVIEW = 'tableview';
 
-function clone(map){
-    var el = {};
-    for (var i in map)
-        if (typeof(map[i])!='object')
-            el[i] = map[i];
-    return el;
+function extend(destination, source) {
+    for (var property in source) {
+        if (source.hasOwnProperty(property)) {
+            destination[property] = source[property];
+        }
+    }
+    return destination;
 }
 var TableView = React.createClass({
     mixins: [NativeMethodsMixin],
@@ -46,11 +47,9 @@ var TableView = React.createClass({
             var count = 0;
             if (section && section.type==TableView.Section) {
                 React.Children.forEach(section.props.children, function (child, itemIndex) {
-                    var el = clone(child.props);
-
-                    if (section.props.arrow) {
-                        el.arrow = section.props.arrow;
-                    }
+                    var el = {};
+                    extend(el, section.props);
+                    extend(el, child.props);
                     if (!el.label) {
                         el.label = el.children;
                     }
@@ -60,8 +59,8 @@ var TableView = React.createClass({
                     if (child.type==TableView.Cell){
                         customCells = true;
                         count++;
-                        var el = React.cloneElement(child, {section: index, row: itemIndex});
-                        children.push(el);
+                        var element = React.cloneElement(child, {section: index, row: itemIndex});
+                        children.push(element);
                     }
 
                 });
@@ -97,14 +96,16 @@ var TableView = React.createClass({
                     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
                     {...this.props}
                     json={this.state.json}
-                    onPress={this._onChange}>
+                    onPress={this._onPress}
+                    onChange={this._onChange}>
+
                     {this.state.children}
                 </RNTableView>
             </View>
         );
     },
 
-    _onChange: function(event) {
+    _onPress: function(event) {
         var data = event.nativeEvent;
         if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
             this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onPress){
@@ -112,6 +113,16 @@ var TableView = React.createClass({
         }
         if (this.props.onPress) {
             this.props.onPress(data);
+        }
+    },
+    _onChange: function(event) {
+        var data = event.nativeEvent;
+        if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
+            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onChange){
+            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onChange(data);
+        }
+        if (this.props.onChange) {
+            this.props.onChange(data);
         }
     },
 });

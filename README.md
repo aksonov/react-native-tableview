@@ -11,6 +11,7 @@ Native iOS UITableView for React Native with JSON support.
 - Filter JSON datasources using NSPredicate syntax. For example you could select states for given country only (check demo)
 - Create custom UITableView cells with flexible height using React Native syntax (TableView.Cell tag)
 - Use tableview as menu to navigate to other app screen (check included demo, it uses flux router https://github.com/aksonov/react-native-router-flux)
+- Native editing mode for table - move/delete option is supported by using attributes canMove, canEdit for items/sections
 
 ## Supports UITableView styles
 - UITableViewStylePlain (TableView.Consts.Style.Plain)

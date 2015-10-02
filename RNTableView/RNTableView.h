@@ -29,8 +29,11 @@
 @property (nonatomic, strong) NSString *filter;
 @property (nonatomic, strong) NSArray *filterArgs;
 @property (nonatomic, strong) id selectedValue;
-@property (nonatomic, assign) float cellHeight;
-@property (nonatomic, assign) BOOL customCells;
+@property (nonatomic) float cellHeight;
+@property (nonatomic) BOOL customCells;
+@property (nonatomic) BOOL editing;
+@property (nonatomic) BOOL emptyInsets;
+
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
 @property (nonatomic, assign) UITableViewCellStyle tableViewCellStyle;
 @property (nonatomic, strong) UIFont *font;

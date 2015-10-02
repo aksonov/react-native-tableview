@@ -28,6 +28,10 @@
     NSMutableArray *_cells;
 }
 
+-(void)setEditing:(BOOL)editing {
+    [self.tableView setEditing:editing animated:YES];
+}
+
 - (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
 {
     // will not insert because we don't need to draw them
@@ -110,8 +114,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == [self tableView:tableView numberOfRowsInSection:indexPath.section]-1){
-        // Remove seperator inset
+    if (self.emptyInsets){
+        // Remove separator inset
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
             [cell setSeparatorInset:UIEdgeInsetsZero];
         }
@@ -274,7 +278,34 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableDictionary *value = [self dataForRow:indexPath.item section:indexPath.section];
+    return [value[@"canEdit"] boolValue];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableDictionary *value = [self dataForRow:indexPath.item section:indexPath.section];
+    return [value[@"canMove"] boolValue];
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    [_eventDispatcher sendInputEventWithName:@"change" body:@{@"target":self.reactTag, @"sourceIndex":@(sourceIndexPath.row), @"sourceSection": @(sourceIndexPath.section), @"destinationIndex":@(destinationIndexPath.row), @"destinationSection":@(destinationIndexPath.section), @"mode": @"move"}];
+}
 
 
-
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath { //implement the delegate method
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
+        newValue[@"target"] = self.reactTag;
+        newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
+        newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
+        newValue[@"mode"] = @"delete";
+        
+        [_eventDispatcher sendInputEventWithName:@"change" body:newValue];
+        
+        [_sections[indexPath.section][@"items"] removeObjectAtIndex:indexPath.row];
+        [self.tableView reloadData];
+    }
+}
 @end
