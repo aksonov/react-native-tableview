@@ -107,7 +107,6 @@ class Edit extends React.Component {
     }
     render(){
         var self = this;
-        console.log("EDITING"+this.state.editing);
         return (
             <View style={{flex:1}}>
                 <NavBar {...this.props} nextTitle={this.state.editing ? "Done" : "Edit"}

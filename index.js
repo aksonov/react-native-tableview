@@ -5,13 +5,11 @@ var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
 
 var TABLEVIEW = 'tableview';
 
-function extend(destination, source) {
-    for (var property in source) {
-        if (source.hasOwnProperty(property)) {
-            destination[property] = source[property];
-        }
-    }
-    return destination;
+function extend(el, map) {
+    for (var i in map)
+        if (typeof(map[i])!='object')
+            el[i] = map[i];
+    return el;
 }
 var TableView = React.createClass({
     mixins: [NativeMethodsMixin],
@@ -59,7 +57,7 @@ var TableView = React.createClass({
                     if (child.type==TableView.Cell){
                         customCells = true;
                         count++;
-                        var element = React.cloneElement(child, {section: index, row: itemIndex});
+                        var element = React.cloneElement(child, {key: index+" "+itemIndex, section: index, row: itemIndex});
                         children.push(element);
                     }
 
@@ -72,7 +70,7 @@ var TableView = React.createClass({
                 });
             }
             if (section && section.type==TableView.Item){
-                var el = clone(section.props);
+                var el = extend({},section.props);
                 if (!el.label){
                     el.label = el.children;
                 }
