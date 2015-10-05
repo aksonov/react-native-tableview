@@ -130,10 +130,18 @@ class Edit extends React.Component {
 }
 
 class Launch extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {sectionLabel: 'Section'};
+    }
+
+    componentDidMount(){
+        setTimeout(()=>this.setState({sectionLabel: 'Section #1'}));
+    }
     render(){
         return (
             <TableView style={{flex:1}}>
-                <Section arrow={true}>
+                <Section label={this.state.sectionLabel}  arrow={true}>
                     <Item onPress={Actions.example1}>Example with custom cells</Item>
                     <Item onPress={Actions.example2}>Example with app bundle JSON data</Item>
                     <Item onPress={Actions.example3}>Example with multiple sections</Item>

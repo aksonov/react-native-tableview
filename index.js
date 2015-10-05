@@ -28,7 +28,9 @@ var TableView = React.createClass({
     },
 
     componentWillReceiveProps: function(nextProps) {
-        this.setState(this._stateFromProps(nextProps));
+        var state = this._stateFromProps(nextProps);
+        console.log("componentWillReceiveProps"+JSON.stringify(state));
+        this.setState(state);
     },
 
     // Translate TableView prop and children into stuff that RNTableView understands.
@@ -48,7 +50,7 @@ var TableView = React.createClass({
                     var el = {};
                     extend(el, section.props);
                     extend(el, child.props);
-                    if (!el.label) {
+                    if (el.children) {
                         el.label = el.children;
                     }
                     count++;
