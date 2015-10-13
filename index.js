@@ -29,7 +29,6 @@ var TableView = React.createClass({
 
     componentWillReceiveProps: function(nextProps) {
         var state = this._stateFromProps(nextProps);
-        console.log("componentWillReceiveProps"+JSON.stringify(state));
         this.setState(state);
     },
 
