@@ -20,11 +20,11 @@ class NavBar extends React.Component {
 class Example1 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {sectionLabel: 'Section', cellLabel: 'Cell 1', cell:<Cell><Text>Cell 3</Text></Cell>};
+        this.state = {sectionLabel: 'Section', cellLabel: 'Cell 1', cells:[<Cell><Text>Cell 3</Text></Cell>]};
     }
 
     componentDidMount(){
-        setTimeout(()=>this.setState({sectionLabel: 'Section #1', cellLabel: 'Cell #1', cell:<Cell><Text>Cell #3</Text></Cell>}));
+        setTimeout(()=>this.setState({sectionLabel: 'Section #1', cellLabel: 'Cell #1', cells:[<Cell><Text>Cell #3</Text></Cell>,<Cell><Text>Cell #4</Text></Cell>]}));
     }
     render() {
         return (
@@ -35,7 +35,6 @@ class Example1 extends React.Component {
                         <Text style={{color:'white', textAlign:'left'}}>Cell 1</Text>
                     </Cell>
                     <Cell style={{height:200, backgroundColor:'red'}}><Text>{this.state.cellLabel}</Text></Cell>
-                    {this.state.cell}
                     <Cell style={{height:100}}><Text>Cell 4</Text></Cell>
                     <Cell><Text>Cell 5</Text></Cell>
                 </Section>
@@ -48,6 +47,9 @@ class Example1 extends React.Component {
                     <Cell><Text>Cell 3</Text></Cell>
                     <Cell style={{height:100}}><Text>Cell 4</Text></Cell>
                     <Cell><Text>Cell 5</Text></Cell>
+                </Section>
+                <Section label="section 3">
+                    {this.state.cells}
                 </Section>
             </TableView>
         );
