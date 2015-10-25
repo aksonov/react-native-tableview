@@ -20,7 +20,27 @@ var TableView = React.createClass({
         autoFocus: React.PropTypes.bool,
         json: React.PropTypes.string,
         textColor: React.PropTypes.string,
-        tintColor: React.PropTypes.string
+        tintColor: React.PropTypes.string,
+        /**
+         * The amount by which the content is inset from the edges
+         * of the TableView. Defaults to `{0, 0, 0, 0}`.
+         * @platform ios
+         */
+        contentInset: React.EdgeInsetsPropType,
+        /**
+         * Used to manually set the starting scroll offset.
+         * The default value is `{x: 0, y: 0}`.
+         * @platform ios
+         */
+        contentOffset: React.PointPropType,
+        /**
+         * The amount by which the scroll view indicators are inset from the
+         * edges of the TableView. This should normally be set to the same
+         * value as the `contentInset`. Defaults to `contentInset` or
+         * `{0, 0, 0, 0}`.
+         * @platform ios
+         */
+        scrollIndicatorInsets: React.EdgeInsetsPropType,
     },
 
     getInitialState: function() {
@@ -93,6 +113,7 @@ var TableView = React.createClass({
                     additionalItems={this.state.additionalItems}
                     tableViewStyle={TableView.Consts.Style.Plain}
                     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                    scrollIndicatorInsets={this.props.contentInset}
                     {...this.props}
                     json={this.state.json}
                     onPress={this._onPress}
