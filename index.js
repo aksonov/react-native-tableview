@@ -37,7 +37,6 @@ var TableView = React.createClass({
         var sections = [];
         var additionalItems = [];
         var children = [];
-        var customCells = false;
         var json = props.json;
 
         // iterate over sections
@@ -45,6 +44,7 @@ var TableView = React.createClass({
             var items=[];
             var count = 0;
             if (section && section.type==TableView.Section) {
+                let customCells = false;
                 React.Children.forEach(section.props.children, function (child, itemIndex) {
                     var el = {};
                     extend(el, section.props);
@@ -64,6 +64,7 @@ var TableView = React.createClass({
 
                 });
                 sections.push({
+                    customCells,
                     label: section.props.label,
                     footerLabel: section.props.footerLabel,
                     items: items,
@@ -79,14 +80,13 @@ var TableView = React.createClass({
             }
         });
         this.sections = sections;
-        return {sections, additionalItems, children, customCells, json};
+        return {sections, additionalItems, children, json};
     },
 
     render: function() {
         return (
             <View style={[{flex:1},this.props.style]}>
                 <RNTableView
-                    customCells={this.state.customCells}
                     ref={TABLEVIEW}
                     style={this.props.style}
                     sections={this.state.sections}

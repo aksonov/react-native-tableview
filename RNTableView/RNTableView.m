@@ -195,7 +195,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger count = [_sections[section][@"items"] count];
     // if we have custom cells, additional processing is necessary
-    if (self.customCells){
+    if ([self hasCustomCells:section]){
         if ([_cells count]<=section){
             return 0;
         }
@@ -214,7 +214,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
     
     // check if it is standard cell or user-defined UI
-    if (![_cells count]){
+    if (![self hasCustomCells:indexPath.section]){
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:@"Cell"];
         }
@@ -246,7 +246,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (![_cells count]){
+    if (![self hasCustomCells:indexPath.section]){
         return _cellHeight;
     } else {
         RNCellView *cell = (RNCellView *)_cells[indexPath.section][indexPath.row];
@@ -309,5 +309,9 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         [_sections[indexPath.section][@"items"] removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }
+}
+
+-(BOOL)hasCustomCells:(NSInteger)section {
+    return [[_sections[section] valueForKey:@"customCells"] boolValue];
 }
 @end
