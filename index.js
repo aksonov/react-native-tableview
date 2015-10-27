@@ -113,6 +113,7 @@ var TableView = React.createClass({
         if (this.props.onPress) {
             this.props.onPress(data);
         }
+        event.stopPropagation();
     },
     _onChange: function(event) {
         var data = event.nativeEvent;
@@ -123,6 +124,7 @@ var TableView = React.createClass({
         if (this.props.onChange) {
             this.props.onChange(data);
         }
+        event.stopPropagation();
     },
 });
 
