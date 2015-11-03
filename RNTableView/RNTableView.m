@@ -112,6 +112,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.contentInset = self.contentInset;
     _tableView.contentOffset = self.contentOffset;
     _tableView.scrollIndicatorInsets = self.scrollIndicatorInsets;
+    _tableView.backgroundColor = [UIColor clearColor];
     [self addSubview:_tableView];
 }
 
@@ -175,7 +176,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         NSInteger selectedIndex = -1;
         for (NSDictionary *item in allItems){
             NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithDictionary:item];
-            if (itemData[@"selected"] || (self.selectedValue && [self.selectedValue isEqual:item[@"value"]])){
+            if ((itemData[@"selected"] && [itemData[@"selected"] intValue]) || (self.selectedValue && [self.selectedValue isEqual:item[@"value"]])){
                 if(selectedIndex == -1)
                     selectedIndex = [items count];
                 itemData[@"selected"] = @YES;
@@ -226,7 +227,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     } else {
         cell = ((RNCellView *)_cells[indexPath.section][indexPath.row]).tableViewCell;
     }
-    if ([item[@"selected"] intValue]){
+    if (item[@"selected"] && [item[@"selected"] intValue]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else if ([item[@"arrow"] intValue]) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -274,7 +275,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [_eventDispatcher sendInputEventWithName:@"press" body:newValue];
     
     // unselect old, select new
-    if (oldValue[@"selected"] || self.selectedValue){
+    if ((oldValue[@"selected"] && [oldValue[@"selected"] intValue]) || self.selectedValue){
         [oldValue removeObjectForKey:@"selected"];
         [newValue setObject:@1 forKey:@"selected"];
         [self.tableView reloadData];
