@@ -176,7 +176,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         for (NSDictionary *item in allItems){
             NSMutableDictionary *itemData = [NSMutableDictionary dictionaryWithDictionary:item];
             if (itemData[@"selected"] || (self.selectedValue && [self.selectedValue isEqual:item[@"value"]])){
-                selectedIndex = [items count];
+                if(selectedIndex == -1)
+                    selectedIndex = [items count];
                 itemData[@"selected"] = @YES;
                 found = YES;
             }
