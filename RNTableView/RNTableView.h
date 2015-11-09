@@ -30,6 +30,8 @@
 @property (nonatomic, strong) NSArray *filterArgs;
 @property (nonatomic, strong) id selectedValue;
 @property (nonatomic) float cellHeight;
+@property (nonatomic) float footerHeight;
+@property (nonatomic) float headerHeight;
 @property (nonatomic) BOOL customCells;
 @property (nonatomic) BOOL editing;
 @property (nonatomic) BOOL emptyInsets;

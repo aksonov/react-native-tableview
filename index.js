@@ -100,13 +100,14 @@ var TableView = React.createClass({
                     items: items,
                     count: count
                 });
-            }
-            if (section && section.type==TableView.Item){
+            } else if (section && section.type==TableView.Item){
                 var el = extend({},section.props);
                 if (!el.label){
                     el.label = el.children;
                 }
                 additionalItems.push(el);
+            } else if (section){
+                children.push(section);
             }
         });
         this.sections = sections;
@@ -170,6 +171,26 @@ TableView.Item = React.createClass({
         return null;
     },
 });
+
+TableView.Footer = React.createClass({
+    getInitialState(){
+        return {width:0, height:0}
+    },
+    render: function() {
+        return <RNFooterView onLayout={(event)=>{this.setState(event.nativeEvent.layout)}} {...this.props} componentWidth={this.state.width} componentHeight={this.state.height}/>
+    },
+});
+var RNFooterView = requireNativeComponent('RNTableFooterView', null);
+
+TableView.Header = React.createClass({
+    getInitialState(){
+        return {width:0, height:0}
+    },
+    render: function() {
+        return <RNHeaderView onLayout={(event)=>{this.setState(event.nativeEvent.layout)}} {...this.props} componentWidth={this.state.width} componentHeight={this.state.height}/>
+    },
+});
+var RNHeaderView = requireNativeComponent('RNTableHeaderView', null);
 
 TableView.Cell = React.createClass({
     getInitialState(){

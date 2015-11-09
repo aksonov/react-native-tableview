@@ -13,6 +13,8 @@
 #import "UIView+React.h"
 #import "JSONDataSource.h"
 #import "RNCellView.h"
+#import "RNTableFooterView.h"
+#import "RNTableHeaderView.h"
 
 @interface RNTableView()<UITableViewDataSource, UITableViewDelegate> {
     id<RNTableViewDatasource> datasource;
@@ -48,8 +50,13 @@
         if (cellView.section == [_sections count]-1 && cellView.row == [_sections[cellView.section][@"count"] integerValue]-1){
             [self.tableView reloadData];
         }
+    } else if ([subview isKindOfClass:[RNTableFooterView class]]){
+        RNTableFooterView *footerView = (RNTableFooterView *)subview;
+        footerView.tableView = self.tableView;
+    } else if ([subview isKindOfClass:[RNTableHeaderView class]]){
+        RNTableHeaderView *headerView = (RNTableHeaderView *)subview;
+        headerView.tableView = self.tableView;
     }
-    
 }
 
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
@@ -113,6 +120,9 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.contentOffset = self.contentOffset;
     _tableView.scrollIndicatorInsets = self.scrollIndicatorInsets;
     _tableView.backgroundColor = [UIColor clearColor];
+    UIView *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)];
+    _tableView.tableHeaderView = view;
+    _tableView.tableFooterView = view;
     [self addSubview:_tableView];
 }
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section {
@@ -126,10 +136,17 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 }
 
+
+-(void)setHeaderHeight:(float)headerHeight {
+    _headerHeight = headerHeight;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (_sections[section][@"headerHeight"]){
         return [_sections[section][@"headerHeight"] floatValue] ? [_sections[section][@"headerHeight"] floatValue] : 0.000001;
     } else {
+        if (self.headerHeight){
+            return self.headerHeight;
+        }
         return -1;
     }
 }
@@ -139,6 +156,9 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         return [_sections[section][@"footerHeight"] floatValue] ? [_sections[section][@"footerHeight"] floatValue] : 0.000001;
 
     } else {
+        if (self.footerHeight){
+            return self.footerHeight;
+        }
         return -1;
     }
 }
