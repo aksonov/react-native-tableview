@@ -18,6 +18,7 @@ var TableView = React.createClass({
         onPress: React.PropTypes.func,
         selectedValue: React.PropTypes.any, // string or integer basically
         autoFocus: React.PropTypes.bool,
+        moveWithinSectionOnly: React.PropTypes.bool,
         json: React.PropTypes.string,
         textColor: React.PropTypes.string,
         tintColor: React.PropTypes.string,
