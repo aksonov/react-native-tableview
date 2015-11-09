@@ -21,7 +21,14 @@ var TableView = React.createClass({
         moveWithinSectionOnly: React.PropTypes.bool,
         json: React.PropTypes.string,
         textColor: React.PropTypes.string,
+        detailTextColor: React.PropTypes.string,
         tintColor: React.PropTypes.string,
+        footerLabel: React.PropTypes.string,
+        headerFont: React.PropTypes.number,
+        headerTextColor: React.PropTypes.string,
+        footerTextColor: React.PropTypes.string,
+
+
         /**
          * The amount by which the content is inset from the edges
          * of the TableView. Defaults to `{0, 0, 0, 0}`.
@@ -88,6 +95,8 @@ var TableView = React.createClass({
                     customCells,
                     label: section.props.label,
                     footerLabel: section.props.footerLabel,
+                    footerHeight: section.props.footerHeight,
+                    headerHeight: section.props.headerHeight,
                     items: items,
                     count: count
                 });
@@ -175,6 +184,11 @@ var RNCellView = requireNativeComponent('RNCellView', null);
 TableView.Section = React.createClass({
     propTypes: {
         label: React.PropTypes.string,
+        footerLabel: React.PropTypes.string,
+        arrow: React.PropTypes.bool,
+        footerHeight: React.PropTypes.number,
+        headerHeight: React.PropTypes.number,
+
     },
 
     render: function() {

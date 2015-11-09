@@ -41,9 +41,15 @@
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
 @property (nonatomic, assign) UITableViewCellStyle tableViewCellStyle;
 @property (nonatomic, strong) UIFont *font;
+@property (nonatomic, strong) UIFont *headerFont;
+@property (nonatomic, strong) UIColor *headerTextColor;
+@property (nonatomic, strong) UIFont *footerFont;
+@property (nonatomic, strong) UIColor *footerTextColor;
+
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, strong) UIColor *selectedTextColor;
+@property (nonatomic, strong) UIColor *detailTextColor;
 @property (nonatomic) BOOL autoFocus;
 
 @end

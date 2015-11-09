@@ -34,6 +34,7 @@ RCT_EXPORT_VIEW_PROPERTY(cellHeight, float)
 RCT_EXPORT_VIEW_PROPERTY(textColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(tintColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(selectedTextColor, UIColor)
+RCT_EXPORT_VIEW_PROPERTY(detailTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(contentInset, UIEdgeInsets)
 RCT_EXPORT_VIEW_PROPERTY(contentOffset, CGPoint)
 RCT_EXPORT_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets)
@@ -80,6 +81,40 @@ RCT_CUSTOM_VIEW_PROPERTY(fontFamily, NSString, RNTableView)
     view.font = [RCTConvert UIFont:view.font withFamily:json ?: defaultView.font.familyName];
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(headerFontSize, CGFloat, RNTableView)
+{
+    view.headerFont = [RCTConvert UIFont:view.headerFont withSize:json ?: @(defaultView.font.pointSize)];
+}
+RCT_CUSTOM_VIEW_PROPERTY(headerFontWeight, NSString, RNTableView)
+{
+    view.headerFont = [RCTConvert UIFont:view.headerFont withWeight:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(headerFontStyle, NSString, RNTableView)
+{
+    view.headerFont = [RCTConvert UIFont:view.headerFont withStyle:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(headerFontFamily, NSString, RNTableView)
+{
+    view.headerFont = [RCTConvert UIFont:view.headerFont withFamily:json ?: defaultView.font.familyName];
+}
+
+
+RCT_CUSTOM_VIEW_PROPERTY(footerFontSize, CGFloat, RNTableView)
+{
+    view.footerFont = [RCTConvert UIFont:view.footerFont withSize:json ?: @(defaultView.font.pointSize)];
+}
+RCT_CUSTOM_VIEW_PROPERTY(footerFontWeight, NSString, RNTableView)
+{
+    view.footerFont = [RCTConvert UIFont:view.footerFont withWeight:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(footerFontStyle, NSString, RNTableView)
+{
+    view.footerFont = [RCTConvert UIFont:view.footerFont withStyle:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(footerFontFamily, NSString, RNTableView)
+{
+    view.footerFont = [RCTConvert UIFont:view.footerFont withFamily:json ?: defaultView.font.familyName];
+}
 
 //
 //- (NSDictionary *)constantsToExport

@@ -115,6 +115,44 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.backgroundColor = [UIColor clearColor];
     [self addSubview:_tableView];
 }
+- (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section {
+    UITableViewHeaderFooterView *footer = (UITableViewHeaderFooterView *)view;
+    
+    if (self.footerTextColor){
+        footer.textLabel.textColor = self.footerTextColor;
+    }
+    if (self.footerFont){
+        footer.textLabel.font = self.footerFont;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (_sections[section][@"headerHeight"]){
+        return [_sections[section][@"headerHeight"] floatValue] ? [_sections[section][@"headerHeight"] floatValue] : 0.000001;
+    } else {
+        return -1;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (_sections[section][@"footerHeight"]){
+        return [_sections[section][@"footerHeight"] floatValue] ? [_sections[section][@"footerHeight"] floatValue] : 0.000001;
+
+    } else {
+        return -1;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    
+    if (self.headerTextColor){
+        header.textLabel.textColor = self.headerTextColor;
+    }
+    if (self.headerFont){
+        header.textLabel.font = self.headerFont;
+    }
+}
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,16 +179,19 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (self.tintColor){
         cell.tintColor = self.tintColor;
     }
-    
     NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
     if (self.selectedTextColor && [item[@"selected"] intValue]){
         cell.textLabel.textColor = self.selectedTextColor;
         cell.detailTextLabel.textColor = self.selectedTextColor;
     } else {
         if (self.textColor){
-            cell.textLabel.textColor=self.textColor;
-            cell.detailTextLabel.textColor=self.textColor;
+            cell.textLabel.textColor = self.textColor;
+            cell.detailTextLabel.textColor = self.textColor;
         }
+        if (self.detailTextColor){
+            cell.detailTextLabel.textColor = self.detailTextColor;
+        }
+        
     }
 }
 
@@ -299,7 +340,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-    if (self.moveWithinSectionOnly && [self.moveWithinSectionOnly boolValue] && sourceIndexPath.section != proposedDestinationIndexPath.section) {
+    if (self.moveWithinSectionOnly && sourceIndexPath.section != proposedDestinationIndexPath.section) {
         return sourceIndexPath;
     }
     return proposedDestinationIndexPath;
