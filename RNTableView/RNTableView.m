@@ -299,7 +299,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-    if (self.moveWithinSectionOnly && [self.moveWithinSectionOnly boolValue] && sourceIndexPath.section != proposedDestinationIndexPath.section) {
+    if (self.moveWithinSectionOnly && sourceIndexPath.section != proposedDestinationIndexPath.section) {
         return sourceIndexPath;
     }
     return proposedDestinationIndexPath;
