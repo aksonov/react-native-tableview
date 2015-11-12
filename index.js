@@ -27,6 +27,7 @@ var TableView = React.createClass({
         headerFont: React.PropTypes.number,
         headerTextColor: React.PropTypes.string,
         footerTextColor: React.PropTypes.string,
+        separatorColor: React.PropTypes.string,
 
 
         /**
