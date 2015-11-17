@@ -34,6 +34,13 @@
     [self.tableView setEditing:editing animated:YES];
 }
 
+-(void) setSeparatorColor:(UIColor *)separatorColor
+{
+    _separatorColor = separatorColor;
+
+    [self.tableView setSeparatorColor: separatorColor];
+}
+
 - (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
 {
     // will not insert because we don't need to draw them
