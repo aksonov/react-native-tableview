@@ -130,10 +130,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     UIView *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)];
     _tableView.tableHeaderView = view;
     _tableView.tableFooterView = view;
-    if(self.separatorColor)
-    {
-        _tableView.separatorColor = self.separatorColor;        
-    }
+
     [self addSubview:_tableView];
 }
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section {
