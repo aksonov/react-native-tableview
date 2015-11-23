@@ -87,6 +87,21 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [self createTableView];
 }
 
+- (void)setContentInset:(UIEdgeInsets)insets {
+    _contentInset = insets;
+    _tableView.contentInset = insets;
+}
+
+- (void)setContentOffset:(CGPoint)offset {
+    _contentOffset = offset;
+    _tableView.contentOffset = offset;
+}
+
+- (void)setScrollIndicatorInsets:(UIEdgeInsets)insets {
+    _scrollIndicatorInsets = insets;
+    _tableView.scrollIndicatorInsets = insets;
+}
+
 #pragma mark -
 
 - (void)layoutSubviews {
