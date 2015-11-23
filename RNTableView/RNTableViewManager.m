@@ -38,9 +38,6 @@ RCT_EXPORT_VIEW_PROPERTY(tintColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(selectedTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(detailTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(separatorColor, UIColor)
-RCT_EXPORT_VIEW_PROPERTY(contentInset, UIEdgeInsets)
-RCT_EXPORT_VIEW_PROPERTY(contentOffset, CGPoint)
-RCT_EXPORT_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets)
 RCT_EXPORT_VIEW_PROPERTY(moveWithinSectionOnly, BOOL)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
@@ -50,6 +47,18 @@ RCT_EXPORT_VIEW_PROPERTY(cellForRowAtIndexPath, NSArray)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RNTableView) {
     [view setTableViewCellStyle:[RCTConvert NSInteger:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(contentInset, UIEdgeInsets, RNTableView) {
+    [view setContentInset:[RCTConvert UIEdgeInsets:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(contentOffset, CGPoint, RNTableView) {
+    [view setContentOffset:[RCTConvert CGPoint:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
+    [view setScrollIndicatorInsets:[RCTConvert UIEdgeInsets:json]];
 }
 
 - (NSDictionary *)constantsToExport {
