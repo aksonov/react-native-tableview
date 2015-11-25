@@ -125,6 +125,7 @@ var TableView = React.createClass({
                     additionalItems={this.state.additionalItems}
                     tableViewStyle={TableView.Consts.Style.Plain}
                     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                    separatorStyle={TableView.Consts.SeparatorStyle.Line}
                     scrollIndicatorInsets={this.props.contentInset}
                     {...this.props}
                     json={this.state.json}
