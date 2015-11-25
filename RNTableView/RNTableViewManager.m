@@ -53,6 +53,10 @@ RCT_CUSTOM_VIEW_PROPERTY(contentInset, UIEdgeInsets, RNTableView) {
     [view setContentInset:[RCTConvert UIEdgeInsets:json]];
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(separatorStyle, UITableViewCellSeparatorStyle, RNTableView) {
+    [view setSeparatorStyle:[RCTConvert UIEdgeInsets:json]];
+}
+
 RCT_CUSTOM_VIEW_PROPERTY(contentOffset, CGPoint, RNTableView) {
     [view setContentOffset:[RCTConvert CGPoint:json]];
 }
@@ -72,6 +76,11 @@ RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
                      @"Value1": @(UITableViewCellStyleValue1),
                      @"Value2": @(UITableViewCellStyleValue2),
                      @"Subtitle": @(UITableViewCellStyleSubtitle)
+                     },
+             @"SeparatorStyle": @{
+                     @"None": @(UITableViewCellSeparatorStyleNone),
+                     @"Line": @(UITableViewCellSeparatorStyleSingleLine),
+                     @"LineEtched": @(UITableViewCellSeparatorStyleSingleLineEtched)
                      }
              };
 }
