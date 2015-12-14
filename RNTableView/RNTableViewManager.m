@@ -54,7 +54,7 @@ RCT_CUSTOM_VIEW_PROPERTY(contentInset, UIEdgeInsets, RNTableView) {
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(separatorStyle, UITableViewCellSeparatorStyle, RNTableView) {
-    [view setSeparatorStyle:[RCTConvert UIEdgeInsets:json]];
+    [view setSeparatorStyle:[RCTConvert NSInteger:json]];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(contentOffset, CGPoint, RNTableView) {
