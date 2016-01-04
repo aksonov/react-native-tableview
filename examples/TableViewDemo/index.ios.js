@@ -74,6 +74,8 @@ class Example3 extends React.Component {
     render(){
         return (
             <TableView style={{flex:1}}
+                       allowsToggle={true}
+                       allowsMultipleSelection={true}
                        tableViewStyle={TableView.Consts.Style.Grouped}
                        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
                        onPress={(event) => alert(JSON.stringify(event))}>
