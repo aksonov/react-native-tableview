@@ -75,6 +75,8 @@
         _cellHeight = 44;
         _cells = [NSMutableArray array];
         _autoFocus = YES;
+        _allowsToggle = NO;
+        _allowsMultipleSelection = NO;
     }
     return self;
 }
@@ -354,16 +356,25 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     newValue[@"target"] = self.reactTag;
     newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
     newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
-    
-    
-    [_eventDispatcher sendInputEventWithName:@"press" body:newValue];
-    
+
     // unselect old, select new
     if ((oldValue[@"selected"] && [oldValue[@"selected"] intValue]) || self.selectedValue){
-        [oldValue removeObjectForKey:@"selected"];
-        [newValue setObject:@1 forKey:@"selected"];
+        if (_allowsToggle) {
+            if (newValue[@"selected"]) {
+                [newValue removeObjectForKey:@"selected"];
+            } else {
+                [newValue setObject:@1 forKey:@"selected"];
+            }
+        } else {
+            [newValue setObject:@1 forKey:@"selected"];
+            if (!_allowsMultipleSelection) {
+                [oldValue removeObjectForKey:@"selected"];
+            }
+        }
         [self.tableView reloadData];
     }
+
+    [_eventDispatcher sendInputEventWithName:@"press" body:newValue];
     self.selectedIndexes[indexPath.section] = [NSNumber numberWithInteger:indexPath.item];
 }
 

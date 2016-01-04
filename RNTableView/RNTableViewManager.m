@@ -39,6 +39,8 @@ RCT_EXPORT_VIEW_PROPERTY(selectedTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(detailTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(separatorColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(moveWithinSectionOnly, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(allowsToggle, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(allowsMultipleSelection, BOOL)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
