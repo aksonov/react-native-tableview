@@ -357,19 +357,19 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
     newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
 
-    // unselect old, select new
+    /*
+     * if allowToggle is enabled and we tap an already selected row, then remove the selection.
+     * otherwise, add selection to the new row and remove selection from old row if multiple is not allowed.
+     * default: allowMultipleSelection:false and allowToggle: false
+     */
     if ((oldValue[@"selected"] && [oldValue[@"selected"] intValue]) || self.selectedValue){
-        if (_allowsToggle) {
-            if (newValue[@"selected"]) {
-                [newValue removeObjectForKey:@"selected"];
-            } else {
-                [newValue setObject:@1 forKey:@"selected"];
-            }
+        if (_allowsToggle && newValue[@"selected"] && [newValue[@"selected"] intValue]) {
+            [newValue removeObjectForKey:@"selected"];
         } else {
-            [newValue setObject:@1 forKey:@"selected"];
             if (!_allowsMultipleSelection) {
                 [oldValue removeObjectForKey:@"selected"];
             }
+            [newValue setObject:@1 forKey:@"selected"];
         }
         [self.tableView reloadData];
     }
