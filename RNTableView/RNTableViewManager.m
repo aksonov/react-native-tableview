@@ -42,6 +42,7 @@ RCT_EXPORT_VIEW_PROPERTY(moveWithinSectionOnly, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsToggle, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsMultipleSelection, BOOL)
 
+
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
 }
@@ -49,6 +50,10 @@ RCT_EXPORT_VIEW_PROPERTY(cellForRowAtIndexPath, NSArray)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RNTableView) {
     [view setTableViewCellStyle:[RCTConvert NSInteger:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(tableViewCellEditingStyle, UITableViewCellEditingStyle, RNTableView) {
+    [view setTableViewCellEditingStyle:[RCTConvert NSInteger:json]];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(contentInset, UIEdgeInsets, RNTableView) {
@@ -78,6 +83,11 @@ RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
                      @"Value1": @(UITableViewCellStyleValue1),
                      @"Value2": @(UITableViewCellStyleValue2),
                      @"Subtitle": @(UITableViewCellStyleSubtitle)
+                     },
+             @"CellEditingStyle": @{
+                     @"None": @(UITableViewCellEditingStyleNone),
+                     @"Delete": @(UITableViewCellEditingStyleDelete),
+                     @"Insert": @(UITableViewCellEditingStyleInsert)
                      },
              @"SeparatorStyle": @{
                      @"None": @(UITableViewCellSeparatorStyleNone),
