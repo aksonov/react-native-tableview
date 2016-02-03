@@ -333,6 +333,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    if ([item[@"transparent"] intValue]) {
+        cell.backgroundColor = [UIColor clearColor];
+    }
+
     return cell;
 }
 
