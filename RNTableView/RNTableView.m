@@ -416,6 +416,18 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 }
 
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+          editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.tableViewCellEditingStyle;
+}
+
+-(BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.tableViewCellEditingStyle == UITableViewCellEditingStyleNone) {
+        return NO;
+    }
+    return YES;
+}
+
 -(BOOL)hasCustomCells:(NSInteger)section {
     return [[_sections[section] valueForKey:@"customCells"] boolValue];
 }
