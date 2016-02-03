@@ -89,6 +89,12 @@ RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
                      @"Delete": @(UITableViewCellEditingStyleDelete),
                      @"Insert": @(UITableViewCellEditingStyleInsert)
                      },
+             @"CellSelectionStyle": @{
+                     @"None": @(UITableViewCellSelectionStyleNone),
+                     @"Blue": @(UITableViewCellSelectionStyleBlue),
+                     @"Gray": @(UITableViewCellSelectionStyleGray),
+                     @"Default": @(UITableViewCellSelectionStyleDefault)
+                     },
              @"SeparatorStyle": @{
                      @"None": @(UITableViewCellSeparatorStyleNone),
                      @"Line": @(UITableViewCellSeparatorStyleSingleLine),
