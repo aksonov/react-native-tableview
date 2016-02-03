@@ -238,6 +238,19 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         }
         
     }
+    if (item[@"image"]) {
+        UIImage *image = [UIImage imageNamed:item[@"image"]];
+        if ([item[@"imageWidth"] intValue]) {
+            CGSize itemSize = CGSizeMake([item[@"imageWidth"] intValue], image.size.height);
+            CGPoint itemPoint = CGPointMake((itemSize.width - image.size.width) / 2, (itemSize.height - image.size.height) / 2);
+            UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
+            [image drawAtPoint:itemPoint];
+            cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        } else {
+            cell.imageView.image = image;
+        }
+    }
 }
 
 
