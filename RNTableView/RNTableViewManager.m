@@ -16,7 +16,7 @@
 RCT_EXPORT_MODULE()
 - (UIView *)view
 {
-    return [[RNTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+    return [[RNTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher bridge:self.bridge];
 }
 
 RCT_EXPORT_VIEW_PROPERTY(sections, NSArray)
@@ -54,6 +54,11 @@ RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RNTableView) {
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewCellEditingStyle, UITableViewCellEditingStyle, RNTableView) {
     [view setTableViewCellEditingStyle:[RCTConvert NSInteger:json]];
+}
+
+/*Each cell is a separate app, multiple cells share the app/module name*/
+RCT_CUSTOM_VIEW_PROPERTY(reactModuleForCell, NSString*, RNTableView) {
+    [view setReactModuleForCell:[RCTConvert NSString:json]];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(contentInset, UIEdgeInsets, RNTableView) {

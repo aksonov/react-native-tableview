@@ -6,9 +6,11 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "^0.14.2",
-    "react-native-navbar": "^0.8.2",
-    "react-native-router-flux": "^0.3.0",
-    "react-native-tableview": "1.4.1"
+    "firebase": "^2.4.0",
+    "react-native": "^0.19.0",
+    "react-native-navbar": "^1.2.0",
+    "react-native-router-flux": "^2.1.8",
+    "react-native-tableview": "1.4.2",
+    "react-native-tabs": "^0.1.10"
   }
 }
