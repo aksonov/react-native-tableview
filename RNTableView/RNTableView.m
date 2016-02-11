@@ -70,12 +70,12 @@
     }
 }
 
-- (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher bridge:(RCTBridge*)bridge
+- (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
 {
     RCTAssertParam(eventDispatcher);
     
     if ((self = [super initWithFrame:CGRectZero])) {
-        _bridge = [[RNAppGlobals sharedInstance] appBridge] ?: bridge;
+        _bridge = [[RNAppGlobals sharedInstance] appBridge];
         _eventDispatcher = eventDispatcher;
         _cellHeight = 44;
         _cells = [NSMutableArray array];
@@ -286,7 +286,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
                 if(selectedIndex == -1)
                     selectedIndex = [items count];
                 itemData[@"selected"] = @YES;
-                
                 found = YES;
             }
             [items addObject:itemData];
@@ -322,6 +321,9 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 -(UITableViewCell*)setupReactModuleCell:(UITableView *)tableView data:(NSDictionary*)data indexPath:(NSIndexPath *)indexPath {
+    RCTAssert(_bridge, @"Must set global bridge in AppDelegate, e.g. \n\
+              #import <RNTableView/RNAppGlobals.h>\n\
+              [[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge]");
     RNReactModuleCell *cell = [tableView dequeueReusableCellWithIdentifier:_reactModuleCellReuseIndentifier];
     if (cell == nil) {
         cell = [[RNReactModuleCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:_reactModuleCellReuseIndentifier bridge: _bridge data:data indexPath:indexPath reactModule:_reactModuleForCell];

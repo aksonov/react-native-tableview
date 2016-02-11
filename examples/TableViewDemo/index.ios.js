@@ -186,7 +186,6 @@ class FirebaseExample extends React.Component {
         this.propPrefix = "dinosaur";
     }
     componentDidMount() {
-        var dinData = null;
         var self = this;
         this.ref = new Firebase(this.firebaseLocation);
         this.ref.on('value', function(snapshot) {
@@ -260,7 +259,7 @@ class CustomEditableExample extends React.Component {
                 setTimeout(()=> self.onExternalData(newData), 2);
             });
         } else {
-            this.preEditData = Object.assign({}, this.state.data);
+            this.preEditData = this.state.data.slice(0);
             //Must be same ordering as used in rendering items
             this.dataItemKeysBeingEdited = Object.keys(this.state.data || {});
             this.setState({editing: true});
