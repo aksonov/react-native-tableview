@@ -186,7 +186,6 @@ class FirebaseExample extends React.Component {
         this.propPrefix = "dinosaur";
     }
     componentDidMount() {
-        var dinData = null;
         var self = this;
         this.ref = new Firebase(this.firebaseLocation);
         this.ref.on('value', function(snapshot) {

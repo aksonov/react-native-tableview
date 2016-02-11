@@ -16,7 +16,7 @@
 RCT_EXPORT_MODULE()
 - (UIView *)view
 {
-    return [[RNTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher bridge:self.bridge];
+    return [[RNTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
 }
 
 RCT_EXPORT_VIEW_PROPERTY(sections, NSArray)
