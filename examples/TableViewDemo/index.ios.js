@@ -259,7 +259,7 @@ class CustomEditableExample extends React.Component {
                 setTimeout(()=> self.onExternalData(newData), 2);
             });
         } else {
-            this.preEditData = this.state.data.slice(0);
+            this.preEditData = (this.state.data || []).slice(0);
             //Must be same ordering as used in rendering items
             this.dataItemKeysBeingEdited = Object.keys(this.state.data || {});
             this.setState({editing: true});
