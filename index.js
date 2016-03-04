@@ -50,6 +50,13 @@ var TableView = React.createClass({
          * @platform ios
          */
         scrollIndicatorInsets: React.EdgeInsetsPropType,
+        tableViewCellEditingStyle: React.PropTypes.number,
+    },
+
+    getDefaultProps() {
+        return {
+            tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
+        };
     },
 
     getInitialState: function() {
@@ -125,7 +132,7 @@ var TableView = React.createClass({
                     additionalItems={this.state.additionalItems}
                     tableViewStyle={TableView.Consts.Style.Plain}
                     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                    tableViewCellEditingStyle={TableView.Consts.CellEditingStyle.Delete}
+                    tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
                     separatorStyle={TableView.Consts.SeparatorStyle.Line}
                     scrollIndicatorInsets={this.props.contentInset}
                     {...this.props}

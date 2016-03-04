@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0808A0331C67E9A60038993A /* RNReactModuleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0808A0321C67E9A60038993A /* RNReactModuleCell.m */; };
+		084AEF361C6B155900A0A569 /* RNAppGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 084AEF351C6B155900A0A569 /* RNAppGlobals.m */; };
 		872545E11BAAC85D00889249 /* JSONDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545D61BAAC85D00889249 /* JSONDataSource.m */; };
 		872545E21BAAC85D00889249 /* RNCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545D81BAAC85D00889249 /* RNCellView.m */; };
 		872545E31BAAC85D00889249 /* RNCellViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 872545DA1BAAC85D00889249 /* RNCellViewManager.m */; };
@@ -32,6 +34,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0808A0311C67E9A60038993A /* RNReactModuleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNReactModuleCell.h; sourceTree = "<group>"; };
+		0808A0321C67E9A60038993A /* RNReactModuleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNReactModuleCell.m; sourceTree = "<group>"; };
+		084AEF341C6B155900A0A569 /* RNAppGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAppGlobals.h; sourceTree = "<group>"; };
+		084AEF351C6B155900A0A569 /* RNAppGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAppGlobals.m; sourceTree = "<group>"; };
 		872545D51BAAC85D00889249 /* JSONDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONDataSource.h; sourceTree = "<group>"; };
 		872545D61BAAC85D00889249 /* JSONDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONDataSource.m; sourceTree = "<group>"; };
 		872545D71BAAC85D00889249 /* RNCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCellView.h; sourceTree = "<group>"; };
@@ -69,6 +75,10 @@
 		872545D41BAAC85D00889249 /* RNTableView */ = {
 			isa = PBXGroup;
 			children = (
+				084AEF341C6B155900A0A569 /* RNAppGlobals.h */,
+				084AEF351C6B155900A0A569 /* RNAppGlobals.m */,
+				0808A0311C67E9A60038993A /* RNReactModuleCell.h */,
+				0808A0321C67E9A60038993A /* RNReactModuleCell.m */,
 				872545D51BAAC85D00889249 /* JSONDataSource.h */,
 				872545D61BAAC85D00889249 /* JSONDataSource.m */,
 				872545D71BAAC85D00889249 /* RNCellView.h */,
@@ -177,11 +187,13 @@
 				872545E31BAAC85D00889249 /* RNCellViewManager.m in Sources */,
 				8799E1E01BF1152400AF9A67 /* RNTableFooterViewManager.m in Sources */,
 				872545E51BAAC85D00889249 /* RNTableViewCell.m in Sources */,
+				0808A0331C67E9A60038993A /* RNReactModuleCell.m in Sources */,
 				8799E1DD1BF114F900AF9A67 /* RNTableFooterView.m in Sources */,
 				8799E1E31BF117F600AF9A67 /* RNTableHeaderView.m in Sources */,
 				8799E1E61BF1181400AF9A67 /* RNTableHeaderViewManager.m in Sources */,
 				872545E61BAAC85D00889249 /* RNTableViewManager.m in Sources */,
 				872545E11BAAC85D00889249 /* JSONDataSource.m in Sources */,
+				084AEF361C6B155900A0A569 /* RNAppGlobals.m in Sources */,
 				872545E41BAAC85D00889249 /* RNTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

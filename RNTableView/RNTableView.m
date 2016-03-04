@@ -15,6 +15,8 @@
 #import "RNCellView.h"
 #import "RNTableFooterView.h"
 #import "RNTableHeaderView.h"
+#import "RNReactModuleCell.h"
+#import "RNAppGlobals.h"
 
 @interface RNTableView()<UITableViewDataSource, UITableViewDelegate> {
     id<RNTableViewDatasource> datasource;
@@ -25,9 +27,11 @@
 @end
 
 @implementation RNTableView {
+    RCTBridge *_bridge;
     RCTEventDispatcher *_eventDispatcher;
     NSArray *_items;
     NSMutableArray *_cells;
+    NSString *_reactModuleCellReuseIndentifier;
 }
 
 -(void)setEditing:(BOOL)editing {
@@ -71,6 +75,7 @@
     RCTAssertParam(eventDispatcher);
     
     if ((self = [super initWithFrame:CGRectZero])) {
+        _bridge = [[RNAppGlobals sharedInstance] appBridge];
         _eventDispatcher = eventDispatcher;
         _cellHeight = 44;
         _cells = [NSMutableArray array];
@@ -148,6 +153,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.tableHeaderView = view;
     _tableView.tableFooterView = view;
     _tableView.separatorStyle = self.separatorStyle;
+    _reactModuleCellReuseIndentifier = @"ReactModuleCell";
+    [_tableView registerClass:[RNReactModuleCell class] forCellReuseIdentifier:_reactModuleCellReuseIndentifier];
     [self addSubview:_tableView];
 }
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section {
@@ -312,20 +319,38 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
     return count;
 }
+
+-(UITableViewCell*)setupReactModuleCell:(UITableView *)tableView data:(NSDictionary*)data indexPath:(NSIndexPath *)indexPath {
+    RCTAssert(_bridge, @"Must set global bridge in AppDelegate, e.g. \n\
+              #import <RNTableView/RNAppGlobals.h>\n\
+              [[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge]");
+    RNReactModuleCell *cell = [tableView dequeueReusableCellWithIdentifier:_reactModuleCellReuseIndentifier];
+    if (cell == nil) {
+        cell = [[RNReactModuleCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:_reactModuleCellReuseIndentifier bridge: _bridge data:data indexPath:indexPath reactModule:_reactModuleForCell];
+    } else {
+        [cell setUpAndConfigure:data bridge:_bridge indexPath:indexPath reactModule:_reactModuleForCell];
+    }
+    return cell;
+}
+
 -(UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell *cell = nil;
     NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
     
     // check if it is standard cell or user-defined UI
-    if (![self hasCustomCells:indexPath.section]){
+    if ([self hasCustomCells:indexPath.section]){
+        cell = ((RNCellView *)_cells[indexPath.section][indexPath.row]).tableViewCell;
+    } else if (self.reactModuleForCell != nil && ![self.reactModuleForCell isEqualToString:@""]) {
+        cell = [self setupReactModuleCell:tableView data:item indexPath:indexPath];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:@"Cell"];
         }
         cell.textLabel.text = item[@"label"];
         cell.detailTextLabel.text = item[@"detail"];
-    } else {
-        cell = ((RNCellView *)_cells[indexPath.section][indexPath.row]).tableViewCell;
     }
+    
     if (item[@"selected"] && [item[@"selected"] intValue]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else if ([item[@"arrow"] intValue]) {
@@ -357,7 +382,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![self hasCustomCells:indexPath.section]){
-        return _cellHeight;
+        NSNumber *styleHeight = _sections[indexPath.section][@"items"][indexPath.row][@"height"];
+        return styleHeight.floatValue ?: _cellHeight;
     } else {
         RNCellView *cell = (RNCellView *)_cells[indexPath.section][indexPath.row];
         CGFloat height =  cell.componentHeight;

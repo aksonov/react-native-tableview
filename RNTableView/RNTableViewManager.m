@@ -56,6 +56,11 @@ RCT_CUSTOM_VIEW_PROPERTY(tableViewCellEditingStyle, UITableViewCellEditingStyle,
     [view setTableViewCellEditingStyle:[RCTConvert NSInteger:json]];
 }
 
+/*Each cell is a separate app, multiple cells share the app/module name*/
+RCT_CUSTOM_VIEW_PROPERTY(reactModuleForCell, NSString*, RNTableView) {
+    [view setReactModuleForCell:[RCTConvert NSString:json]];
+}
+
 RCT_CUSTOM_VIEW_PROPERTY(contentInset, UIEdgeInsets, RNTableView) {
     [view setContentInset:[RCTConvert UIEdgeInsets:json]];
 }
