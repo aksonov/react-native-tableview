@@ -185,7 +185,7 @@ var TableView = React.createClass({
     _onEndDisplayingCell: function(event) {
         var data = event.nativeEvent;
         if (this.sections[data.section] && this.sections[data.section].items[data.row] && this.sections[data.section].items[data.row].onEndDisplayingCell) {
-            this.sections[data.section].items[data.row].onEndDisplayingCell(data, this.state.children);
+            this.sections[data.section].items[data.row].onEndDisplayingCell(data);
         }
         if (this.props.onEndDisplayingCell) {
             this.props.onEndDisplayingCell(data);
