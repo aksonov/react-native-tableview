@@ -258,8 +258,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
             cell.imageView.image = image;
         }
     }
+    [_eventDispatcher sendInputEventWithName:@"onWillDisplayCell" body:@{@"target":self.reactTag, @"row":@(indexPath.row), @"section": @(indexPath.section)}];
 }
 
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [_eventDispatcher sendInputEventWithName:@"onEndDisplayingCell" body:@{@"target":self.reactTag, @"row":@(indexPath.row), @"section": @(indexPath.section)}];
+}
 
 
 - (void)setSections:(NSArray *)sections
