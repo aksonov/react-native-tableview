@@ -19,6 +19,14 @@ RCT_EXPORT_MODULE()
     return [[RNTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
 }
 
+- (NSArray *)customDirectEventTypes
+{
+    return @[
+             @"onWillDisplayCell",
+             @"onEndDisplayingCell"
+             ];
+}
+
 RCT_EXPORT_VIEW_PROPERTY(sections, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(json, NSString)
 RCT_EXPORT_VIEW_PROPERTY(editing, BOOL)
