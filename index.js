@@ -174,9 +174,8 @@ var TableView = React.createClass({
     },
     _onWillDisplayCell: function(event) {
         var data = event.nativeEvent;
-        if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
-            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onWillDisplayCell){
-            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onWillDisplayCell(data);
+        if (this.sections[data.section] && this.sections[data.section].items[data.row] && this.sections[data.section].items[data.row].onWillDisplayCell) {
+            this.sections[data.section].items[data.row].onWillDisplayCell(data);
         }
         if (this.props.onWillDisplayCell) {
             this.props.onWillDisplayCell(data);
@@ -185,9 +184,8 @@ var TableView = React.createClass({
     },
     _onEndDisplayingCell: function(event) {
         var data = event.nativeEvent;
-        if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
-            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onEndDisplayingCell){
-            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onEndDisplayingCell(data);
+        if (this.sections[data.section] && this.sections[data.section].items[data.row] && this.sections[data.section].items[data.row].onEndDisplayingCell) {
+            this.sections[data.section].items[data.row].onEndDisplayingCell(data, this.state.children);
         }
         if (this.props.onEndDisplayingCell) {
             this.props.onEndDisplayingCell(data);
