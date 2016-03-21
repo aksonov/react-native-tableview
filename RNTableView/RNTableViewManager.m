@@ -23,7 +23,8 @@ RCT_EXPORT_MODULE()
 {
     return @[
              @"onWillDisplayCell",
-             @"onEndDisplayingCell"
+             @"onEndDisplayingCell",
+             @"onItemNotification"
              ];
 }
 
@@ -166,6 +167,11 @@ RCT_CUSTOM_VIEW_PROPERTY(footerFontStyle, NSString, RNTableView)
 RCT_CUSTOM_VIEW_PROPERTY(footerFontFamily, NSString, RNTableView)
 {
     view.footerFont = [RCTConvert UIFont:view.footerFont withFamily:json ?: defaultView.font.familyName];
+}
+
+RCT_EXPORT_METHOD(sendNotification:(NSDictionary *)data)
+{
+    [self.bridge.eventDispatcher sendInputEventWithName:@"onItemNotification" body:data];
 }
 
 //
