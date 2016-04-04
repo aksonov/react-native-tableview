@@ -208,7 +208,7 @@ You may also see message [Unbalanced calls start/end for tag 5](https://github.c
 
 ## Getting started
 1. `npm install react-native-tableview --save`
-2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]
+2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 3. add `./node_modules/react-native-tableview/RNTableView.xcodeproj`
 4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRNTableView.a**
 4. And in the `Build Settings` tab in the `Search Paths/Header Search Paths` section add `$(SRCROOT)/../node_modules/react-native-tableview`.
