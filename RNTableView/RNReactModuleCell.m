@@ -31,18 +31,13 @@
     if (_rootView == nil) {
         //Create the mini react app that will populate our cell. This will be called from cellForRowAtIndexPath
         _rootView = [[RCTRootView alloc] initWithBridge:bridge moduleName:reactModule initialProperties:props];
-        if (data[@"width"]) {
-            CGRect contentViewFrame = self.contentView.frame;
-            contentViewFrame.size.width = ((NSNumber*)data[@"width"]).floatValue;
-            self.contentView.frame = contentViewFrame;
-        }
         [self.contentView addSubview:_rootView];
         _rootView.frame = self.contentView.frame;
+        _rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth |UIViewAutoresizingFlexibleHeight;
     } else {
         //Ask react to re-render us with new data
         _rootView.appProperties = props;
     }
-    
     //The application will be unmounted in javascript when the cell/rootview is destroyed
 }
 

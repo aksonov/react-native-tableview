@@ -364,7 +364,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (item[@"selectionStyle"]) {
         cell.selectionStyle = [item[@"selectionStyle"] intValue];
     }
-
     return cell;
 }
 
