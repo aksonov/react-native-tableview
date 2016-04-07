@@ -16,6 +16,8 @@ var TableView = React.createClass({
 
     propTypes: {
         onPress: React.PropTypes.func,
+        onWillDisplayCell: React.PropTypes.func,
+        onEndDisplayingCell: React.PropTypes.func,
         selectedValue: React.PropTypes.any, // string or integer basically
         autoFocus: React.PropTypes.bool,
         moveWithinSectionOnly: React.PropTypes.bool,
@@ -138,7 +140,9 @@ var TableView = React.createClass({
                     {...this.props}
                     json={this.state.json}
                     onPress={this._onPress}
-                    onChange={this._onChange}>
+                    onChange={this._onChange}
+                    onWillDisplayCell={this._onWillDisplayCell}
+                    onEndDisplayingCell={this._onEndDisplayingCell}>
 
                     {this.state.children}
                 </RNTableView>
@@ -165,6 +169,26 @@ var TableView = React.createClass({
         }
         if (this.props.onChange) {
             this.props.onChange(data);
+        }
+        event.stopPropagation();
+    },
+    _onWillDisplayCell: function(event) {
+        var data = event.nativeEvent;
+        if (this.sections[data.section] && this.sections[data.section].items[data.row] && this.sections[data.section].items[data.row].onWillDisplayCell) {
+            this.sections[data.section].items[data.row].onWillDisplayCell(data);
+        }
+        if (this.props.onWillDisplayCell) {
+            this.props.onWillDisplayCell(data);
+        }
+        event.stopPropagation();
+    },
+    _onEndDisplayingCell: function(event) {
+        var data = event.nativeEvent;
+        if (this.sections[data.section] && this.sections[data.section].items[data.row] && this.sections[data.section].items[data.row].onEndDisplayingCell) {
+            this.sections[data.section].items[data.row].onEndDisplayingCell(data);
+        }
+        if (this.props.onEndDisplayingCell) {
+            this.props.onEndDisplayingCell(data);
         }
         event.stopPropagation();
     },

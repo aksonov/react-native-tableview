@@ -19,6 +19,15 @@ RCT_EXPORT_MODULE()
     return [[RNTableView alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
 }
 
+- (NSArray *)customDirectEventTypes
+{
+    return @[
+             @"onWillDisplayCell",
+             @"onEndDisplayingCell",
+             @"onItemNotification"
+             ];
+}
+
 RCT_EXPORT_VIEW_PROPERTY(sections, NSArray)
 RCT_EXPORT_VIEW_PROPERTY(json, NSString)
 RCT_EXPORT_VIEW_PROPERTY(editing, BOOL)
@@ -158,6 +167,11 @@ RCT_CUSTOM_VIEW_PROPERTY(footerFontStyle, NSString, RNTableView)
 RCT_CUSTOM_VIEW_PROPERTY(footerFontFamily, NSString, RNTableView)
 {
     view.footerFont = [RCTConvert UIFont:view.footerFont withFamily:json ?: defaultView.font.familyName];
+}
+
+RCT_EXPORT_METHOD(sendNotification:(NSDictionary *)data)
+{
+    [self.bridge.eventDispatcher sendInputEventWithName:@"onItemNotification" body:data];
 }
 
 //
