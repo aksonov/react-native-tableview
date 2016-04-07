@@ -27,6 +27,9 @@ Native iOS UITableView for React Native with JSON support.
 - UITableViewCellAccessoryDisclosureIndicator ("arrow" attribute for TableView.Item or TableView.Section)
 - UITableViewCellAccessoryCheckmark ("selected" attribute for TableView.Item)
 
+## List item format
+Items in the list can be either `TableView.Item` or `TableView.Cell`. An `Item` is simply text. A `Cell` can be any complex component. However, only `Item`s can be edited or moved. If you want to be able to edit or move a complex component, use `reactModuleForCell`, described in [Editable Complex Components](#editable-complex-components).
+
 ## Example 1
 ![demo-3](https://cloud.githubusercontent.com/assets/1321329/10022633/2bcad30e-614e-11e5-987d-28dbbb9d2739.gif)
 
@@ -109,10 +112,105 @@ AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
     }
 ```
 
+## Editable Complex Components
+Only `Item`s can be edited or moved. However you can create a complex component that is referenced by an Item using `reactModuleForCell`. You will need to do several things to set this up.
+
+1. Add some lines to `AppDelegate.m`
+2. Write your view component.
+3. Pass the name of your view component as a prop in your `<TableView>` component.
+4. Create a list of `<Item>`s in your TableView, passing props intended for your view component.
+5. Register your view component as an `App` root view.
+
+### Modifying `AppDelegate.m`
+Add the following import statement with the other imports at the top of the file:
+
+```
+#import <RNTableView/RNAppGlobals.h>
+```
+Add the following two lines
+
+```
+  //Save main bridge so that RNTableView could access our bridge to create its RNReactModuleCells
+  [[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge];
+```
+just before the `self.window =` line near the bottom of the file. If you have not already done so, add the header search path as shown in [Getting Started](#getting-started).
+
+### Write your cell view component.
+
+For example,
+
+```
+//Should be pure... setState on top-level component doesn't seem to work
+class TableViewExampleCell extends React.Component {
+    render(){
+        var style = {borderColor:"#aaaaaa", borderWidth:1, borderRadius:3};
+        // Cell height is passed from <Item> child of tableview and native code
+        // passes it back up to javascript in "app params" for the cell.
+        // This way our component will fill the full native table cell height.
+        if (this.props.data.height !== undefined) {
+            style.height = this.props.data.height;
+        } else {
+            style.flex = 1;
+        }
+        if (this.props.data.backgroundColor !== undefined) {
+            style.backgroundColor = this.props.data.backgroundColor;
+        }
+        return (
+           <View style={style}>
+           <Text>section:{this.props.section},row:{this.props.row},label:{this.props.data.label}</Text>
+               <Text> message:{this.props.data.message}</Text>
+           </View>
+       );
+    }
+    }
+```
+For more examples, see examples/TableViewDemo.
+
+### Pass component as prop.
+
+```
+<TableView reactModuleForCell="TableViewExampleCell" >
+```
+
+### Create list of items, passing props
+```
+          <Section canEdit={true}>
+              { this.props.items.map(function(item) {
+                return (<Item key={"i" + item.data.date}
+                              label={item.label}
+                              message={item.message}
+                              />);
+               }) }
+          </Section>
+
+```
+
+Note that the props you pass must be primitive types: they cannot be objects. Also, note that the props
+become properties of the `data` prop in your `reactModuleForCell` component. That is, you pass `label="foo"`
+and in your component you pick it up as `this.props.data.label`.
+
+### Register your component.
+Each cell you render becomes a reuseable root view or `App`.
+```
+var { AppRegistry } = React;
+
+...
+
+AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
+```
+When debugging, you will see the message:
+```
+Running application "TableViewExample" with appParams: { /* params */ }. __DEV__ === true, development-level warning are ON, performance optimizations are OFF
+
+```
+multiple times. While slightly annoying, this does not seem to affect performance.
+You may also see message [Unbalanced calls start/end for tag 5](https://github.com/facebook/react-native/issues/4163).
+
 ## Getting started
 1. `npm install react-native-tableview --save`
 2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 3. add `./node_modules/react-native-tableview/RNTableView.xcodeproj`
 4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRNTableView.a**
+4. And in the `Build Settings` tab in the `Search Paths/Header Search Paths` section add `$(SRCROOT)/../node_modules/react-native-tableview`.
 5. (optional) If you will use JSON file, add it to iOS application bundle
 6. `var TableView = require('react-native-tableview')`
