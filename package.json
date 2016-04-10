@@ -1,6 +1,6 @@
 {
   "name": "react-native-tableview",
-  "version": "1.4.7",
+  "version": "1.5.0",
   "description": "Native iOS TableView wrapper for React Native",
   "main": "index.js",
   "scripts": {
