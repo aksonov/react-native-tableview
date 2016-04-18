@@ -254,7 +254,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     {
         [cell setBackgroundColor:self.selectedBackgroundColor];
     } else {
-        [cell setBackgroundColor:[UIColor clearColor]];
+        if (item[@"transparent"])
+        {
+            [cell setBackgroundColor:[UIColor clearColor]];
+        } else {
+            [cell setBackgroundColor:[UIColor whiteColor]];
+        }
     }
 
     if (item[@"image"]) {
