@@ -181,6 +181,20 @@ Footer font:
 - `footerFontStyle`
 - `footerFontFamily`
 
+## Images / Icons
+An `Item` component takes an `image` and an optional `imageWidth` prop.
+
+An `image` prop can be a string pointing to the name of an asset in your "Asset Catalog". In this case an `imageWidth` prop is recommended.
+```
+<Item image="icon-success.png" imageWidth={40} />
+```
+
+Alernatively, you can `require` the image from your local app code. In this case an `imageWidth` is unnecessary.
+
+```
+<Item image={require('../images/icon-success.png')} />
+```
+
 ### Editable Complex Components
 Only `Item`s can be edited or moved. However you can create a complex component that is referenced by an Item using `reactModuleForCell`. You will need to do several things to set this up.
 
