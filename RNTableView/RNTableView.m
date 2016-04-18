@@ -250,7 +250,13 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
     }
     if (item[@"image"]) {
-        UIImage *image = [UIImage imageNamed:item[@"image"]];
+        UIImage *image;
+        if ([item[@"image"] isKindOfClass:[NSString class]])
+        {
+            image = [UIImage imageNamed:item[@"image"]];
+        } else {
+            image = [RCTConvert UIImage:item[@"image"]];
+        }
         if ([item[@"imageWidth"] intValue]) {
             CGSize itemSize = CGSizeMake([item[@"imageWidth"] intValue], image.size.height);
             CGPoint itemPoint = CGPointMake((itemSize.width - image.size.width) / 2, (itemSize.height - image.size.height) / 2);
