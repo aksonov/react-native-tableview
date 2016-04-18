@@ -253,6 +253,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (self.selectedBackgroundColor && [item[@"selected"] intValue])
     {
         [cell setBackgroundColor:self.selectedBackgroundColor];
+    } else {
+        [cell setBackgroundColor:[UIColor clearColor]];
     }
 
     if (item[@"image"]) {
