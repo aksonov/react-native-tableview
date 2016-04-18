@@ -134,6 +134,23 @@ RCT_CUSTOM_VIEW_PROPERTY(fontFamily, NSString, RNTableView)
     view.font = [RCTConvert UIFont:view.font withFamily:json ?: defaultView.font.familyName];
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(detailFontSize, CGFloat, RNTableView)
+{
+    view.detailFont = [RCTConvert UIFont:view.detailFont withSize:json ?: @(defaultView.font.pointSize)];
+}
+RCT_CUSTOM_VIEW_PROPERTY(detailFontWeight, NSString, RNTableView)
+{
+    view.detailFont = [RCTConvert UIFont:view.detailFont withWeight:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(detailFontStyle, NSString, RNTableView)
+{
+    view.detailFont = [RCTConvert UIFont:view.detailFont withStyle:json]; // defaults to normal
+}
+RCT_CUSTOM_VIEW_PROPERTY(detailFontFamily, NSString, RNTableView)
+{
+    view.detailFont = [RCTConvert UIFont:view.detailFont withFamily:json ?: defaultView.font.familyName];
+}
+
 RCT_CUSTOM_VIEW_PROPERTY(headerFontSize, CGFloat, RNTableView)
 {
     view.headerFont = [RCTConvert UIFont:view.headerFont withSize:json ?: @(defaultView.font.pointSize)];

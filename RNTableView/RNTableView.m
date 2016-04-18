@@ -49,7 +49,7 @@
 {
     // will not insert because we don't need to draw them
     //   [super insertSubview:subview atIndex:atIndex];
-    
+
     // just add them to registry
     if ([subview isKindOfClass:[RNCellView class]]){
         RNCellView *cellView = (RNCellView *)subview;
@@ -73,7 +73,7 @@
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
 {
     RCTAssertParam(eventDispatcher);
-    
+
     if ((self = [super initWithFrame:CGRectZero])) {
         _bridge = [[RNAppGlobals sharedInstance] appBridge];
         _eventDispatcher = eventDispatcher;
@@ -90,7 +90,7 @@ RCT_NOT_IMPLEMENTED(-initWithFrame:(CGRect)frame)
 RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 - (void)setTableViewStyle:(UITableViewStyle)tableViewStyle {
     _tableViewStyle = tableViewStyle;
-    
+
     [self createTableView];
 }
 
@@ -113,13 +113,13 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 - (void)layoutSubviews {
     [self.tableView setFrame:self.frame];
-    
+
     // if sections are not define, try to load JSON
     if (![_sections count] && _json){
         datasource = [[JSONDataSource alloc] initWithFilename:_json filter:_filter args:_filterArgs];
         self.sections = [NSMutableArray arrayWithArray:[datasource sections]];
     }
-    
+
     // find first section with selection
     NSInteger selectedSection = -1;
     for (int i=0;i<[_selectedIndexes count];i++){
@@ -159,7 +159,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *footer = (UITableViewHeaderFooterView *)view;
-    
+
     if (self.footerTextColor){
         footer.textLabel.textColor = self.footerTextColor;
     }
@@ -197,7 +197,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    
+
     if (self.headerTextColor){
         header.textLabel.textColor = self.headerTextColor;
     }
@@ -213,12 +213,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
             [cell setSeparatorInset:UIEdgeInsetsZero];
         }
-        
+
         // Prevent the cell from inheriting the Table View's margin settings
         if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
             [cell setPreservesSuperviewLayoutMargins:NO];
         }
-        
+
         // Explictly set your cell's layout margins
         if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
             [cell setLayoutMargins:UIEdgeInsetsZero];
@@ -227,6 +227,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (self.font){
         cell.detailTextLabel.font = self.font;
         cell.textLabel.font = self.font;
+    }
+    if (self.detailFont)
+    {
+        cell.detailTextLabel.font = self.detailFont;
     }
     if (self.tintColor){
         cell.tintColor = self.tintColor;
@@ -243,7 +247,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         if (self.detailTextColor){
             cell.detailTextLabel.textColor = self.detailTextColor;
         }
-        
+
     }
     if (item[@"image"]) {
         UIImage *image = [UIImage imageNamed:item[@"image"]];
@@ -269,10 +273,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 - (void)setSections:(NSArray *)sections
 {
     _sections = [NSMutableArray arrayWithCapacity:[sections count]];
-    
+
     // create selected indexes
     _selectedIndexes = [NSMutableArray arrayWithCapacity:[sections count]];
-    
+
     BOOL found = NO;
     for (NSDictionary *section in sections){
         NSMutableDictionary *sectionData = [NSMutableDictionary dictionaryWithDictionary:section];
@@ -281,7 +285,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
             [allItems addObjectsFromArray:self.additionalItems];
         }
         [allItems addObjectsFromArray:sectionData[@"items"]];
-        
+
         NSMutableArray *items = [NSMutableArray arrayWithCapacity:[allItems count]];
         NSInteger selectedIndex = -1;
         for (NSDictionary *item in allItems){
@@ -295,7 +299,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
             [items addObject:itemData];
         }
         [_selectedIndexes addObject:[NSNumber numberWithUnsignedInteger:selectedIndex]];
-        
+
         sectionData[@"items"] = items;
         [_sections addObject:sectionData];
     }
@@ -340,7 +344,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 -(UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
     NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
-    
+
     // check if it is standard cell or user-defined UI
     if ([self hasCustomCells:indexPath.section]){
         cell = ((RNCellView *)_cells[indexPath.section][indexPath.row]).tableViewCell;
@@ -354,7 +358,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         cell.textLabel.text = item[@"label"];
         cell.detailTextLabel.text = item[@"detail"];
     }
-    
+
     if (item[@"selected"] && [item[@"selected"] intValue]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else if ([item[@"arrow"] intValue]) {
@@ -392,15 +396,15 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         CGFloat height =  cell.componentHeight;
         return height;
     }
-    
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+
     NSInteger selectedIndex = [self.selectedIndexes[indexPath.section] integerValue];
     NSMutableDictionary *oldValue = selectedIndex>=0 ?[self dataForRow:selectedIndex section:indexPath.section] : [NSMutableDictionary dictionaryWithDictionary:@{}];
-    
+
     NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
     newValue[@"target"] = self.reactTag;
     newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
@@ -450,16 +454,16 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath { //implement the delegate method
-    
+
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
         newValue[@"target"] = self.reactTag;
         newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
         newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
         newValue[@"mode"] = @"delete";
-        
+
         [_eventDispatcher sendInputEventWithName:@"change" body:newValue];
-        
+
         [_sections[indexPath.section][@"items"] removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
     }
