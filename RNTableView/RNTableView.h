@@ -54,6 +54,7 @@
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, strong) UIColor *selectedTextColor;
+@property (nonatomic, strong) UIColor *selectedBackgroundColor;
 @property (nonatomic, strong) UIColor *detailTextColor;
 @property (nonatomic, strong) UIColor *separatorColor;
 @property (nonatomic) BOOL autoFocus;
