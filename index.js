@@ -2,6 +2,7 @@
 var React = require('react-native');
 var {NativeMethodsMixin, ReactNativeViewAttributes, NativeModules, StyleSheet, View,requireNativeComponent} = React;
 var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
+var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
 
 var TABLEVIEW = 'tableview';
 
@@ -90,6 +91,11 @@ var TableView = React.createClass({
                     if (el.children) {
                         el.label = el.children;
                     }
+
+                    if (el.image && typeof el.image === 'number') {
+                        el.image = resolveAssetSource(el.image);
+                    }
+
                     count++;
                     items.push(el);
 
