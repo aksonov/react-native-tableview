@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var { AppRegistry, Text, Dimensions, View, TouchableHighlight, TextInput } = React;
+var { AppRegistry, Text, Dimensions, View, TouchableHighlight, TextInput, Image } = React;
 var TableView = require('react-native-tableview');
 var Section = TableView.Section;
 var Item = TableView.Item;
@@ -203,8 +203,12 @@ class FirebaseExample extends React.Component {
            item[this.propPrefix+k] = itemData[k];
         });
         item[this.propPrefix+"key"] = key;
+        //Random images for the demo
+        item[this.propPrefix+"url"] = (index%2 == 0?
+            "http://images.dinosaurpictures.org/cetiosaurus_eb59.jpg" :
+            "http://images.dinosaurpictures.org/090714-nothronychus-02_8e4b.jpg");
 
-        return (<Item {...item} height={140} backgroundColor={index%2==0?"white":"grey"} key={key} label={key}></Item>);
+        return (<Item {...item} height={220} backgroundColor={index%2==0?"white":"grey"} key={key} label={key}></Item>);
     }
     render() {
         var data = this.state.data;
@@ -520,13 +524,8 @@ class TableViewExample extends React.Component {
 class TableViewExampleCell extends React.Component {
     render(){
         var style = {borderColor:"#aaaaaa", borderWidth:1, borderRadius:3};
-        //cell height is passed from <Item> child of tableview and native code passes it back up to javascript in "app params" for the cell.
-        //This way our component will fill the full native table cell height.
-        if (this.props.data.height !== undefined) {
-            style.height = this.props.data.height;
-        } else {
-            style.flex = 1;
-        }
+        //Fill full height of the cell
+        var style = {flex:1};
         if (this.props.data.backgroundColor !== undefined) {
             style.backgroundColor = this.props.data.backgroundColor;
         }
@@ -537,14 +536,8 @@ class TableViewExampleCell extends React.Component {
 //Should be pure... setState on top-level component doesn't seem to work
 class TableViewExampleCell2 extends React.Component {
     render(){
-        var style = {};
-        //cell height is passed from <Item> child of tableview and native code passes it back up to javascript in "app params" for the cell.
-        //This way our component will fill the full native table cell height.
-        if (this.props.data.height !== undefined) {
-            style.height = this.props.data.height;
-        } else {
-            style.flex = 1;
-        }
+        //Fill full height of the cell
+        var style = {flex:1};
         if (this.props.data.backgroundColor !== undefined) {
             style.backgroundColor = this.props.data.backgroundColor;
         }
@@ -552,38 +545,62 @@ class TableViewExampleCell2 extends React.Component {
     }
 }
 
-//Should be pure... setState on top-level component doesn't seem to work
+
+//Should be pure... setState on top-level component doesn't seem to work. So we wrap our stateful DinosaurCellExample1 here.
+//Otherwise this.state is null inside render.
 class DinosaurCellExample extends React.Component {
-    yearsAgoInMil(num) {
-        return ((-1 * num)/1000000)+" million years ago";
+    render() {
+        return <DinosaurCellExample1 {...this.props} />
     }
-    render(){
-        var style = {};
-        //cell height is passed from <Item> child of tableview and native code passes it back up to javascript in "app params" for the cell.
-        //This way our component will fill the full native table cell height.
-        if (this.props.data.height !== undefined) {
-            style.height = this.props.data.height;
-        }
+}
+class DinosaurCellExample1 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {isLoadingImage: true}
+    }
+
+    imageLoadStarted() {
+        this.setState({isLoadingImage: true});
+    }
+
+    imageLoadEnded() {
+        this.setState({isLoadingImage: false});
+    }
+
+    yearsAgoInMil(num) {
+        return ((-1 * num) / 1000000) + " million years ago";
+    }
+
+    render() {
+        var style = {flex:1};
         if (this.props.data.backgroundColor !== undefined) {
             style.backgroundColor = this.props.data.backgroundColor;
         }
         style.borderColor = "grey";
         style.borderRadius = 0.02;
-
+        const styles = {thumb: {width: 100, height: 100}};
         var appeared = this.yearsAgoInMil(this.props.data.dinosaurappeared);
         var vanished = this.yearsAgoInMil(this.props.data.dinosaurvanished);
-        return (<View style={style}>
-            <Text style={{backgroundColor:"#4fa2c3"}}>Name: {this.props.data.dinosaurkey}</Text>
-            <Text>Order:{this.props.data.dinosaurorder}</Text>
-            <Text>Appeared: {appeared}</Text>
-            <Text style={{backgroundColor:"lightgrey"}}>Vanished: {vanished}</Text>
-            <Text>Height: {this.props.data.dinosaurheight}</Text>
-            <Text>Length: {this.props.data.dinosaurlength}</Text>
-            <Text>Weight: {this.props.data.dinosaurweight}</Text>
-        </View>);
+        return (
+            <View style={style}>
+                <View style={{flexDirection:"row"}}>
+                    <Image style={styles.thumb}
+                           source={{uri:this.props.data.dinosaururl}}
+                           onLoadStart={()=>this.imageLoadStarted()}
+                           onLoadEnd={()=>this.imageLoadEnded()}/>
+                    <Text style={{flex:1,textAlign:'center',backgroundColor:"transparent"}}>Name: {this.props.data.dinosaurkey}</Text>
+                </View>
+                {this.state.isLoadingImage && <Text>Loading Image...</Text>}
+                <Text>Order:{this.props.data.dinosaurorder}</Text>
+                <Text>Appeared: {appeared}</Text>
+                <Text>Vanished: {vanished}</Text>
+                <Text>Height: {this.props.data.dinosaurheight}</Text>
+                <Text>Length: {this.props.data.dinosaurlength}</Text>
+                <Text>Weight: {this.props.data.dinosaurweight}</Text>
+            </View>
+        );
     }
 }
-
 
 
 AppRegistry.registerComponent('TableViewExample', () => TableViewExample);

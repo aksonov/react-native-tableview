@@ -1,6 +1,7 @@
 node_modules
-RCTSVG.xcodeproj/xcuserdata
-RCTSVG.xcodeproj/project.xcworkspace
+RNTableView.xcodeproj/xcuserdata
+RNTableView.xcodeproj/project.xcworkspace
 
 .npm-debug.log
 .DS_Store
+.idea
