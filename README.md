@@ -51,7 +51,7 @@ Native iOS UITableView for React Native with JSON support.
 - UITableViewCellAccessoryDetailButton (TableView.Consts.AccessoryType.DetailButton)
 
 ### List item format
-Items in the list can be either `TableView.Item` or `TableView.Cell`. An `Item` is simply text. A `Cell` can be any complex component. However, only `Item`s can be edited or moved. If you want to be able to edit or move a complex component, use `reactModuleForCell`, described in [Editable Complex Components](#editable-complex-components).
+Items in the list can be either `TableView.Item` or `TableView.Cell`. An `Item` is simply text. A `Cell` can be any complex component. However, only `Item`s can be edited or moved. There are also issues with `Cell`s re-rendering on data changes (#19) that can be avoided by using `Item`s. If you want to be able to re-render, edit or move a complex component, use `reactModuleForCell`, described in [Editable Complex Components](#editable-complex-components).
 
 --
 
@@ -230,17 +230,14 @@ For example,
 class TableViewExampleCell extends React.Component {
     render(){
         var style = {borderColor:"#aaaaaa", borderWidth:1, borderRadius:3};
-        // Cell height is passed from <Item> child of tableview and native code
-        // passes it back up to javascript in "app params" for the cell.
-        // This way our component will fill the full native table cell height.
-        if (this.props.data.height !== undefined) {
-            style.height = this.props.data.height;
-        } else {
-            style.flex = 1;
-        }
+        // Fill the full native table cell height.
+        style.flex = 1;
+        
+        // All Item props get passed to this cell inside this.props.data. Use them to control the rendering, for example background color:
         if (this.props.data.backgroundColor !== undefined) {
             style.backgroundColor = this.props.data.backgroundColor;
         }
+        
         return (
            <View style={style}>
            <Text>section:{this.props.section},row:{this.props.row},label:{this.props.data.label}</Text>
