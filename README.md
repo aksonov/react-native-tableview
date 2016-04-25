@@ -44,8 +44,11 @@ Native iOS UITableView for React Native with JSON support.
 - UITableViewCellStyleSubtitle (TableView.Consts.CellStyle.Subtitle)
 
 ### Accessory types
-- UITableViewCellAccessoryDisclosureIndicator ("arrow" attribute for TableView.Item or TableView.Section)
-- UITableViewCellAccessoryCheckmark ("selected" attribute for TableView.Item)
+- UITableViewCellAccessoryNone (TableView.Consts.AccessoryType.None)
+- UITableViewCellAccessoryDisclosureIndicator (TableView.Consts.AccessoryType.DisclosureIndicator or `arrow` attribute for TableView.Item or TableView.Section)
+- UITableViewCellAccessoryDetailDisclosureButton (TableView.Consts.AccessoryType.DisclosureButton)
+- UITableViewCellAccessoryCheckmark (TableView.Consts.AccessoryType.Checkmark or `selected` attribute for TableView.Item)
+- UITableViewCellAccessoryDetailButton (TableView.Consts.AccessoryType.DetailButton)
 
 ### List item format
 Items in the list can be either `TableView.Item` or `TableView.Cell`. An `Item` is simply text. A `Cell` can be any complex component. However, only `Item`s can be edited or moved. If you want to be able to edit or move a complex component, use `reactModuleForCell`, described in [Editable Complex Components](#editable-complex-components).

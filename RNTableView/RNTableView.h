@@ -44,6 +44,8 @@
 @property (nonatomic, assign) UITableViewCellStyle tableViewCellStyle;
 @property (nonatomic, assign) UITableViewCellEditingStyle tableViewCellEditingStyle;
 @property (nonatomic, assign) UITableViewCellSeparatorStyle separatorStyle;
+@property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
+@property (nonatomic, assign) UITableViewCellAccessoryType selectedAccessoryType;
 @property (nonatomic, strong) UIFont *font;
 @property (nonatomic, strong) UIFont *detailFont;
 @property (nonatomic, strong) UIFont *headerFont;
