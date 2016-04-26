@@ -17,6 +17,7 @@ var TableView = React.createClass({
 
     propTypes: {
         onPress: React.PropTypes.func,
+        onAccessoryPress: React.PropTypes.func,
         onWillDisplayCell: React.PropTypes.func,
         onEndDisplayingCell: React.PropTypes.func,
         selectedValue: React.PropTypes.any, // string or integer basically
@@ -146,6 +147,7 @@ var TableView = React.createClass({
                     {...this.props}
                     json={this.state.json}
                     onPress={this._onPress}
+                    onAccessoryPress={this._onAccessoryPress}
                     onChange={this._onChange}
                     onWillDisplayCell={this._onWillDisplayCell}
                     onEndDisplayingCell={this._onEndDisplayingCell}>
@@ -164,6 +166,18 @@ var TableView = React.createClass({
         }
         if (this.props.onPress) {
             this.props.onPress(data);
+        }
+        event.stopPropagation();
+    },
+    _onAccessoryPress: function(event) {
+        console.log('_onAccessoryPress', event);
+        var data = event.nativeEvent;
+        if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.accessoryIndex] &&
+            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.accessoryIndex].onAccessoryPress){
+            this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.accessoryIndex].onAccessoryPress(data);
+        }
+        if (this.props.onAccessoryPress) {
+            this.props.onAccessoryPress(data);
         }
         event.stopPropagation();
     },

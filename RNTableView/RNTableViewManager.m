@@ -24,7 +24,8 @@ RCT_EXPORT_MODULE()
     return @[
              @"onWillDisplayCell",
              @"onEndDisplayingCell",
-             @"onItemNotification"
+             @"onItemNotification",
+             @"onAccessoryPress"
              ];
 }
 
@@ -114,6 +115,13 @@ RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
                      @"None": @(UITableViewCellSeparatorStyleNone),
                      @"Line": @(UITableViewCellSeparatorStyleSingleLine),
                      @"LineEtched": @(UITableViewCellSeparatorStyleSingleLineEtched)
+                     },
+             @"AccessoryType": @{
+                     @"None": @(UITableViewCellAccessoryNone),
+                     @"DisclosureIndicator": @(UITableViewCellAccessoryDisclosureIndicator),
+                     @"DisclosureButton": @(UITableViewCellAccessoryDetailDisclosureButton),
+                     @"Checkmark": @(UITableViewCellAccessoryCheckmark),
+                     @"DetailButton": @(UITableViewCellAccessoryDetailButton)
                      }
              };
 }

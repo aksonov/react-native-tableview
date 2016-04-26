@@ -379,9 +379,17 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 
     if (item[@"selected"] && [item[@"selected"] intValue]){
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if (item[@"selectedAccessoryType"])
+        {
+            NSLog(@"selectedAccessoryType %@", [item[@"selectedAccessoryType"] intValue]);
+            cell.accessoryType = [item[@"selectedAccessoryType"] intValue];
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
     } else if ([item[@"arrow"] intValue]) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if ([item[@"accessoryType"] intValue]) {
+        cell.accessoryType = [item[@"accessoryType"] intValue];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -450,6 +458,14 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     self.selectedIndexes[indexPath.section] = [NSNumber numberWithInteger:indexPath.item];
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"accessoryButtonTappedForRowWithIndexPath %@", indexPath);
+    NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
+    newValue[@"target"] = self.reactTag;
+    newValue[@"accessoryIndex"] = [NSNumber numberWithInteger:indexPath.item];
+    newValue[@"accessorySection"] = [NSNumber numberWithInteger:indexPath.section];
+    [_eventDispatcher sendInputEventWithName:@"onAccessoryPress" body:newValue];
+}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     NSMutableDictionary *value = [self dataForRow:indexPath.item section:indexPath.section];
