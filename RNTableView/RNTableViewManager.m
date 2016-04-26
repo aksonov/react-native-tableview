@@ -24,7 +24,8 @@ RCT_EXPORT_MODULE()
     return @[
              @"onWillDisplayCell",
              @"onEndDisplayingCell",
-             @"onItemNotification"
+             @"onItemNotification",
+             @"onAccessoryPress"
              ];
 }
 

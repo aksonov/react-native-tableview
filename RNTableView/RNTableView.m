@@ -464,7 +464,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     newValue[@"target"] = self.reactTag;
     newValue[@"accessoryIndex"] = [NSNumber numberWithInteger:indexPath.item];
     newValue[@"accessorySection"] = [NSNumber numberWithInteger:indexPath.section];
-    [_eventDispatcher sendInputEventWithName:@"accessoryPress" body:newValue];
+    [_eventDispatcher sendInputEventWithName:@"onAccessoryPress" body:newValue];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
