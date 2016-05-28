@@ -52,7 +52,6 @@
   
   //Save main bridge so that RNTableView could access our bridge to create its RNReactModuleCells
   [[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge];
-  
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];

@@ -13,6 +13,8 @@
 @synthesize appBridge;
 
 + (id)sharedInstance {
+    NSLog(@"RNAppGlobals is deprecated/no longer needed and will be removed soon");
+    
     static RNAppGlobals *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
