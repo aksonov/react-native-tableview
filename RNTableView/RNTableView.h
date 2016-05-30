@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class RCTEventDispatcher;
+@class RCTBridge;
 
 @protocol RNTableViewDatasource <NSObject>
 
@@ -21,7 +21,7 @@
 
 @interface RNTableView : UIView
 
-- (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithBridge:(RCTBridge *)bridge NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, copy) NSMutableArray *sections;
 @property (nonatomic, copy) NSArray *additionalItems;
