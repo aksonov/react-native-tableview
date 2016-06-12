@@ -26,7 +26,7 @@ Native iOS UITableView for React Native with JSON support.
 2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 3. add `./node_modules/react-native-tableview/RNTableView.xcodeproj`
 4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRNTableView.a**
-4. And in the `Build Settings` tab in the `Search Paths/Header Search Paths` section add `$(SRCROOT)/../node_modules/react-native-tableview`.
+4. And in the `Build Settings` tab in the `Search Paths/Header Search Paths` section add `$(SRCROOT)/../node_modules/react-native-tableview` (make sure it's recursive).
 5. (optional) If you will use JSON file, add it to iOS application bundle
 6. `import TableView from 'react-native-tableview'`
 
