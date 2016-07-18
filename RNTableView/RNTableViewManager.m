@@ -52,6 +52,7 @@ RCT_EXPORT_VIEW_PROPERTY(separatorColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(moveWithinSectionOnly, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsToggle, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsMultipleSelection, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(alwaysBounceVertical, BOOL)
 
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {

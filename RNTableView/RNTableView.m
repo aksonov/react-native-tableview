@@ -154,6 +154,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.contentOffset = self.contentOffset;
     _tableView.scrollIndicatorInsets = self.scrollIndicatorInsets;
     _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.alwaysBounceVertical = self.alwaysBounceVertical;
     UIView *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)];
     _tableView.tableHeaderView = view;
     _tableView.tableFooterView = view;

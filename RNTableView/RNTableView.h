@@ -62,6 +62,7 @@
 @property (nonatomic) BOOL autoFocus;
 @property (nonatomic) BOOL allowsToggle;
 @property (nonatomic) BOOL allowsMultipleSelection;
+@property (nonatomic) BOOL alwaysBounceVertical;
 @property (nonatomic) NSString *reactModuleForCell;
 
 @end
