@@ -85,6 +85,7 @@
         _cellHeight = 44;
         _cells = [NSMutableArray array];
         _autoFocus = YES;
+        _autoFocusAnimate = YES;
         _allowsToggle = NO;
         _allowsMultipleSelection = NO;
     }
@@ -137,7 +138,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (_autoFocus && selectedSection>=0 && [self numberOfSectionsInTableView:self.tableView] && [self tableView:self.tableView numberOfRowsInSection:selectedSection]){
         dispatch_async(dispatch_get_main_queue(), ^{
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[_selectedIndexes[selectedSection] intValue ]inSection:selectedSection];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:_autoFocusAnimate];
         });
     }
 }

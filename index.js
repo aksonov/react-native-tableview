@@ -31,6 +31,7 @@ var TableView = React.createClass({
         onEndDisplayingCell: React.PropTypes.func,
         selectedValue: React.PropTypes.any, // string or integer basically
         autoFocus: React.PropTypes.bool,
+        autoFocusAnimate: React.PropTypes.bool,
         alwaysBounceVertical: React.PropTypes.bool,
         moveWithinSectionOnly: React.PropTypes.bool,
         json: React.PropTypes.string,
@@ -70,6 +71,7 @@ var TableView = React.createClass({
     getDefaultProps() {
         return {
             tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
+            autoFocusAnimate: true,
             alwaysBounceVertical: true,
         };
     },
