@@ -31,6 +31,8 @@ var TableView = React.createClass({
         onEndDisplayingCell: React.PropTypes.func,
         selectedValue: React.PropTypes.any, // string or integer basically
         autoFocus: React.PropTypes.bool,
+        autoFocusAnimate: React.PropTypes.bool,
+        alwaysBounceVertical: React.PropTypes.bool,
         moveWithinSectionOnly: React.PropTypes.bool,
         json: React.PropTypes.string,
         textColor: React.PropTypes.string,
@@ -69,6 +71,8 @@ var TableView = React.createClass({
     getDefaultProps() {
         return {
             tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
+            autoFocusAnimate: true,
+            alwaysBounceVertical: true,
         };
     },
 
@@ -153,6 +157,7 @@ var TableView = React.createClass({
                     tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
                     separatorStyle={TableView.Consts.SeparatorStyle.Line}
                     scrollIndicatorInsets={this.props.contentInset}
+                    alwaysBounceVertical={this.props.alwaysBounceVertical}
                     {...this.props}
                     json={this.state.json}
                     onPress={this._onPress}
