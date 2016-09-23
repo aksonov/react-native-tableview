@@ -10,6 +10,7 @@
 #import "RNTableView.h"
 #import "RCTBridge.h"
 #import "RCTConvert.h"
+#import "RCTFont.h"
 
 @implementation RNTableViewManager
 
@@ -130,71 +131,71 @@ RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
 
 RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RNTableView)
 {
-    view.font = [RCTConvert UIFont:view.font withSize:json ?: @(defaultView.font.pointSize)];
+    view.font = [RCTFont updateFont:view.font withSize:json ?: @(defaultView.font.pointSize)];
 }
 RCT_CUSTOM_VIEW_PROPERTY(fontWeight, NSString, RNTableView)
 {
-    view.font = [RCTConvert UIFont:view.font withWeight:json]; // defaults to normal
+    view.font = [RCTFont updateFont:view.font withWeight:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(fontStyle, NSString, RNTableView)
 {
-    view.font = [RCTConvert UIFont:view.font withStyle:json]; // defaults to normal
+    view.font = [RCTFont updateFont:view.font withStyle:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(fontFamily, NSString, RNTableView)
 {
-    view.font = [RCTConvert UIFont:view.font withFamily:json ?: defaultView.font.familyName];
+    view.font = [RCTFont updateFont:view.font withFamily:json ?: defaultView.font.familyName];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(detailFontSize, CGFloat, RNTableView)
 {
-    view.detailFont = [RCTConvert UIFont:view.detailFont withSize:json ?: @(defaultView.font.pointSize)];
+    view.detailFont = [RCTFont updateFont:view.detailFont withSize:json ?: @(defaultView.font.pointSize)];
 }
 RCT_CUSTOM_VIEW_PROPERTY(detailFontWeight, NSString, RNTableView)
 {
-    view.detailFont = [RCTConvert UIFont:view.detailFont withWeight:json]; // defaults to normal
+    view.detailFont = [RCTFont updateFont:view.detailFont withWeight:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(detailFontStyle, NSString, RNTableView)
 {
-    view.detailFont = [RCTConvert UIFont:view.detailFont withStyle:json]; // defaults to normal
+    view.detailFont = [RCTFont updateFont:view.detailFont withStyle:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(detailFontFamily, NSString, RNTableView)
 {
-    view.detailFont = [RCTConvert UIFont:view.detailFont withFamily:json ?: defaultView.font.familyName];
+    view.detailFont = [RCTFont updateFont:view.detailFont withFamily:json ?: defaultView.font.familyName];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(headerFontSize, CGFloat, RNTableView)
 {
-    view.headerFont = [RCTConvert UIFont:view.headerFont withSize:json ?: @(defaultView.font.pointSize)];
+    view.headerFont = [RCTFont updateFont:view.headerFont withSize:json ?: @(defaultView.font.pointSize)];
 }
 RCT_CUSTOM_VIEW_PROPERTY(headerFontWeight, NSString, RNTableView)
 {
-    view.headerFont = [RCTConvert UIFont:view.headerFont withWeight:json]; // defaults to normal
+    view.headerFont = [RCTFont updateFont:view.headerFont withWeight:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(headerFontStyle, NSString, RNTableView)
 {
-    view.headerFont = [RCTConvert UIFont:view.headerFont withStyle:json]; // defaults to normal
+    view.headerFont = [RCTFont updateFont:view.headerFont withStyle:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(headerFontFamily, NSString, RNTableView)
 {
-    view.headerFont = [RCTConvert UIFont:view.headerFont withFamily:json ?: defaultView.font.familyName];
+    view.headerFont = [RCTFont updateFont:view.headerFont withFamily:json ?: defaultView.font.familyName];
 }
 
 
 RCT_CUSTOM_VIEW_PROPERTY(footerFontSize, CGFloat, RNTableView)
 {
-    view.footerFont = [RCTConvert UIFont:view.footerFont withSize:json ?: @(defaultView.font.pointSize)];
+    view.footerFont = [RCTFont updateFont:view.footerFont withSize:json ?: @(defaultView.font.pointSize)];
 }
 RCT_CUSTOM_VIEW_PROPERTY(footerFontWeight, NSString, RNTableView)
 {
-    view.footerFont = [RCTConvert UIFont:view.footerFont withWeight:json]; // defaults to normal
+    view.footerFont = [RCTFont updateFont:view.footerFont withWeight:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(footerFontStyle, NSString, RNTableView)
 {
-    view.footerFont = [RCTConvert UIFont:view.footerFont withStyle:json]; // defaults to normal
+    view.footerFont = [RCTFont updateFont:view.footerFont withStyle:json]; // defaults to normal
 }
 RCT_CUSTOM_VIEW_PROPERTY(footerFontFamily, NSString, RNTableView)
 {
-    view.footerFont = [RCTConvert UIFont:view.footerFont withFamily:json ?: defaultView.font.familyName];
+    view.footerFont = [RCTFont updateFont:view.footerFont withFamily:json ?: defaultView.font.familyName];
 }
 
 RCT_EXPORT_METHOD(sendNotification:(NSDictionary *)data)
