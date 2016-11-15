@@ -66,4 +66,6 @@
 @property (nonatomic) BOOL alwaysBounceVertical;
 @property (nonatomic) NSString *reactModuleForCell;
 
+@property (nonatomic, assign) BOOL scrollEnabled;
+
 @end

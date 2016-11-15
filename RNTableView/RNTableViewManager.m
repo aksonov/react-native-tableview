@@ -60,6 +60,11 @@ RCT_EXPORT_VIEW_PROPERTY(alwaysBounceVertical, BOOL)
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
 }
+
+RCT_CUSTOM_VIEW_PROPERTY(scrollEnabled, BOOL, RNTableView) {
+    [view setScrollEnabled:[RCTConvert BOOL:json]];
+}
+
 RCT_EXPORT_VIEW_PROPERTY(cellForRowAtIndexPath, NSArray)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RNTableView) {

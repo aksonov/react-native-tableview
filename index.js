@@ -43,6 +43,7 @@ var TableView = React.createClass({
         headerTextColor: React.PropTypes.string,
         footerTextColor: React.PropTypes.string,
         separatorColor: React.PropTypes.string,
+        scrollEnabled: React.PropTypes.bool,
 
 
         /**
@@ -73,6 +74,7 @@ var TableView = React.createClass({
             tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
             autoFocusAnimate: true,
             alwaysBounceVertical: true,
+            scrollEnabled: true,
         };
     },
 

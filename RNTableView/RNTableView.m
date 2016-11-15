@@ -44,6 +44,13 @@
     [self.tableView setSeparatorColor: separatorColor];
 }
 
+-(void)setScrollEnabled:(BOOL)scrollEnabled
+{
+    _scrollEnabled = scrollEnabled;
+
+    [self.tableView setScrollEnabled:scrollEnabled];
+}
+
 - (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
 {
     // will not insert because we don't need to draw them
@@ -75,7 +82,7 @@
 
     if ((self = [super initWithFrame:CGRectZero])) {
         _eventDispatcher = bridge.eventDispatcher;
-        
+
         _bridge = bridge;
         while ([_bridge respondsToSelector:NSSelectorFromString(@"parentBridge")]
                && [_bridge valueForKey:@"parentBridge"]) {
@@ -160,6 +167,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.tableHeaderView = view;
     _tableView.tableFooterView = view;
     _tableView.separatorStyle = self.separatorStyle;
+    _tableView.scrollEnabled = self.scrollEnabled;
     _reactModuleCellReuseIndentifier = @"ReactModuleCell";
     [_tableView registerClass:[RNReactModuleCell class] forCellReuseIdentifier:_reactModuleCellReuseIndentifier];
     [self addSubview:_tableView];
