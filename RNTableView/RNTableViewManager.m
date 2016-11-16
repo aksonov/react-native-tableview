@@ -96,6 +96,14 @@ RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
     [view setScrollIndicatorInsets:[RCTConvert UIEdgeInsets:json]];
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(showsHorizontalScrollIndicator, BOOL, RNTableView) {
+    [view setShowsHorizontalScrollIndicator:[RCTConvert BOOL:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
+    [view setShowsVerticalScrollIndicator:[RCTConvert BOOL:json]];
+}
+
 - (NSDictionary *)constantsToExport {
     return @{
              @"Style": @{

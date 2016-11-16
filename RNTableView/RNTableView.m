@@ -122,6 +122,16 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.scrollIndicatorInsets = insets;
 }
 
+- (void)setShowsHorizontalScrollIndicator:(BOOL)showsHorizontalScrollIndicator {
+    _showsHorizontalScrollIndicator = showsHorizontalScrollIndicator;
+    [_tableView setShowsHorizontalScrollIndicator: showsHorizontalScrollIndicator];
+}
+
+- (void)setShowsVerticalScrollIndicator:(BOOL)showsVerticalScrollIndicator {
+    _showsVerticalScrollIndicator = showsVerticalScrollIndicator;
+    [_tableView setShowsVerticalScrollIndicator: showsVerticalScrollIndicator];
+}
+
 #pragma mark -
 
 - (void)layoutSubviews {
@@ -161,6 +171,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.contentInset = self.contentInset;
     _tableView.contentOffset = self.contentOffset;
     _tableView.scrollIndicatorInsets = self.scrollIndicatorInsets;
+    _tableView.showsHorizontalScrollIndicator = self.showsHorizontalScrollIndicator;
+    _tableView.showsVerticalScrollIndicator = self.showsVerticalScrollIndicator;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.alwaysBounceVertical = self.alwaysBounceVertical;
     UIView *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)];
