@@ -552,4 +552,20 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 -(BOOL)hasCustomCells:(NSInteger)section {
     return [[_sections[section] valueForKey:@"customCells"] boolValue];
 }
+
+#pragma mark - Scrolling
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_eventDispatcher
+     sendInputEventWithName:@"onScroll"
+     body:@{
+            @"target": self.reactTag,
+            @"contentOffset": @{
+                @"x": @(_tableView.contentOffset.x),
+                @"y": @(_tableView.contentOffset.y)
+            }
+          }
+    ];
+}
+
 @end

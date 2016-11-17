@@ -45,6 +45,7 @@ var TableView = React.createClass({
         scrollEnabled: React.PropTypes.bool,
         showsHorizontalScrollIndicator: React.PropTypes.bool,
         showsVerticalScrollIndicator: React.PropTypes.bool,
+        onScroll: React.PropTypes.func,
 
 
         /**
@@ -174,6 +175,7 @@ var TableView = React.createClass({
                     alwaysBounceVertical={this.props.alwaysBounceVertical}
                     {...this.props}
                     json={this.state.json}
+                    onScroll={this._onScroll}
                     onPress={this._onPress}
                     onAccessoryPress={this._onAccessoryPress}
                     onChange={this._onChange}
@@ -186,6 +188,11 @@ var TableView = React.createClass({
         );
     },
 
+    _onScroll: function(event) {
+        if (this.props.onScroll) {
+            this.props.onScroll(event);
+        }
+    },
     _onPress: function(event) {
         var data = event.nativeEvent;
         if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
