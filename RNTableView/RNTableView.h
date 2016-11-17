@@ -70,4 +70,6 @@
 
 @property (nonatomic, assign) BOOL scrollEnabled;
 
+- (void) scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated;
+
 @end

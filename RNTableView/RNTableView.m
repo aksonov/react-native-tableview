@@ -160,6 +160,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 }
 
+#pragma mark - Public APIs
+
+- (void) scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated {
+    [_tableView setContentOffset:CGPointMake(x, y) animated:animated];
+}
+
 #pragma mark - Private APIs
 
 - (void)createTableView {

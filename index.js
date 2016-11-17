@@ -9,11 +9,10 @@ import {
     requireNativeComponent,
     EdgeInsetsPropType,
     PointPropType,
+    findNodeHandle,
 } from 'react-native';
 var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
 var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
-
-var TABLEVIEW = 'tableview';
 
 function extend(el, map) {
     for (var i in map)
@@ -150,11 +149,20 @@ var TableView = React.createClass({
         return {sections, additionalItems, children, json};
     },
 
+    scrollTo: function(x, y, animated) {
+      NativeModules.RNTableViewManager.scrollTo(
+        findNodeHandle(this.tableView),
+        x,
+        y,
+        animated
+      );
+    },
+
     render: function() {
         return (
             <View style={[{flex:1},this.props.style]}>
                 <RNTableView
-                    ref={TABLEVIEW}
+                    ref={(ref) => { this.tableView = ref; }}
                     style={this.props.style}
                     sections={this.state.sections}
                     additionalItems={this.state.additionalItems}
