@@ -39,6 +39,8 @@
 @property (nonatomic, assign) UIEdgeInsets contentInset;
 @property (nonatomic, assign) CGPoint contentOffset;
 @property (nonatomic, assign) UIEdgeInsets scrollIndicatorInsets;
+@property (nonatomic, assign) BOOL showsHorizontalScrollIndicator;
+@property (nonatomic, assign) BOOL showsVerticalScrollIndicator;
 
 @property (nonatomic, assign) UITableViewStyle tableViewStyle;
 @property (nonatomic, assign) UITableViewCellStyle tableViewCellStyle;
@@ -65,5 +67,9 @@
 @property (nonatomic) BOOL allowsMultipleSelection;
 @property (nonatomic) BOOL alwaysBounceVertical;
 @property (nonatomic) NSString *reactModuleForCell;
+
+@property (nonatomic, assign) BOOL scrollEnabled;
+
+- (void) scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated;
 
 @end

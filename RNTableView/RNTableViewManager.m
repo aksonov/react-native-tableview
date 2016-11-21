@@ -11,6 +11,7 @@
 #import "RCTBridge.h"
 #import "RCTConvert.h"
 #import "RCTFont.h"
+#import "RCTUIManager.h"
 
 @implementation RNTableViewManager
 
@@ -60,6 +61,11 @@ RCT_EXPORT_VIEW_PROPERTY(alwaysBounceVertical, BOOL)
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
 }
+
+RCT_CUSTOM_VIEW_PROPERTY(scrollEnabled, BOOL, RNTableView) {
+    [view setScrollEnabled:[RCTConvert BOOL:json]];
+}
+
 RCT_EXPORT_VIEW_PROPERTY(cellForRowAtIndexPath, NSArray)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RNTableView) {
@@ -89,6 +95,14 @@ RCT_CUSTOM_VIEW_PROPERTY(contentOffset, CGPoint, RNTableView) {
 
 RCT_CUSTOM_VIEW_PROPERTY(scrollIndicatorInsets, UIEdgeInsets, RNTableView) {
     [view setScrollIndicatorInsets:[RCTConvert UIEdgeInsets:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(showsHorizontalScrollIndicator, BOOL, RNTableView) {
+    [view setShowsHorizontalScrollIndicator:[RCTConvert BOOL:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
+    [view setShowsVerticalScrollIndicator:[RCTConvert BOOL:json]];
 }
 
 - (NSDictionary *)constantsToExport {
@@ -201,6 +215,21 @@ RCT_CUSTOM_VIEW_PROPERTY(footerFontFamily, NSString, RNTableView)
 RCT_EXPORT_METHOD(sendNotification:(NSDictionary *)data)
 {
     [self.bridge.eventDispatcher sendInputEventWithName:@"onItemNotification" body:data];
+}
+
+RCT_EXPORT_METHOD(scrollTo:(nonnull NSNumber *)reactTag
+                  offsetX:(CGFloat)x
+                  offsetY:(CGFloat)y
+                  animated:(BOOL)animated)
+{
+    [self.bridge.uiManager addUIBlock:
+     ^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry){
+         RNTableView *view = viewRegistry[reactTag];
+         if (![view isKindOfClass:[RNTableView class]]) {
+             RCTLogError(@"Invalid view returned from registry, expecting RNTableView, got: %@", view);
+         }
+         [view scrollToOffsetX:x offsetY:y animated:true];
+     }];
 }
 
 //

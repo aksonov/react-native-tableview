@@ -44,6 +44,13 @@
     [self.tableView setSeparatorColor: separatorColor];
 }
 
+-(void)setScrollEnabled:(BOOL)scrollEnabled
+{
+    _scrollEnabled = scrollEnabled;
+
+    [self.tableView setScrollEnabled:scrollEnabled];
+}
+
 - (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
 {
     // will not insert because we don't need to draw them
@@ -75,7 +82,7 @@
 
     if ((self = [super initWithFrame:CGRectZero])) {
         _eventDispatcher = bridge.eventDispatcher;
-        
+
         _bridge = bridge;
         while ([_bridge respondsToSelector:NSSelectorFromString(@"parentBridge")]
                && [_bridge valueForKey:@"parentBridge"]) {
@@ -115,6 +122,16 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.scrollIndicatorInsets = insets;
 }
 
+- (void)setShowsHorizontalScrollIndicator:(BOOL)showsHorizontalScrollIndicator {
+    _showsHorizontalScrollIndicator = showsHorizontalScrollIndicator;
+    [_tableView setShowsHorizontalScrollIndicator: showsHorizontalScrollIndicator];
+}
+
+- (void)setShowsVerticalScrollIndicator:(BOOL)showsVerticalScrollIndicator {
+    _showsVerticalScrollIndicator = showsVerticalScrollIndicator;
+    [_tableView setShowsVerticalScrollIndicator: showsVerticalScrollIndicator];
+}
+
 #pragma mark -
 
 - (void)layoutSubviews {
@@ -143,6 +160,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 }
 
+#pragma mark - Public APIs
+
+- (void) scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated {
+    [_tableView setContentOffset:CGPointMake(x, y) animated:animated];
+}
+
 #pragma mark - Private APIs
 
 - (void)createTableView {
@@ -154,12 +177,15 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.contentInset = self.contentInset;
     _tableView.contentOffset = self.contentOffset;
     _tableView.scrollIndicatorInsets = self.scrollIndicatorInsets;
+    _tableView.showsHorizontalScrollIndicator = self.showsHorizontalScrollIndicator;
+    _tableView.showsVerticalScrollIndicator = self.showsVerticalScrollIndicator;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.alwaysBounceVertical = self.alwaysBounceVertical;
     UIView *view = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)];
     _tableView.tableHeaderView = view;
     _tableView.tableFooterView = view;
     _tableView.separatorStyle = self.separatorStyle;
+    _tableView.scrollEnabled = self.scrollEnabled;
     _reactModuleCellReuseIndentifier = @"ReactModuleCell";
     [_tableView registerClass:[RNReactModuleCell class] forCellReuseIdentifier:_reactModuleCellReuseIndentifier];
     [self addSubview:_tableView];
@@ -526,4 +552,20 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 -(BOOL)hasCustomCells:(NSInteger)section {
     return [[_sections[section] valueForKey:@"customCells"] boolValue];
 }
+
+#pragma mark - Scrolling
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_eventDispatcher
+     sendInputEventWithName:@"onScroll"
+     body:@{
+            @"target": self.reactTag,
+            @"contentOffset": @{
+                @"x": @(_tableView.contentOffset.x),
+                @"y": @(_tableView.contentOffset.y)
+            }
+          }
+    ];
+}
+
 @end

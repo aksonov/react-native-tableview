@@ -9,11 +9,10 @@ import {
     requireNativeComponent,
     EdgeInsetsPropType,
     PointPropType,
+    findNodeHandle,
 } from 'react-native';
 var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
 var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
-
-var TABLEVIEW = 'tableview';
 
 function extend(el, map) {
     for (var i in map)
@@ -43,6 +42,10 @@ var TableView = React.createClass({
         headerTextColor: React.PropTypes.string,
         footerTextColor: React.PropTypes.string,
         separatorColor: React.PropTypes.string,
+        scrollEnabled: React.PropTypes.bool,
+        showsHorizontalScrollIndicator: React.PropTypes.bool,
+        showsVerticalScrollIndicator: React.PropTypes.bool,
+        onScroll: React.PropTypes.func,
 
 
         /**
@@ -73,6 +76,9 @@ var TableView = React.createClass({
             tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
             autoFocusAnimate: true,
             alwaysBounceVertical: true,
+            scrollEnabled: true,
+            showsHorizontalScrollIndicator: true,
+            showsVerticalScrollIndicator: true,
         };
     },
 
@@ -144,11 +150,20 @@ var TableView = React.createClass({
         return {sections, additionalItems, children, json};
     },
 
+    scrollTo: function(x, y, animated) {
+      NativeModules.RNTableViewManager.scrollTo(
+        findNodeHandle(this.tableView),
+        x,
+        y,
+        animated
+      );
+    },
+
     render: function() {
         return (
             <View style={[{flex:1},this.props.style]}>
                 <RNTableView
-                    ref={TABLEVIEW}
+                    ref={(ref) => { this.tableView = ref; }}
                     style={this.props.style}
                     sections={this.state.sections}
                     additionalItems={this.state.additionalItems}
@@ -160,6 +175,7 @@ var TableView = React.createClass({
                     alwaysBounceVertical={this.props.alwaysBounceVertical}
                     {...this.props}
                     json={this.state.json}
+                    onScroll={this._onScroll}
                     onPress={this._onPress}
                     onAccessoryPress={this._onAccessoryPress}
                     onChange={this._onChange}
@@ -172,6 +188,11 @@ var TableView = React.createClass({
         );
     },
 
+    _onScroll: function(event) {
+        if (this.props.onScroll) {
+            this.props.onScroll(event);
+        }
+    },
     _onPress: function(event) {
         var data = event.nativeEvent;
         if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
