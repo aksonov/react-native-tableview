@@ -8,10 +8,10 @@
 
 #import "RNTableViewManager.h"
 #import "RNTableView.h"
-#import "RCTBridge.h"
-#import "RCTConvert.h"
-#import "RCTFont.h"
-#import "RCTUIManager.h"
+#import <React/RCTBridge.h>
+#import <React/RCTConvert.h>
+#import <React/RCTFont.h>
+#import <React/RCTUIManager.h>
 
 @implementation RNTableViewManager
 
