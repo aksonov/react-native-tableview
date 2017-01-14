@@ -8,7 +8,7 @@
 
 #import "RNTableFooterViewManager.h"
 #import "RNTableFooterView.h"
-#import "RCTBridge.h"
+#import <React/RCTBridge.h>
 
 @implementation RNTableFooterViewManager
 

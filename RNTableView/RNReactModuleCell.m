@@ -6,7 +6,7 @@
 //  Copyright © 2016 Pavlo Aksonov. All rights reserved.
 //
 
-#import <RCTRootView.h>
+#import <React/RCTRootView.h>
 #import "RNReactModuleCell.h"
 #import "RNTableView.h"
 

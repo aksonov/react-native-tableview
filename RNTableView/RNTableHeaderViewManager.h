@@ -6,7 +6,7 @@
 //  Copyright © 2015 Pavlo Aksonov. All rights reserved.
 //
 
-#import "RCTViewManager.h"
+#import <React/RCTViewManager.h>
 
 @interface RNTableHeaderViewManager : RCTViewManager
 
