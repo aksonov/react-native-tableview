@@ -484,7 +484,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     NSInteger selectedIndex = [self.selectedIndexes[indexPath.section] integerValue];
-    NSMutableDictionary *oldValue = selectedIndex>=0 ?[self dataForRow:selectedIndex section:indexPath.section] : [NSMutableDictionary dictionaryWithDictionary:@{}];
 
     NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
     newValue[@"target"] = self.reactTag;
