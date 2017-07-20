@@ -69,6 +69,7 @@
 @property (nonatomic) NSString *reactModuleForCell;
 
 @property (nonatomic, assign) BOOL scrollEnabled;
+@property (nonatomic, assign) BOOL sectionIndexTitlesEnabled;
 
 - (void) scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated;
 

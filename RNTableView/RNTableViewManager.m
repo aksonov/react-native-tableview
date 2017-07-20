@@ -66,6 +66,10 @@ RCT_CUSTOM_VIEW_PROPERTY(scrollEnabled, BOOL, RNTableView) {
     [view setScrollEnabled:[RCTConvert BOOL:json]];
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(sectionIndexTitlesEnabled, BOOL, RNTableView) {
+    [view setSectionIndexTitlesEnabled:[RCTConvert BOOL:json]];
+}
+
 RCT_EXPORT_VIEW_PROPERTY(cellForRowAtIndexPath, NSArray)
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewCellStyle, UITableViewStyle, RNTableView) {

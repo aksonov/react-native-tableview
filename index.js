@@ -40,6 +40,7 @@ var TableView = React.createClass({
         footerTextColor: React.PropTypes.string,
         separatorColor: React.PropTypes.string,
         scrollEnabled: React.PropTypes.bool,
+        sectionIndexTitlesEnabled: React.PropTypes.bool,
         showsHorizontalScrollIndicator: React.PropTypes.bool,
         showsVerticalScrollIndicator: React.PropTypes.bool,
         onScroll: React.PropTypes.func,
@@ -74,6 +75,7 @@ var TableView = React.createClass({
             autoFocusAnimate: true,
             alwaysBounceVertical: true,
             scrollEnabled: true,
+            sectionIndexTitlesEnabled: false,
             showsHorizontalScrollIndicator: true,
             showsVerticalScrollIndicator: true,
         };

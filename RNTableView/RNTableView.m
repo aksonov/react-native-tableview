@@ -31,6 +31,7 @@
     NSArray *_items;
     NSMutableArray *_cells;
     NSString *_reactModuleCellReuseIndentifier;
+    NSMutableDictionary *_lastValue;
 }
 
 -(void)setEditing:(BOOL)editing {
@@ -49,6 +50,11 @@
     _scrollEnabled = scrollEnabled;
 
     [self.tableView setScrollEnabled:scrollEnabled];
+}
+
+-(void)setSectionIndexTitlesEnabled:(BOOL)sectionIndexTitlesEnabled
+{
+    _sectionIndexTitlesEnabled = sectionIndexTitlesEnabled;
 }
 
 - (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
@@ -155,9 +161,23 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (_autoFocus && selectedSection>=0 && [self numberOfSectionsInTableView:self.tableView] && [self tableView:self.tableView numberOfRowsInSection:selectedSection]){
         dispatch_async(dispatch_get_main_queue(), ^{
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[_selectedIndexes[selectedSection] intValue ]inSection:selectedSection];
+            if (!_allowsMultipleSelection) {
+                _lastValue = [self dataForRow:indexPath.item section:indexPath.section];
+            }
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:_autoFocusAnimate];
         });
     }
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    // create selected indexes
+    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:[_sections count]];
+
+    for (NSDictionary *section in _sections){
+        [keys addObject:section[@"label"]];
+    }
+
+    return keys;
 }
 
 #pragma mark - Public APIs
@@ -464,7 +484,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     NSInteger selectedIndex = [self.selectedIndexes[indexPath.section] integerValue];
-    NSMutableDictionary *oldValue = selectedIndex>=0 ?[self dataForRow:selectedIndex section:indexPath.section] : [NSMutableDictionary dictionaryWithDictionary:@{}];
 
     NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
     newValue[@"target"] = self.reactTag;
@@ -476,13 +495,14 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
      * otherwise, add selection to the new row and remove selection from old row if multiple is not allowed.
      * default: allowMultipleSelection:false and allowToggle: false
      */
-    if ((oldValue[@"selected"] && [oldValue[@"selected"] intValue]) || self.selectedValue){
+    if (self.selectedValue){
         if (_allowsToggle && newValue[@"selected"] && [newValue[@"selected"] intValue]) {
             [newValue removeObjectForKey:@"selected"];
         } else {
             if (!_allowsMultipleSelection) {
-                [oldValue removeObjectForKey:@"selected"];
+                [_lastValue removeObjectForKey:@"selected"];
             }
+
             [newValue setObject:@1 forKey:@"selected"];
         }
         [self.tableView reloadData];
@@ -490,6 +510,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
     [_eventDispatcher sendInputEventWithName:@"press" body:newValue];
     self.selectedIndexes[indexPath.section] = [NSNumber numberWithInteger:indexPath.item];
+        _lastValue = newValue;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
