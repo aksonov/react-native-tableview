@@ -34,19 +34,19 @@
     NSMutableDictionary *_lastValue;
 }
 
--(void)setEditing:(BOOL)editing {
+- (void)setEditing:(BOOL)editing {
+    _editing = editing;
+    
     [self.tableView setEditing:editing animated:YES];
 }
 
--(void) setSeparatorColor:(UIColor *)separatorColor
-{
+- (void)setSeparatorColor:(UIColor *)separatorColor {
     _separatorColor = separatorColor;
 
     [self.tableView setSeparatorColor: separatorColor];
 }
 
--(void)setScrollEnabled:(BOOL)scrollEnabled
-{
+- (void)setScrollEnabled:(BOOL)scrollEnabled {
     _scrollEnabled = scrollEnabled;
 
     [self.tableView setScrollEnabled:scrollEnabled];
@@ -207,6 +207,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.separatorStyle = self.separatorStyle;
     _tableView.separatorColor = self.separatorColor;
     _tableView.scrollEnabled = self.scrollEnabled;
+    _tableView.editing = self.editing;
     _reactModuleCellReuseIndentifier = @"ReactModuleCell";
     [_tableView registerClass:[RNReactModuleCell class] forCellReuseIdentifier:_reactModuleCellReuseIndentifier];
     [self addSubview:_tableView];
