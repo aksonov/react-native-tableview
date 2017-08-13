@@ -1,5 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     ReactNativeViewAttributes,
     NativeModules,
@@ -21,29 +22,29 @@ function extend(el, map) {
 }
 var TableView = React.createClass({
     propTypes: {
-        onPress: React.PropTypes.func,
-        onAccessoryPress: React.PropTypes.func,
-        onWillDisplayCell: React.PropTypes.func,
-        onEndDisplayingCell: React.PropTypes.func,
-        selectedValue: React.PropTypes.any, // string or integer basically
-        autoFocus: React.PropTypes.bool,
-        autoFocusAnimate: React.PropTypes.bool,
-        alwaysBounceVertical: React.PropTypes.bool,
-        moveWithinSectionOnly: React.PropTypes.bool,
-        json: React.PropTypes.string,
-        textColor: React.PropTypes.string,
-        detailTextColor: React.PropTypes.string,
-        tintColor: React.PropTypes.string,
-        footerLabel: React.PropTypes.string,
-        headerFont: React.PropTypes.number,
-        headerTextColor: React.PropTypes.string,
-        footerTextColor: React.PropTypes.string,
-        separatorColor: React.PropTypes.string,
-        scrollEnabled: React.PropTypes.bool,
-        sectionIndexTitlesEnabled: React.PropTypes.bool,
-        showsHorizontalScrollIndicator: React.PropTypes.bool,
-        showsVerticalScrollIndicator: React.PropTypes.bool,
-        onScroll: React.PropTypes.func,
+        onPress: PropTypes.func,
+        onAccessoryPress: PropTypes.func,
+        onWillDisplayCell: PropTypes.func,
+        onEndDisplayingCell: PropTypes.func,
+        selectedValue: PropTypes.any, // string or integer basically
+        autoFocus: PropTypes.bool,
+        autoFocusAnimate: PropTypes.bool,
+        alwaysBounceVertical: PropTypes.bool,
+        moveWithinSectionOnly: PropTypes.bool,
+        json: PropTypes.string,
+        textColor: PropTypes.string,
+        detailTextColor: PropTypes.string,
+        tintColor: PropTypes.string,
+        footerLabel: PropTypes.string,
+        headerFont: PropTypes.number,
+        headerTextColor: PropTypes.string,
+        footerTextColor: PropTypes.string,
+        separatorColor: PropTypes.string,
+        scrollEnabled: PropTypes.bool,
+        sectionIndexTitlesEnabled: PropTypes.bool,
+        showsHorizontalScrollIndicator: PropTypes.bool,
+        showsVerticalScrollIndicator: PropTypes.bool,
+        onScroll: PropTypes.func,
 
 
         /**
@@ -66,7 +67,7 @@ var TableView = React.createClass({
          * @platform ios
          */
         scrollIndicatorInsets: EdgeInsetsPropType,
-        tableViewCellEditingStyle: React.PropTypes.number,
+        tableViewCellEditingStyle: PropTypes.number,
     },
 
     getDefaultProps() {
@@ -250,8 +251,8 @@ var TableView = React.createClass({
 
 TableView.Item = React.createClass({
     propTypes: {
-        value: React.PropTypes.any, // string or integer basically
-        label: React.PropTypes.string,
+        value: PropTypes.any, // string or integer basically
+        label: PropTypes.string,
     },
 
     render: function() {
@@ -292,11 +293,11 @@ var RNCellView = requireNativeComponent('RNCellView', null);
 
 TableView.Section = React.createClass({
     propTypes: {
-        label: React.PropTypes.string,
-        footerLabel: React.PropTypes.string,
-        arrow: React.PropTypes.bool,
-        footerHeight: React.PropTypes.number,
-        headerHeight: React.PropTypes.number,
+        label: PropTypes.string,
+        footerLabel: PropTypes.string,
+        arrow: PropTypes.bool,
+        footerHeight: PropTypes.number,
+        headerHeight: PropTypes.number,
 
     },
 
