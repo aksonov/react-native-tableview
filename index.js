@@ -10,8 +10,9 @@ import {
     PointPropType,
     findNodeHandle,
 } from 'react-native';
-var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
 var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
+
+var RNTableViewConsts = NativeModules.RNTableViewManager.Constants;
 
 function extend(el, map) {
     for (var i in map)
@@ -81,8 +82,8 @@ class TableView extends React.Component {
 
     constructor(props) {
         super(props);
-        
-        this.state = this._stateFromProps(this.props);
+
+        this.state = this._stateFromProps(props);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -101,7 +102,7 @@ class TableView extends React.Component {
         React.Children.forEach(props.children, function (section, index) {
             var items=[];
             var count = 0;
-            if (section && section.type==TableView.Section) {
+            if (section && section.type==TableViewSection) {
                 let customCells = false;
                 React.Children.forEach(section.props.children, function (child, itemIndex) {
                     var el = {};
@@ -118,7 +119,7 @@ class TableView extends React.Component {
                     count++;
                     items.push(el);
 
-                    if (child.type==TableView.Cell){
+                    if (child.type==TableViewCell){
                         customCells = true;
                         count++;
                         var element = React.cloneElement(child, {key: index+" "+itemIndex, section: index, row: itemIndex});
@@ -135,7 +136,7 @@ class TableView extends React.Component {
                     items: items,
                     count: count
                 });
-            } else if (section && section.type==TableView.Item){
+            } else if (section && section.type==TableViewItem){
                 var el = extend({},section.props);
                 if (!el.label){
                     el.label = el.children;
@@ -166,21 +167,20 @@ class TableView extends React.Component {
                     style={this.props.style}
                     sections={this.state.sections}
                     additionalItems={this.state.additionalItems}
-                    tableViewStyle={TableView.Consts.Style.Plain}
-                    tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                    tableViewStyle={RNTableViewConsts.Style.Plain}
+                    tableViewCellStyle={RNTableViewConsts.CellStyle.Subtitle}
                     tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
-                    separatorStyle={TableView.Consts.SeparatorStyle.Line}
+                    separatorStyle={RNTableViewConsts.SeparatorStyle.Line}
                     scrollIndicatorInsets={this.props.contentInset}
                     alwaysBounceVertical={this.props.alwaysBounceVertical}
                     {...this.props}
                     json={this.state.json}
-                    onScroll={this._onScroll}
-                    onPress={this._onPress}
-                    onAccessoryPress={this._onAccessoryPress}
-                    onChange={this._onChange}
-                    onWillDisplayCell={this._onWillDisplayCell}
-                    onEndDisplayingCell={this._onEndDisplayingCell}>
-
+                    onScroll={(...args) => this._onScroll(...args)}
+                    onPress={(...args) => this._onPress(...args)}
+                    onAccessoryPress={(...args) => this._onAccessoryPress(...args)}
+                    onChange={(...args) => this._onChange(...args)}
+                    onWillDisplayCell={(...args) => this._onWillDisplayCell(...args)}
+                    onEndDisplayingCell={(...args) => this._onEndDisplayingCell(...args)}>
                     {this.state.children}
                 </RNTableView>
             </View>
