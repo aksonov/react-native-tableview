@@ -175,7 +175,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
     if (_sectionIndexTitlesEnabled) {
         for (NSDictionary *section in _sections){
-            NSString *label = _sections[@"label"] ?: @"";
+            NSString *label = section[@"label"] ?: @"";
             [keys addObject:label];
         }
     }
