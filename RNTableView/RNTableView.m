@@ -173,9 +173,11 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     // create selected indexes
     NSMutableArray *keys = [NSMutableArray arrayWithCapacity:[_sections count]];
 
-    for (NSDictionary *section in _sections){
-        NSString *label = _sections[@"label"] ?: @"";
-        [keys addObject:label];
+    if (_sectionIndexTitlesEnabled) {
+        for (NSDictionary *section in _sections){
+            NSString *label = _sections[@"label"] ?: @"";
+            [keys addObject:label];
+        }
     }
 
     return keys;
