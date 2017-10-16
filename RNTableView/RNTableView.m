@@ -36,7 +36,7 @@
 
 - (void)setEditing:(BOOL)editing {
     _editing = editing;
-    
+
     [self.tableView setEditing:editing animated:YES];
 }
 
@@ -174,7 +174,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     NSMutableArray *keys = [NSMutableArray arrayWithCapacity:[_sections count]];
 
     for (NSDictionary *section in _sections){
-        NSString *label = _sections[@"label"] ?: @"";
+        NSString *label = section[@"label"] ?: @"";
         [keys addObject:label];
     }
 
