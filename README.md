@@ -7,6 +7,11 @@ Native iOS UITableView for React Native with JSON support.
 - [Examples](#examples)
 - [Customization](#customization)
 
+## NOTICE
+The [original library](https://github.com/aksonov/react-native-tableview) has been unmaintained for over a year. This is a fork of the library that aims to keep it up to date with the newest releases of react native.
+
+**Currently supports react-native 0.49**
+
 ## Features
 - Look and feel native iOS TableView (with group/plain tableview type, sections headers, etc)
 - Display long lists of data (like country list) - built-in list view has performance issues for long lists
@@ -20,18 +25,27 @@ Native iOS UITableView for React Native with JSON support.
 - Use tableview as menu to navigate to other app screen (check included demo, it uses flux router https://github.com/aksonov/react-native-router-flux)
 - Native editing mode for table - move/delete option is supported by using attributes canMove, canEdit for items/sections
 
---
 
 ## Installation
-1. `npm install react-native-tableview --save`
-2. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-3. add `./node_modules/react-native-tableview/RNTableView.xcodeproj`
-4. In the XCode project navigator, select your project, select the `Build Phases` tab and in the `Link Binary With Libraries` section add **libRNTableView.a**
-4. And in the `Build Settings` tab in the `Search Paths/Header Search Paths` section add `$(SRCROOT)/../node_modules/react-native-tableview` (make sure it's recursive).
-5. (optional) If you will use JSON file, add it to iOS application bundle
-6. `import TableView from 'react-native-tableview'`
+1. Installation
+    * Using npm: `npm install https://github.com/iRoachie/react-native-tableview --save`
+    * Using yarn: `yarn add https://github.com/iRoachie/react-native-tableview`
+2. Link
+    * `react-native link react-native-tableview`
+    * If fails, follow manual linking steps below
+3. (optional) If you will use JSON file, add it to iOS application bundle
+4. Import it in your JS:
 
---
+    ```js
+    import TableView from 'react-native-tableview';
+    ```
+
+
+### Manual Linking
+1. In XCode, in the project navigator, right click Libraries ➜ Add Files to [your project's name]
+2. Add ./node_modules/react-native-tableview/RNTableView.xcodeproj
+3. In the XCode project navigator, select your project, select the Build Phases tab and in the Link Binary With Libraries section add libRNTableView.a
+4. And in the Build Settings tab in the Search Paths/Header Search Paths section add $(SRCROOT)/../node_modules/react-native-tableview (make sure it's recursive).
 
 ## Supported Styles
 ### UITableView styles
@@ -54,93 +68,102 @@ Native iOS UITableView for React Native with JSON support.
 ### List item format
 Items in the list can be either `TableView.Item` or `TableView.Cell`. An `Item` is simply text. A `Cell` can be any complex component. However, only `Item`s can be edited or moved. There are also issues with `Cell`s re-rendering on data changes (#19) that can be avoided by using `Item`s. If you want to be able to re-render, edit or move a complex component, use `reactModuleForCell`, described in [Editable Complex Components](#editable-complex-components).
 
---
 
 ## Examples
 
 ### Example 1
 ![demo-3](https://cloud.githubusercontent.com/assets/1321329/10022633/2bcad30e-614e-11e5-987d-28dbbb9d2739.gif)
 
-```
-'use strict';
+```jsx
+import React from 'react'
+import { AppRegistry } from 'react-native'
 
-var React = require('react-native');
-var { AppRegistry } = React;
-var TableView = require('react-native-tableview');
-var Section = TableView.Section;
-var Item = TableView.Item;
+import TableView from 'react-native-tableview'
+const { Section, Item } = TableView
 
 class TableViewExample extends React.Component {
-    render(){
-        return (
-            <TableView style={{flex:1}}
-                       allowsToggle={true}
-                       allowsMultipleSelection={true}
-                       tableViewStyle={TableView.Consts.Style.Grouped}
-                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event)}>
-                <Section label="Section 1" arrow={true}>
-                    <Item value="1" detail="Detail1" >Item 1</Item>
-                    <Item value="2">Item 2</Item>
-                    <Item>Item 3</Item>
-                    <Item>Item 4</Item>
-                    <Item>Item 5</Item>
-                    <Item>Item 6</Item>
-                    <Item>Item 7</Item>
-                    <Item>Item 8</Item>
-                    <Item>Item 9</Item>
-                    <Item>Item 10</Item>
-                    <Item>Item 11</Item>
-                    <Item>Item 12</Item>
-                    <Item>Item 13</Item>
-                    <Item>Item 14</Item>
-                    <Item>Item 15</Item>
-                    <Item>Item 16</Item>
-                    <Item>Item 17</Item>
-                    <Item>Item 18</Item>
-                    <Item>Item 19</Item>
-                </Section>
-                <Section label="Section 2" arrow={false}>
-                    <Item selected={true}>Item 1</Item>
-                    <Item>Item 2</Item>
-                    <Item>Item 3</Item>
-                </Section>
-            </TableView>
-        );
-    }
+  render() {
+    return (
+      <TableView
+        style={{ flex: 1 }}
+        allowsToggle={true}
+        allowsMultipleSelection={true}
+        tableViewStyle={TableView.Consts.Style.Grouped}
+        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+        onPress={event => console.log(event)}
+      >
+        <Section label="Section 1" arrow={true}>
+          <Item value="1" detail="Detail1">
+            Item 1
+          </Item>
+          <Item value="2">Item 2</Item>
+          <Item>Item 3</Item>
+          <Item>Item 4</Item>
+          <Item>Item 5</Item>
+          <Item>Item 6</Item>
+          <Item>Item 7</Item>
+          <Item>Item 8</Item>
+          <Item>Item 9</Item>
+          <Item>Item 10</Item>
+          <Item>Item 11</Item>
+          <Item>Item 12</Item>
+          <Item>Item 13</Item>
+          <Item>Item 14</Item>
+          <Item>Item 15</Item>
+          <Item>Item 16</Item>
+          <Item>Item 17</Item>
+          <Item>Item 18</Item>
+          <Item>Item 19</Item>
+        </Section>
+        <Section label="Section 2" arrow={false}>
+          <Item selected={true}>Item 1</Item>
+          <Item>Item 2</Item>
+          <Item>Item 3</Item>
+        </Section>
+      </TableView>
+    )
+  }
 }
 
-AppRegistry.registerComponent('TableViewExample', () => TableViewExample);
+AppRegistry.registerComponent('TableViewExample', () => TableViewExample)
 ```
 ### Example 2 (JSON source support), reads country list JSON from app bundle and display UITableView with selected value checkmarked
 ![demo2](https://cloud.githubusercontent.com/assets/1321329/9335801/7a4d42ca-45d6-11e5-860c-969db80413ca.gif)
 
-```
-    render(){
-        return (
-            <TableView selectedValue="ES" style={{flex:1}} json="countries"
-                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event)}/>
-        );
-    }
+```jsx
+render() {
+  return (
+      <TableView 
+        selectedValue="ES"
+        style={{flex:1}} 
+        json="countries"
+        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+        onPress={(event) => console.log(event)}/>
+  );
+}
 ```
 
 ### Example 3 (JSON filter and optional items at the beginning)
-```
-    // list spanish provinces and add 'All states' item at the beginning
-    render(){
-        var country = "ES";
-        return (
-            <TableView selectedValue="" style={{flex:1}} json="states" filter={`country=='${country}'`}
-                       tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-                       onPress={(event) => console.log(event)}>
-                <Item value="">All states</Item>
-            </TableView>
-        );
-    }
+```jsx
+// list spanish provinces and add 'All states' item at the beginning
+
+render() {
+  const country = "ES";
+
+  return (
+      <TableView 
+        selectedValue="" 
+        style={{flex:1}} 
+        json="states" 
+        filter={`country=='${country}'`}
+        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+        onPress={(event) => console.log(event)}>
+          <Item value="">All states</Item>
+      </TableView>
+  );
+}
 ```
 
---
 
 ## Customization
 
@@ -189,13 +212,13 @@ Footer font:
 An `Item` component takes an `image` and an optional `imageWidth` prop.
 
 An `image` prop can be a string pointing to the name of an asset in your "Asset Catalog". In this case an `imageWidth` prop is recommended.
-```
+```jsx
 <Item image="icon-success.png" imageWidth={40} />
 ```
 
 Alernatively, you can `require` the image from your local app code. In this case an `imageWidth` is unnecessary.
 
-```
+```jsx
 <Item image={require('../images/icon-success.png')} />
 ```
 
@@ -211,14 +234,14 @@ Only `Item`s can be edited or moved. However you can create a complex component 
 #### Modifying `AppDelegate.m`
 Add the following import statement with the other imports at the top of the file:
 
-```
+```objective-c
 #import <RNTableView/RNAppGlobals.h>
 ```
 Add the following two lines
 
-```
-  //Save main bridge so that RNTableView could access our bridge to create its RNReactModuleCells
-  [[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge];
+```objective-c
+//Save main bridge so that RNTableView could access our bridge to create its RNReactModuleCells
+[[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge];
 ```
 just before the `self.window =` line near the bottom of the file. If you have not already done so, add the header search path as shown in [Getting Started](#getting-started).
 
@@ -226,47 +249,53 @@ just before the `self.window =` line near the bottom of the file. If you have no
 
 For example,
 
-```
+```jsx
 //Should be pure... setState on top-level component doesn't seem to work
+
 class TableViewExampleCell extends React.Component {
-    render(){
-        var style = {borderColor:"#aaaaaa", borderWidth:1, borderRadius:3};
-        // Fill the full native table cell height.
-        style.flex = 1;
-        
-        // All Item props get passed to this cell inside this.props.data. Use them to control the rendering, for example background color:
-        if (this.props.data.backgroundColor !== undefined) {
-            style.backgroundColor = this.props.data.backgroundColor;
-        }
-        
-        return (
-           <View style={style}>
-           <Text>section:{this.props.section},row:{this.props.row},label:{this.props.data.label}</Text>
-               <Text> message:{this.props.data.message}</Text>
-           </View>
-       );
+  render() {
+    var style = { borderColor: '#aaaaaa', borderWidth: 1, borderRadius: 3 }
+
+    // Fill the full native table cell height.
+    style.flex = 1
+
+    // All Item props get passed to this cell inside this.props.data. Use them to control the rendering, for example background color:
+    if (this.props.data.backgroundColor !== undefined) {
+      style.backgroundColor = this.props.data.backgroundColor
     }
-    }
+
+    return (
+      <View style={style}>
+        <Text>
+          section:{this.props.section},row:{this.props.row},label:{this.props.data.label}
+        </Text>
+        <Text> message:{this.props.data.message}</Text>
+      </View>
+    )
+  }
+}
 ```
 For more examples, see examples/TableViewDemo.
 
 #### Pass component as prop.
 
-```
+```jsx
 <TableView reactModuleForCell="TableViewExampleCell" >
 ```
 
 #### Create list of items, passing props
-```
-          <Section canEdit={true}>
-              { this.props.items.map(function(item) {
-                return (<Item key={"i" + item.data.date}
-                              label={item.label}
-                              message={item.message}
-                              />);
-               }) }
-          </Section>
-
+```jsx
+<Section canEdit={true}>
+  {this.props.items.map(function(item) {
+    return (
+      <Item
+        key={'i' + item.data.date}
+        label={item.label}
+        message={item.message}
+      />
+    )
+  })}
+</Section>
 ```
 
 Note that the props you pass must be primitive types: they cannot be objects. Also, note that the props
@@ -275,7 +304,7 @@ and in your component you pick it up as `this.props.data.label`.
 
 #### Register your component.
 Each cell you render becomes a reuseable root view or `App`.
-```
+```js
 var { AppRegistry } = React;
 
 ...
