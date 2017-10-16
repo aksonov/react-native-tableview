@@ -1,5 +1,5 @@
-'use strict';
-import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
     ReactNativeViewAttributes,
     NativeModules,
@@ -10,8 +10,9 @@ import {
     PointPropType,
     findNodeHandle,
 } from 'react-native';
-var RNTableViewConsts = NativeModules.UIManager.RNTableView.Constants;
 var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
+
+var RNTableViewConsts = NativeModules.RNTableViewManager.Constants;
 
 function extend(el, map) {
     for (var i in map)
@@ -19,31 +20,31 @@ function extend(el, map) {
             el[i] = map[i];
     return el;
 }
-var TableView = React.createClass({
-    propTypes: {
-        onPress: React.PropTypes.func,
-        onAccessoryPress: React.PropTypes.func,
-        onWillDisplayCell: React.PropTypes.func,
-        onEndDisplayingCell: React.PropTypes.func,
-        selectedValue: React.PropTypes.any, // string or integer basically
-        autoFocus: React.PropTypes.bool,
-        autoFocusAnimate: React.PropTypes.bool,
-        alwaysBounceVertical: React.PropTypes.bool,
-        moveWithinSectionOnly: React.PropTypes.bool,
-        json: React.PropTypes.string,
-        textColor: React.PropTypes.string,
-        detailTextColor: React.PropTypes.string,
-        tintColor: React.PropTypes.string,
-        footerLabel: React.PropTypes.string,
-        headerFont: React.PropTypes.number,
-        headerTextColor: React.PropTypes.string,
-        footerTextColor: React.PropTypes.string,
-        separatorColor: React.PropTypes.string,
-        scrollEnabled: React.PropTypes.bool,
-        sectionIndexTitlesEnabled: React.PropTypes.bool,
-        showsHorizontalScrollIndicator: React.PropTypes.bool,
-        showsVerticalScrollIndicator: React.PropTypes.bool,
-        onScroll: React.PropTypes.func,
+class TableView extends React.Component {
+    static propTypes = {
+        onPress: PropTypes.func,
+        onAccessoryPress: PropTypes.func,
+        onWillDisplayCell: PropTypes.func,
+        onEndDisplayingCell: PropTypes.func,
+        selectedValue: PropTypes.any, // string or integer basically
+        autoFocus: PropTypes.bool,
+        autoFocusAnimate: PropTypes.bool,
+        alwaysBounceVertical: PropTypes.bool,
+        moveWithinSectionOnly: PropTypes.bool,
+        json: PropTypes.string,
+        textColor: PropTypes.string,
+        detailTextColor: PropTypes.string,
+        tintColor: PropTypes.string,
+        footerLabel: PropTypes.string,
+        headerFont: PropTypes.number,
+        headerTextColor: PropTypes.string,
+        footerTextColor: PropTypes.string,
+        separatorColor: PropTypes.string,
+        scrollEnabled: PropTypes.bool,
+        sectionIndexTitlesEnabled: PropTypes.bool,
+        showsHorizontalScrollIndicator: PropTypes.bool,
+        showsVerticalScrollIndicator: PropTypes.bool,
+        onScroll: PropTypes.func,
 
 
         /**
@@ -66,32 +67,32 @@ var TableView = React.createClass({
          * @platform ios
          */
         scrollIndicatorInsets: EdgeInsetsPropType,
-        tableViewCellEditingStyle: React.PropTypes.number,
-    },
+        tableViewCellEditingStyle: PropTypes.number,
+    };
 
-    getDefaultProps() {
-        return {
-            tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
-            autoFocusAnimate: true,
-            alwaysBounceVertical: true,
-            scrollEnabled: true,
-            sectionIndexTitlesEnabled: false,
-            showsHorizontalScrollIndicator: true,
-            showsVerticalScrollIndicator: true,
-        };
-    },
+    static defaultProps = {
+        tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
+        autoFocusAnimate: true,
+        alwaysBounceVertical: true,
+        scrollEnabled: true,
+        sectionIndexTitlesEnabled: false,
+        showsHorizontalScrollIndicator: true,
+        showsVerticalScrollIndicator: true,
+    };
 
-    getInitialState: function() {
-        return this._stateFromProps(this.props);
-    },
+    constructor(props) {
+        super(props);
 
-    componentWillReceiveProps: function(nextProps) {
+        this.state = this._stateFromProps(props);
+    }
+
+    componentWillReceiveProps(nextProps) {
         var state = this._stateFromProps(nextProps);
         this.setState(state);
-    },
+    }
 
     // Translate TableView prop and children into stuff that RNTableView understands.
-    _stateFromProps: function(props) {
+    _stateFromProps(props) {
         var sections = [];
         var additionalItems = [];
         var children = [];
@@ -101,7 +102,7 @@ var TableView = React.createClass({
         React.Children.forEach(props.children, function (section, index) {
             var items=[];
             var count = 0;
-            if (section && section.type==TableView.Section) {
+            if (section && section.type==TableViewSection) {
                 let customCells = false;
                 React.Children.forEach(section.props.children, function (child, itemIndex) {
                     var el = {};
@@ -118,7 +119,7 @@ var TableView = React.createClass({
                     count++;
                     items.push(el);
 
-                    if (child.type==TableView.Cell){
+                    if (child.type==TableViewCell){
                         customCells = true;
                         count++;
                         var element = React.cloneElement(child, {key: index+" "+itemIndex, section: index, row: itemIndex});
@@ -135,7 +136,7 @@ var TableView = React.createClass({
                     items: items,
                     count: count
                 });
-            } else if (section && section.type==TableView.Item){
+            } else if (section && section.type==TableViewItem){
                 var el = extend({},section.props);
                 if (!el.label){
                     el.label = el.children;
@@ -147,18 +148,18 @@ var TableView = React.createClass({
         });
         this.sections = sections;
         return {sections, additionalItems, children, json};
-    },
+    }
 
-    scrollTo: function(x, y, animated) {
+    scrollTo(x, y, animated) {
       NativeModules.RNTableViewManager.scrollTo(
         findNodeHandle(this.tableView),
         x,
         y,
         animated
       );
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <View style={[{flex:1},this.props.style]}>
                 <RNTableView
@@ -166,33 +167,32 @@ var TableView = React.createClass({
                     style={this.props.style}
                     sections={this.state.sections}
                     additionalItems={this.state.additionalItems}
-                    tableViewStyle={TableView.Consts.Style.Plain}
-                    tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+                    tableViewStyle={RNTableViewConsts.Style.Plain}
+                    tableViewCellStyle={RNTableViewConsts.CellStyle.Subtitle}
                     tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
-                    separatorStyle={TableView.Consts.SeparatorStyle.Line}
+                    separatorStyle={RNTableViewConsts.SeparatorStyle.Line}
                     scrollIndicatorInsets={this.props.contentInset}
                     alwaysBounceVertical={this.props.alwaysBounceVertical}
                     {...this.props}
                     json={this.state.json}
-                    onScroll={this._onScroll}
-                    onPress={this._onPress}
-                    onAccessoryPress={this._onAccessoryPress}
-                    onChange={this._onChange}
-                    onWillDisplayCell={this._onWillDisplayCell}
-                    onEndDisplayingCell={this._onEndDisplayingCell}>
-
+                    onScroll={(...args) => this._onScroll(...args)}
+                    onPress={(...args) => this._onPress(...args)}
+                    onAccessoryPress={(...args) => this._onAccessoryPress(...args)}
+                    onChange={(...args) => this._onChange(...args)}
+                    onWillDisplayCell={(...args) => this._onWillDisplayCell(...args)}
+                    onEndDisplayingCell={(...args) => this._onEndDisplayingCell(...args)}>
                     {this.state.children}
                 </RNTableView>
             </View>
         );
-    },
+    }
 
-    _onScroll: function(event) {
+    _onScroll(event) {
         if (this.props.onScroll) {
             this.props.onScroll(event);
         }
-    },
-    _onPress: function(event) {
+    }
+    _onPress(event) {
         var data = event.nativeEvent;
         if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
             this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onPress){
@@ -202,8 +202,8 @@ var TableView = React.createClass({
             this.props.onPress(data);
         }
         event.stopPropagation();
-    },
-    _onAccessoryPress: function(event) {
+    }
+    _onAccessoryPress(event) {
         console.log('_onAccessoryPress', event);
         var data = event.nativeEvent;
         if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.accessoryIndex] &&
@@ -214,8 +214,8 @@ var TableView = React.createClass({
             this.props.onAccessoryPress(data);
         }
         event.stopPropagation();
-    },
-    _onChange: function(event) {
+    }
+    _onChange(event) {
         var data = event.nativeEvent;
         if (this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex] &&
             this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onChange){
@@ -225,8 +225,8 @@ var TableView = React.createClass({
             this.props.onChange(data);
         }
         event.stopPropagation();
-    },
-    _onWillDisplayCell: function(event) {
+    }
+    _onWillDisplayCell(event) {
         var data = event.nativeEvent;
         if (this.sections[data.section] && this.sections[data.section].items[data.row] && this.sections[data.section].items[data.row].onWillDisplayCell) {
             this.sections[data.section].items[data.row].onWillDisplayCell(data);
@@ -235,8 +235,8 @@ var TableView = React.createClass({
             this.props.onWillDisplayCell(data);
         }
         event.stopPropagation();
-    },
-    _onEndDisplayingCell: function(event) {
+    }
+    _onEndDisplayingCell(event) {
         var data = event.nativeEvent;
         if (this.sections[data.section] && this.sections[data.section].items[data.row] && this.sections[data.section].items[data.row].onEndDisplayingCell) {
             this.sections[data.section].items[data.row].onEndDisplayingCell(data);
@@ -245,66 +245,78 @@ var TableView = React.createClass({
             this.props.onEndDisplayingCell(data);
         }
         event.stopPropagation();
-    },
-});
+    }
+}
 
-TableView.Item = React.createClass({
-    propTypes: {
-        value: React.PropTypes.any, // string or integer basically
-        label: React.PropTypes.string,
-    },
+class TableViewItem extends React.Component {
+    static propTypes = {
+        value: PropTypes.any, // string or integer basically
+        label: PropTypes.string,
+    }
 
-    render: function() {
+    render() {
         // These items don't get rendered directly.
         return null;
-    },
-});
+    }
+}
 
-TableView.Footer = React.createClass({
-    getInitialState(){
-        return {width:0, height:0}
-    },
-    render: function() {
+TableView.Item = TableViewItem;
+
+class TableViewFooter extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {width:0, height:0};
+    }
+    render() {
         return <RNFooterView onLayout={(event)=>{this.setState(event.nativeEvent.layout)}} {...this.props} componentWidth={this.state.width} componentHeight={this.state.height}/>
-    },
-});
+    }
+}
 var RNFooterView = requireNativeComponent('RNTableFooterView', null);
+TableView.Footer = TableViewFooter;
 
-TableView.Header = React.createClass({
-    getInitialState(){
-        return {width:0, height:0}
-    },
-    render: function() {
+class TableViewHeader extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {width:0, height:0};
+    }
+
+    render() {
         return <RNHeaderView onLayout={(event)=>{this.setState(event.nativeEvent.layout)}} {...this.props} componentWidth={this.state.width} componentHeight={this.state.height}/>
-    },
-});
+    }
+};
 var RNHeaderView = requireNativeComponent('RNTableHeaderView', null);
+TableView.Header = TableViewHeader;
 
-TableView.Cell = React.createClass({
-    getInitialState(){
-        return {width:0, height:0}
-    },
-    render: function() {
+class TableViewCell extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {width:0, height:0};
+    }
+    render() {
         return <RNCellView onLayout={(event)=>{this.setState(event.nativeEvent.layout)}} {...this.props} componentWidth={this.state.width} componentHeight={this.state.height}/>
-    },
-});
+    }
+};
 var RNCellView = requireNativeComponent('RNCellView', null);
+TableView.Cell = TableViewCell;
 
-TableView.Section = React.createClass({
-    propTypes: {
-        label: React.PropTypes.string,
-        footerLabel: React.PropTypes.string,
-        arrow: React.PropTypes.bool,
-        footerHeight: React.PropTypes.number,
-        headerHeight: React.PropTypes.number,
+class TableViewSection extends React.Component {
+    static propTypes = {
+        label: PropTypes.string,
+        footerLabel: PropTypes.string,
+        arrow: PropTypes.bool,
+        footerHeight: PropTypes.number,
+        headerHeight: PropTypes.number,
 
-    },
+    }
 
-    render: function() {
+    render() {
         // These items don't get rendered directly.
         return null;
-    },
-});
+    }
+};
+TableView.Section = TableViewSection;
 
 var styles = StyleSheet.create({
     tableView: {
@@ -318,4 +330,4 @@ TableView.Consts = RNTableViewConsts;
 
 var RNTableView = requireNativeComponent('RNTableView', null);
 
-module.exports = TableView;
+export default TableView;
