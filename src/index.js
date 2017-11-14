@@ -1,21 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  ReactNativeViewAttributes,
   NativeModules,
-  StyleSheet,
-  View,
   requireNativeComponent,
   EdgeInsetsPropType,
   PointPropType,
-  findNodeHandle
+  findNodeHandle,
+  View,
 } from 'react-native'
-var resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource')
 
-var RNTableViewConsts = NativeModules.RNTableViewManager.Constants
+const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource')
+
+const RNTableViewConsts = NativeModules.RNTableViewManager.Constants
 
 function extend(el, map) {
-  for (var i in map) if (typeof map[i] != 'object') el[i] = map[i]
+  for (const i in map) if (typeof map[i] !== 'object') el[i] = map[i]
   return el
 }
 
@@ -64,7 +63,7 @@ class TableView extends React.Component {
      * @platform ios
      */
     scrollIndicatorInsets: EdgeInsetsPropType,
-    tableViewCellEditingStyle: PropTypes.number
+    tableViewCellEditingStyle: PropTypes.number,
   }
 
   static defaultProps = {
@@ -74,7 +73,7 @@ class TableView extends React.Component {
     scrollEnabled: true,
     sectionIndexTitlesEnabled: false,
     showsHorizontalScrollIndicator: true,
-    showsVerticalScrollIndicator: true
+    showsVerticalScrollIndicator: true,
   }
 
   constructor(props) {
@@ -84,28 +83,25 @@ class TableView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    var state = this._stateFromProps(nextProps)
+    const state = this._stateFromProps(nextProps)
     this.setState(state)
   }
 
   // Translate TableView prop and children into stuff that RNTableView understands.
   _stateFromProps(props) {
-    var sections = []
-    var additionalItems = []
-    var children = []
-    var json = props.json
+    const sections = []
+    const additionalItems = []
+    const children = []
+    const { json } = props
 
     // iterate over sections
-    React.Children.forEach(props.children, function(section, index) {
-      var items = []
-      var count = 0
+    React.Children.forEach(props.children, (section, index) => {
+      const items = []
+      let count = 0
       if (section && section.type == TableViewSection) {
         let customCells = false
-        React.Children.forEach(section.props.children, function(
-          child,
-          itemIndex
-        ) {
-          var el = {}
+        React.Children.forEach(section.props.children, (child, itemIndex) => {
+          const el = {}
           extend(el, section.props)
           extend(el, child.props)
           if (el.children) {
@@ -122,10 +118,10 @@ class TableView extends React.Component {
           if (child.type == TableViewCell) {
             customCells = true
             count++
-            var element = React.cloneElement(child, {
-              key: index + ' ' + itemIndex,
+            const element = React.cloneElement(child, {
+              key: `${index} ${itemIndex}`,
               section: index,
-              row: itemIndex
+              row: itemIndex,
             })
             children.push(element)
           }
@@ -136,11 +132,11 @@ class TableView extends React.Component {
           footerLabel: section.props.footerLabel,
           footerHeight: section.props.footerHeight,
           headerHeight: section.props.headerHeight,
-          items: items,
-          count: count
+          items,
+          count,
         })
       } else if (section && section.type == TableViewItem) {
-        var el = extend({}, section.props)
+        const el = extend({}, section.props)
         if (!el.label) {
           el.label = el.children
         }
@@ -150,23 +146,112 @@ class TableView extends React.Component {
       }
     })
     this.sections = sections
-    return { sections, additionalItems, children, json }
+    return {
+      sections,
+      additionalItems,
+      children,
+      json,
+    }
   }
 
   scrollTo(x, y, animated) {
-    NativeModules.RNTableViewManager.scrollTo(
-      findNodeHandle(this.tableView),
-      x,
-      y,
-      animated
-    )
+    NativeModules.RNTableViewManager.scrollTo(findNodeHandle(this.tableView), x, y, animated)
+  }
+
+  _onScroll(event) {
+    if (this.props.onScroll) {
+      this.props.onScroll(event)
+    }
+  }
+
+  _onPress(event) {
+    const data = event.nativeEvent
+    if (
+      this.sections[data.selectedSection] &&
+      this.sections[data.selectedSection].items[data.selectedIndex] &&
+      this.sections[data.selectedSection] &&
+      this.sections[data.selectedSection].items[data.selectedIndex].onPress
+    ) {
+      this.sections[data.selectedSection] &&
+        this.sections[data.selectedSection].items[data.selectedIndex].onPress(data)
+    }
+    if (this.props.onPress) {
+      this.props.onPress(data)
+    }
+    event.stopPropagation()
+  }
+
+  _onAccessoryPress(event) {
+    console.log('_onAccessoryPress', event)
+    const data = event.nativeEvent
+    if (
+      this.sections[data.selectedSection] &&
+      this.sections[data.selectedSection].items[data.accessoryIndex] &&
+      this.sections[data.selectedSection] &&
+      this.sections[data.selectedSection].items[data.accessoryIndex].onAccessoryPress
+    ) {
+      this.sections[data.selectedSection] &&
+        this.sections[data.selectedSection].items[data.accessoryIndex].onAccessoryPress(data)
+    }
+    if (this.props.onAccessoryPress) {
+      this.props.onAccessoryPress(data)
+    }
+    event.stopPropagation()
+  }
+
+  _onChange(event) {
+    const data = event.nativeEvent
+
+    if (
+      this.sections[data.selectedSection] &&
+      this.sections[data.selectedSection].items[data.selectedIndex] &&
+      this.sections[data.selectedSection] &&
+      this.sections[data.selectedSection].items[data.selectedIndex].onChange
+    ) {
+      this.sections[data.selectedSection] &&
+        this.sections[data.selectedSection].items[data.selectedIndex].onChange(data)
+    }
+    if (this.props.onChange) {
+      this.props.onChange(data)
+    }
+    event.stopPropagation()
+  }
+
+  _onWillDisplayCell(event) {
+    const data = event.nativeEvent
+    if (
+      this.sections[data.section] &&
+      this.sections[data.section].items[data.row] &&
+      this.sections[data.section].items[data.row].onWillDisplayCell
+    ) {
+      this.sections[data.section].items[data.row].onWillDisplayCell(data)
+    }
+    if (this.props.onWillDisplayCell) {
+      this.props.onWillDisplayCell(data)
+    }
+    event.stopPropagation()
+  }
+
+  _onEndDisplayingCell(event) {
+    const data = event.nativeEvent
+    if (
+      this.sections[data.section] &&
+      this.sections[data.section].items[data.row] &&
+      this.sections[data.section].items[data.row].onEndDisplayingCell
+    ) {
+      this.sections[data.section].items[data.row].onEndDisplayingCell(data)
+    }
+    if (this.props.onEndDisplayingCell) {
+      this.props.onEndDisplayingCell(data)
+    }
+    event.stopPropagation()
   }
 
   render() {
     return (
       <View style={[{ flex: 1 }, this.props.style]}>
         <RNTableView
-          ref={ref => {
+          ref={(ref) => {
             this.tableView = ref
           }}
           style={this.props.style}
@@ -192,107 +277,12 @@ class TableView extends React.Component {
       </View>
     )
   }
-
-  _onScroll(event) {
-    if (this.props.onScroll) {
-      this.props.onScroll(event)
-    }
-  }
-
-  _onPress(event) {
-    var data = event.nativeEvent
-    if (
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex] &&
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex].onPress
-    ) {
-      this.sections[data.selectedSection] &&
-        this.sections[data.selectedSection].items[data.selectedIndex].onPress(
-          data
-        )
-    }
-    if (this.props.onPress) {
-      this.props.onPress(data)
-    }
-    event.stopPropagation()
-  }
-
-  _onAccessoryPress(event) {
-    console.log('_onAccessoryPress', event)
-    var data = event.nativeEvent
-    if (
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.accessoryIndex] &&
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.accessoryIndex]
-        .onAccessoryPress
-    ) {
-      this.sections[data.selectedSection] &&
-        this.sections[data.selectedSection].items[
-          data.accessoryIndex
-        ].onAccessoryPress(data)
-    }
-    if (this.props.onAccessoryPress) {
-      this.props.onAccessoryPress(data)
-    }
-    event.stopPropagation()
-  }
-
-  _onChange(event) {
-    var data = event.nativeEvent
-    if (
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex] &&
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex].onChange
-    ) {
-      this.sections[data.selectedSection] &&
-        this.sections[data.selectedSection].items[data.selectedIndex].onChange(
-          data
-        )
-    }
-    if (this.props.onChange) {
-      this.props.onChange(data)
-    }
-    event.stopPropagation()
-  }
-
-  _onWillDisplayCell(event) {
-    var data = event.nativeEvent
-    if (
-      this.sections[data.section] &&
-      this.sections[data.section].items[data.row] &&
-      this.sections[data.section].items[data.row].onWillDisplayCell
-    ) {
-      this.sections[data.section].items[data.row].onWillDisplayCell(data)
-    }
-    if (this.props.onWillDisplayCell) {
-      this.props.onWillDisplayCell(data)
-    }
-    event.stopPropagation()
-  }
-
-  _onEndDisplayingCell(event) {
-    var data = event.nativeEvent
-    if (
-      this.sections[data.section] &&
-      this.sections[data.section].items[data.row] &&
-      this.sections[data.section].items[data.row].onEndDisplayingCell
-    ) {
-      this.sections[data.section].items[data.row].onEndDisplayingCell(data)
-    }
-    if (this.props.onEndDisplayingCell) {
-      this.props.onEndDisplayingCell(data)
-    }
-    event.stopPropagation()
-  }
 }
 
 class TableViewItem extends React.Component {
   static propTypes = {
     value: PropTypes.any, // string or integer basically
-    label: PropTypes.string
+    label: PropTypes.string,
   }
 
   render() {
@@ -311,7 +301,7 @@ class TableViewFooter extends React.Component {
   render() {
     return (
       <RNFooterView
-        onLayout={event => {
+        onLayout={(event) => {
           this.setState(event.nativeEvent.layout)
         }}
         {...this.props}
@@ -321,7 +311,7 @@ class TableViewFooter extends React.Component {
     )
   }
 }
-var RNFooterView = requireNativeComponent('RNTableFooterView', null)
+const RNFooterView = requireNativeComponent('RNTableFooterView', null)
 TableView.Footer = TableViewFooter
 
 class TableViewHeader extends React.Component {
@@ -334,7 +324,7 @@ class TableViewHeader extends React.Component {
   render() {
     return (
       <RNHeaderView
-        onLayout={event => {
+        onLayout={(event) => {
           this.setState(event.nativeEvent.layout)
         }}
         {...this.props}
@@ -344,7 +334,7 @@ class TableViewHeader extends React.Component {
     )
   }
 }
-var RNHeaderView = requireNativeComponent('RNTableHeaderView', null)
+const RNHeaderView = requireNativeComponent('RNTableHeaderView', null)
 TableView.Header = TableViewHeader
 
 class TableViewCell extends React.Component {
@@ -356,7 +346,7 @@ class TableViewCell extends React.Component {
   render() {
     return (
       <RNCellView
-        onLayout={event => {
+        onLayout={(event) => {
           this.setState(event.nativeEvent.layout)
         }}
         {...this.props}
@@ -366,7 +356,7 @@ class TableViewCell extends React.Component {
     )
   }
 }
-var RNCellView = requireNativeComponent('RNCellView', null)
+const RNCellView = requireNativeComponent('RNCellView', null)
 TableView.Cell = TableViewCell
 
 class TableViewSection extends React.Component {
@@ -375,7 +365,7 @@ class TableViewSection extends React.Component {
     footerLabel: PropTypes.string,
     arrow: PropTypes.bool,
     footerHeight: PropTypes.number,
-    headerHeight: PropTypes.number
+    headerHeight: PropTypes.number,
   }
 
   render() {
@@ -383,18 +373,10 @@ class TableViewSection extends React.Component {
     return null
   }
 }
-TableView.Section = TableViewSection
 
-var styles = StyleSheet.create({
-  tableView: {
-    // The picker will conform to whatever width is given, but we do
-    // have to set the component's height explicitly on the
-    // surrounding view to ensure it gets rendered.
-    //height: RNTableViewConsts.ComponentHeight,
-  }
-})
+TableView.Section = TableViewSection
 TableView.Consts = RNTableViewConsts
 
-var RNTableView = requireNativeComponent('RNTableView', null)
+const RNTableView = requireNativeComponent('RNTableView', null)
 
 export default TableView
