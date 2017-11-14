@@ -21,6 +21,11 @@ RCT_EXPORT_MODULE()
     return [[RNTableView alloc] initWithBridge:self.bridge];
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 - (NSArray *)customDirectEventTypes
 {
     return @[
