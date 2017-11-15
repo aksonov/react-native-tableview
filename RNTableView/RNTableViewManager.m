@@ -63,6 +63,11 @@ RCT_EXPORT_VIEW_PROPERTY(allowsToggle, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsMultipleSelection, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(alwaysBounceVertical, BOOL)
 
+RCT_EXPORT_VIEW_PROPERTY(onEndDisplayingCell, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onWillDisplayCell, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onAccessoryPress, RCTBubblingEventBlock)
+
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
@@ -117,42 +122,42 @@ RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
 
 - (NSDictionary *)constantsToExport {
     return @{
-        @"Constants": @{
-             @"Style": @{
-                     @"Plain": @(UITableViewStylePlain),
-                     @"Grouped": @(UITableViewStyleGrouped)
-                     },
-             @"CellStyle": @{
-                     @"Default": @(UITableViewCellStyleDefault),
-                     @"Value1": @(UITableViewCellStyleValue1),
-                     @"Value2": @(UITableViewCellStyleValue2),
-                     @"Subtitle": @(UITableViewCellStyleSubtitle)
-                     },
-             @"CellEditingStyle": @{
-                     @"None": @(UITableViewCellEditingStyleNone),
-                     @"Delete": @(UITableViewCellEditingStyleDelete),
-                     @"Insert": @(UITableViewCellEditingStyleInsert)
-                     },
-             @"CellSelectionStyle": @{
-                     @"None": @(UITableViewCellSelectionStyleNone),
-                     @"Blue": @(UITableViewCellSelectionStyleBlue),
-                     @"Gray": @(UITableViewCellSelectionStyleGray),
-                     @"Default": @(UITableViewCellSelectionStyleDefault)
-                     },
-             @"SeparatorStyle": @{
-                     @"None": @(UITableViewCellSeparatorStyleNone),
-                     @"Line": @(UITableViewCellSeparatorStyleSingleLine),
-                     @"LineEtched": @(UITableViewCellSeparatorStyleSingleLineEtched)
-                     },
-             @"AccessoryType": @{
-                     @"None": @(UITableViewCellAccessoryNone),
-                     @"DisclosureIndicator": @(UITableViewCellAccessoryDisclosureIndicator),
-                     @"DisclosureButton": @(UITableViewCellAccessoryDetailDisclosureButton),
-                     @"Checkmark": @(UITableViewCellAccessoryCheckmark),
-                     @"DetailButton": @(UITableViewCellAccessoryDetailButton)
+             @"Constants": @{
+                     @"Style": @{
+                             @"Plain": @(UITableViewStylePlain),
+                             @"Grouped": @(UITableViewStyleGrouped)
+                             },
+                     @"CellStyle": @{
+                             @"Default": @(UITableViewCellStyleDefault),
+                             @"Value1": @(UITableViewCellStyleValue1),
+                             @"Value2": @(UITableViewCellStyleValue2),
+                             @"Subtitle": @(UITableViewCellStyleSubtitle)
+                             },
+                     @"CellEditingStyle": @{
+                             @"None": @(UITableViewCellEditingStyleNone),
+                             @"Delete": @(UITableViewCellEditingStyleDelete),
+                             @"Insert": @(UITableViewCellEditingStyleInsert)
+                             },
+                     @"CellSelectionStyle": @{
+                             @"None": @(UITableViewCellSelectionStyleNone),
+                             @"Blue": @(UITableViewCellSelectionStyleBlue),
+                             @"Gray": @(UITableViewCellSelectionStyleGray),
+                             @"Default": @(UITableViewCellSelectionStyleDefault)
+                             },
+                     @"SeparatorStyle": @{
+                             @"None": @(UITableViewCellSeparatorStyleNone),
+                             @"Line": @(UITableViewCellSeparatorStyleSingleLine),
+                             @"LineEtched": @(UITableViewCellSeparatorStyleSingleLineEtched)
+                             },
+                     @"AccessoryType": @{
+                             @"None": @(UITableViewCellAccessoryNone),
+                             @"DisclosureIndicator": @(UITableViewCellAccessoryDisclosureIndicator),
+                             @"DisclosureButton": @(UITableViewCellAccessoryDetailDisclosureButton),
+                             @"Checkmark": @(UITableViewCellAccessoryCheckmark),
+                             @"DetailButton": @(UITableViewCellAccessoryDetailButton)
+                             }
                      }
-        }
-    };
+             };
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RNTableView)
