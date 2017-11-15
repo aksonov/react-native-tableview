@@ -1,10 +1,18 @@
+/* eslint-disable */
+
+import React from 'react'
 import PropTypes from 'prop-types'
 
-const TableViewItem = () =>
-  // These items don't get rendered directly.
-  null
+class TableViewItem extends React.Component {
+  render() {
+    // These items don't get rendered directly.
+    return null
+  }
+}
 
 TableViewItem.propTypes = {
   value: PropTypes.any, // string or integer basically
   label: PropTypes.string,
 }
+
+export default TableViewItem

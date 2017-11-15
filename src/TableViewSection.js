@@ -1,8 +1,14 @@
+/* eslint-disable */
+
+import React from 'react'
 import PropTypes from 'prop-types'
 
-const TableViewSection = () =>
-  // These items don't get rendered directly.
-  null
+class TableViewSection extends React.Component {
+  render() {
+    // These items don't get rendered directly.
+    return null
+  }
+}
 
 TableViewSection.propTypes = {
   label: PropTypes.string,
