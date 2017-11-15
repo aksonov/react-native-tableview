@@ -146,8 +146,7 @@ RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
                              },
                      @"SeparatorStyle": @{
                              @"None": @(UITableViewCellSeparatorStyleNone),
-                             @"Line": @(UITableViewCellSeparatorStyleSingleLine),
-                             @"LineEtched": @(UITableViewCellSeparatorStyleSingleLineEtched)
+                             @"Line": @(UITableViewCellSeparatorStyleSingleLine)
                              },
                      @"AccessoryType": @{
                              @"None": @(UITableViewCellAccessoryNone),
@@ -248,15 +247,5 @@ RCT_EXPORT_METHOD(scrollTo:(nonnull NSNumber *)reactTag
          [view scrollToOffsetX:x offsetY:y animated:true];
      }];
 }
-
-//
-//- (NSDictionary *)constantsToExport
-//{
-//    UIPickerView *view = [[UIPickerView alloc] init];
-//    return @{
-//             @"ComponentHeight": @(view.intrinsicContentSize.height),
-//             @"ComponentWidth": @(view.intrinsicContentSize.width)
-//             };
-//}
 
 @end
