@@ -77,6 +77,8 @@
 @property(nonatomic, copy) RCTBubblingEventBlock onEndDisplayingCell;
 @property(nonatomic, copy) RCTBubblingEventBlock onPress;
 @property(nonatomic, copy) RCTBubblingEventBlock onAccessoryPress;
+@property(nonatomic, copy) RCTBubblingEventBlock onChange;
+@property(nonatomic, copy) RCTDirectEventBlock onScroll;
 
 - (void)scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated;
 

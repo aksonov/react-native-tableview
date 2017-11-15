@@ -446,7 +446,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (item[@"selected"] && [item[@"selected"] intValue]){
         if (item[@"selectedAccessoryType"])
         {
-            NSLog(@"selectedAccessoryType %@", [item[@"selectedAccessoryType"] intValue]);
             cell.accessoryType = [item[@"selectedAccessoryType"] intValue];
         } else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -544,7 +543,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    [_eventDispatcher sendInputEventWithName:@"change" body:@{@"target":self.reactTag, @"sourceIndex":@(sourceIndexPath.row), @"sourceSection": @(sourceIndexPath.section), @"destinationIndex":@(destinationIndexPath.row), @"destinationSection":@(destinationIndexPath.section), @"mode": @"move"}];
+    self.onChange(@{@"target":self.reactTag, @"sourceIndex":@(sourceIndexPath.row), @"sourceSection": @(sourceIndexPath.section), @"destinationIndex":@(destinationIndexPath.row), @"destinationSection":@(destinationIndexPath.section), @"mode": @"move"});
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
@@ -563,7 +562,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
         newValue[@"mode"] = @"delete";
         
-        [_eventDispatcher sendInputEventWithName:@"change" body:newValue];
+        self.onChange(newValue);
         
         [_sections[indexPath.section][@"items"] removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
@@ -589,16 +588,13 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 #pragma mark - Scrolling
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_eventDispatcher
-     sendInputEventWithName:@"onScroll"
-     body:@{
-            @"target": self.reactTag,
-            @"contentOffset": @{
-                    @"x": @(_tableView.contentOffset.x),
-                    @"y": @(_tableView.contentOffset.y)
-                    }
-            }
-     ];
+    self.onScroll(@{
+                    @"target": self.reactTag,
+                    @"contentOffset": @{
+                            @"x": @(_tableView.contentOffset.x),
+                            @"y": @(_tableView.contentOffset.y)
+                            }
+                    });
 }
 
 @end

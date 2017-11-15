@@ -10,7 +10,7 @@ Native iOS UITableView for React Native with JSON support.
 ## NOTICE
 The [original library](https://github.com/aksonov/react-native-tableview) has been unmaintained for over a year. This is a fork of the library that aims to keep it up to date with the newest releases of react native.
 
-**Currently supports react-native 0.49**
+**Currently supports react-native 0.50**
 
 ## Features
 - Look and feel native iOS TableView (with group/plain tableview type, sections headers, etc)
