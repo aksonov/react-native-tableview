@@ -42,6 +42,7 @@ class TableView extends React.Component {
     headerTextColor: PropTypes.string,
     footerTextColor: PropTypes.string,
     separatorColor: PropTypes.string,
+    separatorStyle: PropTypes.number,
     scrollEnabled: PropTypes.bool,
     sectionIndexTitlesEnabled: PropTypes.bool,
     showsHorizontalScrollIndicator: PropTypes.bool,
@@ -72,6 +73,7 @@ class TableView extends React.Component {
 
   static defaultProps = {
     tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
+    separatorStyle: RNTableViewConsts.SeparatorStyle.Line,
     autoFocusAnimate: true,
     alwaysBounceVertical: true,
     scrollEnabled: true,
@@ -264,7 +266,7 @@ class TableView extends React.Component {
           tableViewStyle={RNTableViewConsts.Style.Plain}
           tableViewCellStyle={RNTableViewConsts.CellStyle.Subtitle}
           tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
-          separatorStyle={RNTableViewConsts.SeparatorStyle.Line}
+          separatorStyle={this.props.separatorStyle}
           scrollIndicatorInsets={this.props.contentInset}
           alwaysBounceVertical={this.props.alwaysBounceVertical}
           {...this.props}

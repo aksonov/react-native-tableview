@@ -113,6 +113,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [self createTableView];
 }
 
+- (void)setSeparatorStyle:(UITableViewCellSeparatorStyle)separatorStyle {
+    _separatorStyle = separatorStyle;
+    
+    [self.tableView setSeparatorStyle:separatorStyle];
+}
+
 - (void)setContentInset:(UIEdgeInsets)insets {
     _contentInset = insets;
     _tableView.contentInset = insets;
