@@ -112,6 +112,7 @@ RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
 
 - (NSDictionary *)constantsToExport {
     return @{
+        @"Constants": @{
              @"Style": @{
                      @"Plain": @(UITableViewStylePlain),
                      @"Grouped": @(UITableViewStyleGrouped)
@@ -145,7 +146,8 @@ RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
                      @"Checkmark": @(UITableViewCellAccessoryCheckmark),
                      @"DetailButton": @(UITableViewCellAccessoryDetailButton)
                      }
-             };
+        }
+    };
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RNTableView)

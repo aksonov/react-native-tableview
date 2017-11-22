@@ -9,8 +9,8 @@
 
 #import "AppDelegate.h"
 
-#import "RCTRootView.h"
 #import <RNTableView/RNAppGlobals.h>
+#import <React/RCTRootView.h>
 
 @implementation AppDelegate
 
@@ -44,12 +44,12 @@
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
 
-  
-//  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+
+  //  jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"TableViewExample" initialProperties:@{} launchOptions:launchOptions];
-  
+
   //Save main bridge so that RNTableView could access our bridge to create its RNReactModuleCells
   [[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge];
 
