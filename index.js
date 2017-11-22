@@ -20,6 +20,7 @@ function extend(el, map) {
             el[i] = map[i];
     return el;
 }
+
 class TableView extends React.Component {
     static propTypes = {
         onPress: PropTypes.func,
@@ -300,6 +301,7 @@ class TableViewCell extends React.Component {
 };
 var RNCellView = requireNativeComponent('RNCellView', null);
 TableView.Cell = TableViewCell;
+
 
 class TableViewSection extends React.Component {
     static propTypes = {
