@@ -7,6 +7,11 @@
     "no-underscore-dangle": "off",
     "no-plusplus": "off",
     "react/jsx-filename-extension": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "no-alert": "off",
+    "no-debugger": "off"
+  },
+  "env": {
+    "browser": true
   }
 }

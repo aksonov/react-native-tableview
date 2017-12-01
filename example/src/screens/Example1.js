@@ -6,13 +6,13 @@ const { Section, Item } = TableView
 const Example1 = () => (
   <TableView
     style={{ flex: 1 }}
-    allowsToggle={true}
-    allowsMultipleSelection={true}
+    allowsToggle
+    allowsMultipleSelection
     tableViewStyle={TableView.Consts.Style.Grouped}
     tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
     onPress={event => console.log(event)}
   >
-    <Section label="Section 1" arrow={true}>
+    <Section label="Section 1" arrow>
       <Item value="1" detail="Detail1">
         Item 1
       </Item>

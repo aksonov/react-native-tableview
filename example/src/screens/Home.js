@@ -4,40 +4,29 @@
  * @flow
  */
 
-import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import type { NavigationScreenConfigProps } from 'react-navigation'
 import TableView from 'react-native-tableview'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu'
-})
+const { Section, Item } = TableView
 
-export default class App extends Component<{}> {
-  navigate = ({ label }) => {
-    switch (label) {
-      case 'Multiple sections': {
-        this.props.navigation.navigate('example1')
-      }
-    }
-  }
+const App = ({ navigation }: NavigationScreenConfigProps) => {
+  const { navigate } = navigation
 
-  render() {
-    return (
-      <TableView
-        style={{ flex: 1 }}
-        tableViewStyle={TableView.Consts.Style.Grouped}
-        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-        onPress={this.navigate}
-      >
-        <TableView.Section arrow>
-          <TableView.Item>Multiple sections</TableView.Item>
-          <TableView.Item>Custom Cells</TableView.Item>
-          <TableView.Item>App bundled JSON data</TableView.Item>
-        </TableView.Section>
-      </TableView>
-    )
-  }
+  return (
+    <TableView
+      style={{ flex: 1 }}
+      tableViewStyle={TableView.Consts.Style.Grouped}
+      tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+    >
+      <Section arrow>
+        <Item onPress={() => navigate('sections')}>Multiple sections</Item>
+        <Item onPress={() => navigate('accessories')}>Accessory Types</Item>
+        <Item>Custom Cells</Item>
+        <Item>App bundled JSON data</Item>
+      </Section>
+    </TableView>
+  )
 }
+
+export default App
