@@ -158,9 +158,8 @@ RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
                              @"DetailButton": @(UITableViewCellAccessoryDetailButton)
                              }
                      }
-        }
-    };
-}
+             };
+    }
 
 RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RNTableView)
 {
