@@ -6,6 +6,7 @@
     "semi": "off",
     "no-underscore-dangle": "off",
     "no-plusplus": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "no-unused-expressions": "off"
   }
 }

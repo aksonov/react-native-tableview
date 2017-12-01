@@ -188,20 +188,18 @@ class TableView extends React.Component {
   }
 
   _onAccessoryPress(event) {
-    console.log('_onAccessoryPress', event)
     const data = event.nativeEvent
-    if (
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.accessoryIndex] &&
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.accessoryIndex].onAccessoryPress
-    ) {
-      this.sections[data.selectedSection] &&
-        this.sections[data.selectedSection].items[data.accessoryIndex].onAccessoryPress(data)
-    }
+
     if (this.props.onAccessoryPress) {
       this.props.onAccessoryPress(data)
     }
+
+    if (this.sections) {
+      const pressedItem = this.sections[data.accessorySection].items[data.accessoryIndex]
+
+      pressedItem.onAccessoryPress && pressedItem.onAccessoryPress(data)
+    }
+
     event.stopPropagation()
   }
 
