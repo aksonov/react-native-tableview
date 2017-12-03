@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation'
 import Home from './screens/Home'
 import Example1 from './screens/Example1'
 import Example2 from './screens/Example2'
+import Example4 from './screens/Example4'
 
 const Stack = StackNavigator(
   {
@@ -22,6 +23,12 @@ const Stack = StackNavigator(
       screen: Example2,
       navigationOptions: {
         title: 'Accessory Types',
+      },
+    },
+    json: {
+      screen: Example4,
+      navigationOptions: {
+        title: 'Bundled JSON',
       },
     },
   },

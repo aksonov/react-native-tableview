@@ -23,7 +23,7 @@ const App = ({ navigation }: NavigationScreenConfigProps) => {
         <Item onPress={() => navigate('sections')}>Multiple sections</Item>
         <Item onPress={() => navigate('accessories')}>Accessory Types</Item>
         <Item>Custom Cells</Item>
-        <Item>App bundled JSON data</Item>
+        <Item onPress={() => navigate('json')}>App bundled JSON data</Item>
       </Section>
     </TableView>
   )
