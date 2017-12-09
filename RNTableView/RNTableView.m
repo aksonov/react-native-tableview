@@ -170,6 +170,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if (!_sectionIndexTitlesEnabled) {
+      return nil;
+    }
+
     // create selected indexes
     NSMutableArray *keys = [NSMutableArray arrayWithCapacity:[_sections count]];
 
