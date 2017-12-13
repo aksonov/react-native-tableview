@@ -17,7 +17,7 @@ const Example2 = () => (
     onAccessoryPress={() => {}}
   >
     <Section>
-      <Item>No accesory</Item>
+      <Item>No accessory</Item>
       <Item accessoryType={DisclosureIndicator}>I have an arrow</Item>
       <Item
         accessoryType={DisclosureButton}
@@ -26,7 +26,10 @@ const Example2 = () => (
         I have an arrow and a button
       </Item>
       <Item accessoryType={Checkmark}>I have a checkmark</Item>
-      <Item accessoryType={DetailButton} onAccessoryPress={() => alert('You Pressed my button')}>
+      <Item
+        accessoryType={DetailButton}
+        onAccessoryPress={() => alert('You Pressed my button')}
+      >
         I have a button
       </Item>
     </Section>

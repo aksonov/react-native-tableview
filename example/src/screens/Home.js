@@ -22,8 +22,12 @@ const App = ({ navigation }: NavigationScreenConfigProps) => {
       <Section arrow>
         <Item onPress={() => navigate('sections')}>Multiple sections</Item>
         <Item onPress={() => navigate('accessories')}>Accessory Types</Item>
-        <Item>Custom Cells</Item>
         <Item onPress={() => navigate('json')}>App bundled JSON data</Item>
+        <Item onPress={() => navigate('network')}>
+          Large Network Loaded List
+        </Item>
+        <Item>Custom Cells</Item>
+        <Item>Editing mode</Item>
       </Section>
     </TableView>
   )

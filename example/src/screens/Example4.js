@@ -1,6 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, ActivityIndicator, Text, StyleSheet } from 'react-native'
 import TableView from 'react-native-tableview'
+
+const { Section, Item } = TableView
 
 const styles = StyleSheet.create({
   title: {
@@ -11,23 +13,45 @@ const styles = StyleSheet.create({
   },
 })
 
-const Example4 = () => {
-  // list spanish provinces and add 'All states' item at the beginning
+class Example4 extends React.Component {
+  state = {
+    loading: true,
+    users: [],
+  }
 
-  const country = 'ES'
+  async componentWillMount() {
+    const response = await fetch('https://randomuser.me/api/?results=5000')
+    const data = await response.json()
 
-  return (
-    <View style={{ flex: 1 }}>
-      <Text style={styles.title}>Showing States in Spain</Text>
-      <TableView
-        style={{ flex: 1 }}
-        json="states"
-        filter={`country=='${country}'`}
-        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-        onPress={event => alert(JSON.stringify(event))}
-      />
-    </View>
-  )
+    this.setState({
+      loading: false,
+      users: data.results.map(a => ({
+        name: `${a.name.first} ${a.name.last}`,
+        id: a.registered,
+      })),
+    })
+  }
+
+  render() {
+    return (
+      <View style={{ flex: 1 }}>
+        <Text style={styles.title}>
+          {this.state.loading ? 'Fetching' : 'Fetched'} 5000 users
+        </Text>
+
+        {this.state.loading && <ActivityIndicator />}
+
+        <TableView
+          style={{ flex: 1 }}
+          tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+        >
+          <Section>
+            {this.state.users.map(a => <Item key={a.id}>{a.name}</Item>)}
+          </Section>
+        </TableView>
+      </View>
+    )
+  }
 }
 
 export default Example4

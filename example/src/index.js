@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation'
 import Home from './screens/Home'
 import Example1 from './screens/Example1'
 import Example2 from './screens/Example2'
+import Example3 from './screens/Example3'
 import Example4 from './screens/Example4'
 
 const Stack = StackNavigator(
@@ -26,9 +27,15 @@ const Stack = StackNavigator(
       },
     },
     json: {
-      screen: Example4,
+      screen: Example3,
       navigationOptions: {
         title: 'Bundled JSON',
+      },
+    },
+    network: {
+      screen: Example4,
+      navigationOptions: {
+        title: 'Large Network Loaded List',
       },
     },
   },
