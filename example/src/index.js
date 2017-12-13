@@ -5,6 +5,9 @@ import Example1 from './screens/Example1'
 import Example2 from './screens/Example2'
 import Example3 from './screens/Example3'
 import Example4 from './screens/Example4'
+import Example5 from './screens/Example5'
+
+import TableViewExampleCell from './cells/TableViewExampleCell'
 
 const Stack = StackNavigator(
   {
@@ -38,6 +41,12 @@ const Stack = StackNavigator(
         title: 'Large Network Loaded List',
       },
     },
+    custom: {
+      screen: Example5,
+      navigationOptions: {
+        title: 'Custom Cells',
+      },
+    },
   },
   {
     navigationOptions: {
@@ -51,3 +60,7 @@ const Stack = StackNavigator(
 )
 
 AppRegistry.registerComponent('TableViewDemo', () => Stack)
+AppRegistry.registerComponent(
+  'TableViewExampleCell',
+  () => TableViewExampleCell,
+)
