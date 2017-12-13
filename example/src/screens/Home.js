@@ -27,7 +27,9 @@ const App = ({ navigation }: NavigationScreenConfigProps) => {
           Large Network Loaded List
         </Item>
         <Item onPress={() => navigate('custom')}>Custom Cells</Item>
-        <Item>Editing mode</Item>
+        <Item onPress={() => navigate('edit', { editing: true })}>
+          Editing mode
+        </Item>
       </Section>
     </TableView>
   )

@@ -6,6 +6,7 @@ import Example2 from './screens/Example2'
 import Example3 from './screens/Example3'
 import Example4 from './screens/Example4'
 import Example5 from './screens/Example5'
+import Example6 from './screens/Example6'
 
 import TableViewExampleCell from './cells/TableViewExampleCell'
 
@@ -45,6 +46,12 @@ const Stack = StackNavigator(
       screen: Example5,
       navigationOptions: {
         title: 'Custom Cells',
+      },
+    },
+    edit: {
+      screen: Example6,
+      navigationOptions: {
+        title: 'Editing Mode',
       },
     },
   },
