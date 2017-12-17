@@ -78,8 +78,16 @@
 
 ### UITableView styles
 
-* UITableViewStylePlain (TableView.Consts.Style.Plain)
-* UITableViewStyleGrouped (TableView.Consts.Style.Grouped)
+These values are provided to the `tableViewStyle` prop.
+
+```jsx
+<TableView tableViewStyle={TableView.Consts.Style.Grouped}>
+```
+
+| value   | prop                           | preview                                      |
+| ------- | ------------------------------ | -------------------------------------------- |
+| Plain   | `TableView.Consts.Style.Plain` | ![alt text](./.github/tableview-plain.png)   |
+| Grouped | `TableView.Consts.Style.Plain` | ![alt text](./.github/tableview-grouped.png) |
 
 ### UITableViewCell styles
 
