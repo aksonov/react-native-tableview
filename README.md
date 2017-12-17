@@ -84,7 +84,7 @@ These values are provided to the `tableViewStyle` prop.
 <TableView tableViewStyle={TableView.Consts.Style.Grouped}>
 ```
 
-| value   | prop                           | preview                                      |
+| Style   | Value                          | Preview                                      |
 | ------- | ------------------------------ | -------------------------------------------- |
 | Plain   | `TableView.Consts.Style.Plain` | ![alt text](./.github/tableview-plain.png)   |
 | Grouped | `TableView.Consts.Style.Plain` | ![alt text](./.github/tableview-grouped.png) |
