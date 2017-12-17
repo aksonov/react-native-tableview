@@ -68,10 +68,12 @@ class TableView extends React.Component {
      * @platform ios
      */
     scrollIndicatorInsets: EdgeInsetsPropType,
+    tableViewCellStyle: PropTypes.number,
     tableViewCellEditingStyle: PropTypes.number,
   }
 
   static defaultProps = {
+    tableViewCellStyle: RNTableViewConsts.CellStyle.Subtitle,
     tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
     separatorStyle: RNTableViewConsts.SeparatorStyle.Line,
     autoFocusAnimate: true,
@@ -161,7 +163,12 @@ class TableView extends React.Component {
   }
 
   scrollTo(x, y, animated) {
-    NativeModules.RNTableViewManager.scrollTo(findNodeHandle(this.tableView), x, y, animated)
+    NativeModules.RNTableViewManager.scrollTo(
+      findNodeHandle(this.tableView),
+      x,
+      y,
+      animated,
+    )
   }
 
   _onScroll(event) {
@@ -195,7 +202,9 @@ class TableView extends React.Component {
     }
 
     if (this.sections) {
-      const pressedItem = this.sections[data.accessorySection].items[data.accessoryIndex]
+      const pressedItem = this.sections[data.accessorySection].items[
+        data.accessoryIndex
+      ]
 
       pressedItem.onAccessoryPress && pressedItem.onAccessoryPress(data)
     }
@@ -262,7 +271,7 @@ class TableView extends React.Component {
           sections={this.state.sections}
           additionalItems={this.state.additionalItems}
           tableViewStyle={RNTableViewConsts.Style.Plain}
-          tableViewCellStyle={RNTableViewConsts.CellStyle.Subtitle}
+          tableViewCellStyle={this.props.tableViewCellStyle}
           tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
           separatorStyle={this.props.separatorStyle}
           scrollIndicatorInsets={this.props.contentInset}
