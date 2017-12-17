@@ -91,10 +91,18 @@ These values are provided to the `tableViewStyle` prop.
 
 ### UITableViewCell styles
 
-* UITableViewCellStyleDefault (TableView.Consts.CellStyle.Default)
-* UITableViewCellStyleValue1 (TableView.Consts.CellStyle.Value1)
-* UITableViewCellStyleValue2 (TableView.Consts.CellStyle.Value2)
-* UITableViewCellStyleSubtitle (TableView.Consts.CellStyle.Subtitle)
+These values are provided to the `tableViewCellStyle` prop.
+
+```jsx
+<TableView tableViewCellStyle={TableView.Consts.CellStyle.Default}>
+```
+
+| Style    | Value                                 | Preview                                        |
+| -------- | ------------------------------------- | ---------------------------------------------- |
+| Default  | `TableView.Consts.CellStyle.Default`  | ![alt text](./.github/cell-style-default.png)  |
+| Value1   | `TableView.Consts.CellStyle.Value1`   | ![alt text](./.github/cell-style-value1.png)   |
+| Value2   | `TableView.Consts.CellStyle.Value2`   | ![alt text](./.github/cell-style-value2.png)   |
+| Subtitle | `TableView.Consts.CellStyle.Subtitle` | ![alt text](./.github/cell-style-subtitle.png) |
 
 ### Accessory types
 
