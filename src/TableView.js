@@ -12,13 +12,17 @@ import TableViewSection from './TableViewSection'
 import TableViewCell from './TableViewCell'
 import TableViewItem from './TableViewItem'
 import RNTableViewConsts from './TableViewConsts'
+import ViewPropTypes from './util/ViewPropTypes'
 
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource')
 
 const RNTableView = requireNativeComponent('RNTableView', null)
 
 function extend(el, map) {
-  for (const i in map) if (typeof map[i] !== 'object') el[i] = map[i]
+  for (const i in map) {
+    if (typeof map[i] !== 'object') el[i] = map[i]
+  }
+
   return el
 }
 
@@ -48,6 +52,7 @@ class TableView extends React.Component {
     showsHorizontalScrollIndicator: PropTypes.bool,
     showsVerticalScrollIndicator: PropTypes.bool,
     onScroll: PropTypes.func,
+    onChange: PropTypes.func,
     /**
      * The amount by which the content is inset from the edges
      * of the TableView. Defaults to `{0, 0, 0, 0}`.
@@ -68,11 +73,14 @@ class TableView extends React.Component {
      * @platform ios
      */
     scrollIndicatorInsets: EdgeInsetsPropType,
+    tableViewStyle: PropTypes.number,
     tableViewCellStyle: PropTypes.number,
     tableViewCellEditingStyle: PropTypes.number,
+    style: ViewPropTypes.style,
   }
 
   static defaultProps = {
+    tableViewStyle: RNTableViewConsts.Style.Plain,
     tableViewCellStyle: RNTableViewConsts.CellStyle.Subtitle,
     tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
     separatorStyle: RNTableViewConsts.SeparatorStyle.Line,
@@ -82,6 +90,13 @@ class TableView extends React.Component {
     sectionIndexTitlesEnabled: false,
     showsHorizontalScrollIndicator: true,
     showsVerticalScrollIndicator: true,
+    style: null,
+    onChange: () => null,
+    onScroll: () => null,
+    onPress: () => null,
+    onAccessoryPress: () => null,
+    onWillDisplayCell: () => null,
+    onEndDisplayingCell: () => null,
   }
 
   constructor(props) {
@@ -106,12 +121,15 @@ class TableView extends React.Component {
     React.Children.forEach(props.children, (section, index) => {
       const items = []
       let count = 0
-      if (section && section.type == TableViewSection) {
+
+      if (section && section.type === TableViewSection) {
         let customCells = false
+
         React.Children.forEach(section.props.children, (child, itemIndex) => {
           const el = {}
           extend(el, section.props)
           extend(el, child.props)
+
           if (el.children) {
             el.label = el.children
           }
@@ -123,9 +141,10 @@ class TableView extends React.Component {
           count++
           items.push(el)
 
-          if (child.type == TableViewCell) {
+          if (child.type === TableViewCell) {
             customCells = true
             count++
+
             const element = React.cloneElement(child, {
               key: `${index} ${itemIndex}`,
               section: index,
@@ -134,6 +153,7 @@ class TableView extends React.Component {
             children.push(element)
           }
         })
+
         sections.push({
           customCells,
           label: section.props.label,
@@ -143,17 +163,21 @@ class TableView extends React.Component {
           items,
           count,
         })
-      } else if (section && section.type == TableViewItem) {
+      } else if (section && section.type === TableViewItem) {
         const el = extend({}, section.props)
+
         if (!el.label) {
           el.label = el.children
         }
+
         additionalItems.push(el)
       } else if (section) {
         children.push(section)
       }
     })
+
     this.sections = sections
+
     return {
       sections,
       additionalItems,
@@ -172,13 +196,12 @@ class TableView extends React.Component {
   }
 
   _onScroll(event) {
-    if (this.props.onScroll) {
-      this.props.onScroll(event)
-    }
+    this.props.onScroll(event)
   }
 
   _onPress(event) {
     const data = event.nativeEvent
+
     if (
       this.sections[data.selectedSection] &&
       this.sections[data.selectedSection].items[data.selectedIndex] &&
@@ -188,18 +211,15 @@ class TableView extends React.Component {
       this.sections[data.selectedSection] &&
         this.sections[data.selectedSection].items[data.selectedIndex].onPress(data)
     }
-    if (this.props.onPress) {
-      this.props.onPress(data)
-    }
+
+    this.props.onPress(data)
     event.stopPropagation()
   }
 
   _onAccessoryPress(event) {
     const data = event.nativeEvent
 
-    if (this.props.onAccessoryPress) {
-      this.props.onAccessoryPress(data)
-    }
+    this.props.onAccessoryPress(data)
 
     if (this.sections) {
       const pressedItem = this.sections[data.accessorySection].items[
@@ -224,14 +244,14 @@ class TableView extends React.Component {
       this.sections[data.selectedSection] &&
         this.sections[data.selectedSection].items[data.selectedIndex].onChange(data)
     }
-    if (this.props.onChange) {
-      this.props.onChange(data)
-    }
+
+    this.props.onChange(data)
     event.stopPropagation()
   }
 
   _onWillDisplayCell(event) {
     const data = event.nativeEvent
+
     if (
       this.sections[data.section] &&
       this.sections[data.section].items[data.row] &&
@@ -239,14 +259,14 @@ class TableView extends React.Component {
     ) {
       this.sections[data.section].items[data.row].onWillDisplayCell(data)
     }
-    if (this.props.onWillDisplayCell) {
-      this.props.onWillDisplayCell(data)
-    }
+
+    this.props.onWillDisplayCell(data)
     event.stopPropagation()
   }
 
   _onEndDisplayingCell(event) {
     const data = event.nativeEvent
+
     if (
       this.sections[data.section] &&
       this.sections[data.section].items[data.row] &&
@@ -254,9 +274,8 @@ class TableView extends React.Component {
     ) {
       this.sections[data.section].items[data.row].onEndDisplayingCell(data)
     }
-    if (this.props.onEndDisplayingCell) {
-      this.props.onEndDisplayingCell(data)
-    }
+
+    this.props.onEndDisplayingCell(data)
     event.stopPropagation()
   }
 
@@ -270,7 +289,7 @@ class TableView extends React.Component {
           style={this.props.style}
           sections={this.state.sections}
           additionalItems={this.state.additionalItems}
-          tableViewStyle={RNTableViewConsts.Style.Plain}
+          tableViewStyle={this.props.tableViewStyle}
           tableViewCellStyle={this.props.tableViewCellStyle}
           tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
           separatorStyle={this.props.separatorStyle}

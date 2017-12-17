@@ -10,7 +10,9 @@
     "no-unused-expressions": "off",
     "no-alert": "off",
     "no-debugger": "off",
-    "max-len": ["warn", 80]
+    "max-len": ["warn", 80],
+    "no-restricted-syntax": "off",
+    "no-param-reassign": "off"
   },
   "env": {
     "browser": true
