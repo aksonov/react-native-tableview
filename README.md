@@ -106,16 +106,32 @@ These values are provided to the `tableViewCellStyle` prop.
 
 ### Accessory types
 
-* UITableViewCellAccessoryNone (TableView.Consts.AccessoryType.None)
-* UITableViewCellAccessoryDisclosureIndicator
-  (TableView.Consts.AccessoryType.DisclosureIndicator or `arrow` attribute for
-  TableView.Item or TableView.Section)
-* UITableViewCellAccessoryDetailDisclosureButton
-  (TableView.Consts.AccessoryType.DisclosureButton)
-* UITableViewCellAccessoryCheckmark (TableView.Consts.AccessoryType.Checkmark or
-  `selected` attribute for TableView.Item)
-* UITableViewCellAccessoryDetailButton
-  (TableView.Consts.AccessoryType.DetailButton)
+These values are provided to the `accessoryType` prop on the `Item`.
+
+```jsx
+<Item accessoryType={TableView.Consts.AccessoryType.None}>
+```
+
+| Style                | Value                                                | Preview                                                   |
+| -------------------- | ---------------------------------------------------- | --------------------------------------------------------- |
+| None                 | `TableView.Consts.AccessoryType.None`                | ![alt text](./.github/accessory-none.png)                 |
+| Disclosure Indicator | `TableView.Consts.AccessoryType.DisclosureIndicator` | ![alt text](./.github/accessory-disclosure-indicator.png) |
+| Disclosure Button    | `TableView.Consts.AccessoryType.DisclosureButton`    | ![alt text](./.github/accessory-disclosure-button.png)    |
+| Checkmark            | `TableView.Consts.AccessoryType.Checkmark`           | ![alt text](./.github/accessory-checkmark.png)            |
+| Detail Button        | `TableView.Consts.AccessoryType.DetailButton`        | ![alt text](./.github/accessory-detail-button.png)        |
+
+Disclosure Indicator can also be applied by adding the `arrow` prop on the
+section.
+
+```jsx
+<Section arrow>
+```
+
+Checkamrk can also be applied by adding the `selected` prop on the Item.
+
+```jsx
+<Item selected>
+```
 
 ### List item format
 
@@ -178,7 +194,7 @@ class TableViewExample extends React.Component {
           <Item>Item 2</Item>
           <Item>Item 3</Item>
         </Section>
-      </TableView>
+      </Item>
     )
   }
 }
