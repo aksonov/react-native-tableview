@@ -1,6 +1,20 @@
-# react-native-tableview
+<h2 align="center">React Native TableView</h2>
 
-Native iOS UITableView for React Native with JSON support.
+<p align="center">Native iOS UITableView for React Native with JSON support</a>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-native-tableview">
+    <img alt="npm version" src="https://img.shields.io/npm/v/react-native-tableview.svg?style=flat-square">
+  </a>
+  <a href="https://www.npmjs.com/package/react-native-tableview">
+    <img alt="npm downloads" src="https://img.shields.io/npm/dm/react-native-tableview.svg?style=flat-square">
+  </a>
+   <a href="#badge">
+    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+  </a>
+</p>
+
+## Contents
 
 * [Features](#features)
 * [Installation](#installation)
