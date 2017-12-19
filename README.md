@@ -144,100 +144,100 @@ in [Editable Complex Components](#editable-complex-components).
 
 ## Examples
 
-### Example 1
+### Smooth scrolling with large network loaded list
 
-![demo-3](https://cloud.githubusercontent.com/assets/1321329/10022633/2bcad30e-614e-11e5-987d-28dbbb9d2739.gif)
+![demo-3](./.github/large-network-example.gif)
 
 ```jsx
-import React from 'react'
-import { AppRegistry } from 'react-native'
+state = {
+  loading: true,
+  users: [],
+}
 
-import TableView from 'react-native-tableview'
-const { Section, Item } = TableView
+async componentWillMount() {
+  const response = await fetch('https://randomuser.me/api/?results=5000')
+  const data = await response.json()
 
-class TableViewExample extends React.Component {
-  render() {
-    return (
+  this.setState({
+    loading: false,
+    users: data.results.map(a => ({
+      name: `${a.name.first} ${a.name.last}`,
+      id: a.registered,
+    })),
+  })
+}
+
+render() {
+  return (
+    <View style={{ flex: 1 }}>
+      <Text style={styles.title}>
+        {this.state.loading ? 'Fetching' : 'Fetched'} 5000 users
+      </Text>
+
+      {this.state.loading && <ActivityIndicator />}
+
       <TableView
         style={{ flex: 1 }}
-        allowsToggle={true}
-        allowsMultipleSelection={true}
-        tableViewStyle={TableView.Consts.Style.Grouped}
         tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-        onPress={event => console.log(event)}
       >
-        <Section label="Section 1" arrow={true}>
-          <Item value="1" detail="Detail1">
-            Item 1
-          </Item>
-          <Item value="2">Item 2</Item>
+        <Section>
+          {this.state.users.map(a => <Item key={a.id}>{a.name}</Item>)}
+        </Section>
+      </TableView>
+    </View>
+  )
+}
+```
+
+### App-bundled JSON with filter and selected value checkmarked
+
+![editing example](./.github/bundled-json-example.gif)
+
+```jsx
+// list spanish provinces and add 'All states' item at the beginning
+
+const country = 'ES'
+
+return (
+  <View style={{ flex: 1 }}>
+    <Text style={styles.title}>Showing States in Spain</Text>
+    <TableView
+      style={{ flex: 1 }}
+      json="states"
+      selectedValue="ES53"
+      filter={`country=='${country}'`}
+      tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+      onPress={event => alert(JSON.stringify(event))}
+    />
+  </View>
+)
+```
+
+### Built-in editing
+
+![editing example](./.github/editing-example.gif)
+
+```jsx
+render() {
+  return (
+    <View style={{ flex: 1 }}>
+      <TableView
+        style={{ flex: 1 }}
+        editing={this.props.navigation.state.params.editing}
+      >
+        <Section canMove canEdit>
+          <Item canEdit={false}>Item 1</Item>
+          <Item>Item 2</Item>
           <Item>Item 3</Item>
           <Item>Item 4</Item>
           <Item>Item 5</Item>
           <Item>Item 6</Item>
           <Item>Item 7</Item>
           <Item>Item 8</Item>
-          <Item>Item 9</Item>
-          <Item>Item 10</Item>
-          <Item>Item 11</Item>
-          <Item>Item 12</Item>
-          <Item>Item 13</Item>
-          <Item>Item 14</Item>
-          <Item>Item 15</Item>
-          <Item>Item 16</Item>
-          <Item>Item 17</Item>
-          <Item>Item 18</Item>
-          <Item>Item 19</Item>
         </Section>
-        <Section label="Section 2" arrow={false}>
-          <Item selected={true}>Item 1</Item>
-          <Item>Item 2</Item>
-          <Item>Item 3</Item>
-        </Section>
-      </Item>
-    )
-  }
-}
-
-AppRegistry.registerComponent('TableViewExample', () => TableViewExample)
-```
-
-### Example 2 (JSON source support), reads country list JSON from app bundle and display UITableView with selected value checkmarked
-
-![demo2](https://cloud.githubusercontent.com/assets/1321329/9335801/7a4d42ca-45d6-11e5-860c-969db80413ca.gif)
-
-```jsx
-render() {
-  return (
-      <TableView
-        selectedValue="ES"
-        style={{flex:1}}
-        json="countries"
-        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-        onPress={(event) => console.log(event)}/>
-  );
-}
-```
-
-### Example 3 (JSON filter and optional items at the beginning)
-
-```jsx
-// list spanish provinces and add 'All states' item at the beginning
-
-render() {
-  const country = "ES";
-
-  return (
-      <TableView
-        selectedValue=""
-        style={{flex:1}}
-        json="states"
-        filter={`country=='${country}'`}
-        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
-        onPress={(event) => console.log(event)}>
-          <Item value="">All states</Item>
       </TableView>
-  );
+    </View>
+  )
 }
 ```
 

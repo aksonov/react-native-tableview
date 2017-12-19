@@ -22,6 +22,7 @@ const Example3 = () => {
       <TableView
         style={{ flex: 1 }}
         json="states"
+        selectedValue="ES53"
         filter={`country=='${country}'`}
         tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
         onPress={event => alert(JSON.stringify(event))}
