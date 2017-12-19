@@ -24,11 +24,10 @@
 
 ## Features
 
-* Look and feel native iOS TableView (with group/plain tableview type, sections
-  headers, etc)
-* Display long lists of data (like country list) - built-in list view has
-  performance issues for long lists
-* Use built-in accessory types (checkmark or disclosure indicator)
+* Look and feel of iOS TableView - **because it is!** (with group/plain
+  tableview type, sections headers, etc)
+* Display long lists of data (like country list) with no performance loss
+* Built-in accessory types (checkmark or disclosure indicator)
 * Automatic scroll to initial selected value during component initialization
   (autoFocus property)
 * Automatic item selection with "checkmark" with old item de-selection
@@ -42,8 +41,8 @@
   states for given country only (check demo)
 * Create custom UITableView cells with flexible height using React Native syntax
   (TableView.Cell tag)
-* Use tableview as menu to navigate to other app screen (check included demo, it
-  uses flux router https://github.com/aksonov/react-native-router-flux)
+* Use TableView as menu to navigate to other screens (check included demo, using
+  react-navigation https://reactnavigation.org)
 * Native editing mode for table - move/delete option is supported by using
   attributes canMove, canEdit for items/sections
 
