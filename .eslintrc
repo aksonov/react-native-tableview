@@ -10,7 +10,7 @@
     "no-unused-expressions": "off",
     "no-alert": "off",
     "no-debugger": "off",
-    "max-len": ["warn", 80],
+    "max-len": ["warn", 120],
     "no-restricted-syntax": "off",
     "no-param-reassign": "off"
   },

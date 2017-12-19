@@ -32,7 +32,7 @@ class TableView extends React.Component {
     onAccessoryPress: PropTypes.func,
     onWillDisplayCell: PropTypes.func,
     onEndDisplayingCell: PropTypes.func,
-    selectedValue: PropTypes.any, // string or integer basically
+    selectedValue: PropTypes.oneOf([PropTypes.string, PropTypes.number]), // string or integer basically
     autoFocus: PropTypes.bool,
     autoFocusAnimate: PropTypes.bool,
     alwaysBounceVertical: PropTypes.bool,
@@ -85,12 +85,32 @@ class TableView extends React.Component {
     tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
     separatorStyle: RNTableViewConsts.SeparatorStyle.Line,
     autoFocusAnimate: true,
+    autoFocus: false,
     alwaysBounceVertical: true,
     scrollEnabled: true,
     sectionIndexTitlesEnabled: false,
     showsHorizontalScrollIndicator: true,
     showsVerticalScrollIndicator: true,
+    moveWithinSectionOnly: false,
     style: null,
+    json: null,
+    selectedValue: null,
+    contentInset: {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
+    contentOffset: {
+      x: 0,
+      y: 0,
+    },
+    scrollIndicatorInsets: {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
     onChange: () => null,
     onScroll: () => null,
     onPress: () => null,
@@ -187,12 +207,7 @@ class TableView extends React.Component {
   }
 
   scrollTo(x, y, animated) {
-    NativeModules.RNTableViewManager.scrollTo(
-      findNodeHandle(this.tableView),
-      x,
-      y,
-      animated,
-    )
+    NativeModules.RNTableViewManager.scrollTo(findNodeHandle(this.tableView), x, y, animated)
   }
 
   _onScroll(event) {
@@ -208,8 +223,7 @@ class TableView extends React.Component {
       this.sections[data.selectedSection] &&
       this.sections[data.selectedSection].items[data.selectedIndex].onPress
     ) {
-      this.sections[data.selectedSection] &&
-        this.sections[data.selectedSection].items[data.selectedIndex].onPress(data)
+      this.sections[data.selectedSection] && this.sections[data.selectedSection].items[data.selectedIndex].onPress(data)
     }
 
     this.props.onPress(data)
@@ -222,9 +236,7 @@ class TableView extends React.Component {
     this.props.onAccessoryPress(data)
 
     if (this.sections) {
-      const pressedItem = this.sections[data.accessorySection].items[
-        data.accessoryIndex
-      ]
+      const pressedItem = this.sections[data.accessorySection].items[data.accessoryIndex]
 
       pressedItem.onAccessoryPress && pressedItem.onAccessoryPress(data)
     }
