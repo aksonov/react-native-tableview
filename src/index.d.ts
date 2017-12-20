@@ -41,6 +41,14 @@ declare module 'react-native-tableview' {
     }
   }
 
+  enum AccessoryType {
+    None = 0,
+    DisclosureIndicator,
+    DisclosureButton,
+    Checkmark,
+    DetailButton
+  }
+
   interface SectionProps {
     /**
      * Show the DisclosureIndicator accessory type
@@ -87,7 +95,7 @@ declare module 'react-native-tableview' {
     /**
      * Accessory type
      */
-    accessoryType?: Constants['AccessoryType']
+    accessoryType?: AccessoryType
   }
 
   class TableView extends React.Component<{}> {}
