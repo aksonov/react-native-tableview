@@ -68,11 +68,35 @@ declare module 'react-native-tableview' {
     footerHeight?: number
   }
 
+  interface ItemProps {
+    /**
+     * This value will be returned on event callbacks
+     */
+    value?: string | number
+
+    /**
+     * Show the Checkmark accessory type
+     */
+    selected?: boolean
+
+    /**
+     * Detail text to show
+     */
+    detail?: string
+
+    /**
+     * Accessory type
+     */
+    accessoryType?: Constants['AccessoryType']
+  }
+
   class TableView extends React.Component<{}> {}
 
   namespace TableView {
     const Consts: Constants
     class Section extends React.Component<SectionProps> {}
+    class Item extends React.Component<ItemProps> {}
+    class Cell extends React.Component<ItemProps> {}
   }
 
   export default TableView
