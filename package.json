@@ -3,6 +3,7 @@
   "version": "1.7.0",
   "description": "Native iOS TableView wrapper for React Native",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "lint": "eslint **/*.js"
   },
