@@ -6,7 +6,7 @@
 import * as React from 'react'
 
 declare module 'react-native-tableview' {
-  export interface ConstsModel {
+  export interface Constants {
     Style: {
       Plain: number
       Grouped: number
@@ -41,10 +41,38 @@ declare module 'react-native-tableview' {
     }
   }
 
+  interface SectionProps {
+    /**
+     * Show the DisclosureIndicator accessory type
+     */
+    arrow?: boolean
+
+    /**
+     * Title for header
+     */
+    label?: string
+
+    /**
+     * Title for header
+     */
+    footerLabel?: string
+
+    /**
+     * Height of header
+     */
+    headerHeight?: number
+
+    /**
+     * Height of footer
+     */
+    footerHeight?: number
+  }
+
   class TableView extends React.Component<{}> {}
 
   namespace TableView {
-    const Consts: ConstsModel
+    const Consts: Constants
+    class Section extends React.Component<SectionProps> {}
   }
 
   export default TableView
