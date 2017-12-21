@@ -4,7 +4,50 @@
 // TypeScript Version: 2.6
 
 import * as React from 'react'
-import { ViewStyle } from 'react-native'
+import { ViewStyle, EdgeInsetsPropType, PointPropType, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
+
+type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'bold' | 'normal'
+
+type FontStyle = 'italic' | 'normal' | 'oblique'
+
+interface CallBack {
+  cancelBubble: boolean
+  target: number
+}
+
+interface AccessoryCallBack extends CallBack {
+  accessoryIndex: number
+  accessorySection: number
+  accessoryType: number
+  children: string
+  footerLabel?: string
+  label?: string
+}
+
+interface DisplayCallBack extends CallBack {
+  row: number
+  section: number
+}
+
+interface OnPressCallBack extends CallBack {
+  children: string
+  selectedIndex: number
+  selectedSection: number
+  footerLabel?: string
+  label?: string
+}
+
+interface OnChangeCallBack extends CallBack {
+  sourceIndex: number
+  sourceSection: number
+  destinationIndex?: number
+  destinationSection?: number
+  mode: 'move' | 'delete'
+  canMove?: boolean
+  canEdit?: boolean
+  children?: string
+  label?: string
+}
 
 export interface Constants {
   Style: {
@@ -61,11 +104,32 @@ export enum TableViewCellStyle {
   Subtitle,
 }
 
+export enum CellEditingStyle {
+  None = 0,
+  Delete,
+  Insert,
+}
+
+export enum SeparatorStyle {
+  None = 0,
+  Line,
+}
+
 interface SectionProps {
   /**
    * Show the DisclosureIndicator accessory type
    */
   arrow?: boolean
+
+  /**
+   * If cell is allowed to be dragged in editing mode
+   */
+  canMove?: boolean
+
+  /**
+   * If cell can be deleted in editing mode
+   */
+  canEdit?: boolean
 
   /**
    * Title for header
@@ -108,12 +172,79 @@ interface ItemProps {
    * Accessory type
    */
   accessoryType?: AccessoryType
+
+  /**
+   * If cell is allowed to be dragged in editing mode
+   */
+  canMove?: boolean
+
+  /**
+   * If cell can be deleted in editing mode
+   */
+  canEdit?: boolean
+
+  /**
+   * Callback fired on pressing an accessory
+   */
+  onAccessoryPress?(event: AccessoryCallBack): void
+
+  /**
+   * Callback fired on pressing an item
+   */
+  onPress?(event: OnPressCallBack): void
 }
 
 interface TableViewProps {
   style?: ViewStyle
   tableViewStyle?: TableViewStyle
   tableViewCellStyle?: TableViewCellStyle
+  tableViewCellEditingStyle?: CellEditingStyle
+  separatorStyle?: SeparatorStyle
+  editing?: boolean
+  autoFocusAnimate?: boolean
+  autoFocus?: boolean
+  alwaysBounceVertical?: boolean
+  scrollEnabled?: boolean
+  allowsToggle?: boolean
+  allowsMultipleSelection?: boolean
+  sectionIndexTitlesEnabled?: boolean
+  showsHorizontalScrollIndicator?: boolean
+  showsVerticalScrollIndicator?: boolean
+  moveWithinSectionOnly?: boolean
+  selectedValue?: any
+  json?: string
+  filter?: string
+  contentInset?: EdgeInsetsPropType
+  contentOffset?: PointPropType
+  scrollIndicatorInsets?: EdgeInsetsPropType
+  textColor?: string
+  detailTextColor?: string
+  tintColor?: string
+  headerTextColor?: string
+  footerTextColor?: string
+  separatorColor?: string
+  fontSize?: number
+  fontWeight?: FontWeight
+  fontStyle?: FontStyle
+  fontFamily?: string
+  detailFontSize?: number
+  detailFontWeight?: FontWeight
+  detailFontStyle?: FontStyle
+  detailFontFamily?: string
+  headerFontSize?: number
+  headerFontWeight?: FontWeight
+  headerFontStyle?: FontStyle
+  headerFontFamily?: string
+  footerFontSize?: number
+  footerFontWeight?: FontWeight
+  footerFontStyle?: FontStyle
+  footerFontFamily?: string
+  onScroll?(event: NativeSyntheticEvent<NativeScrollEvent>): void
+  onPress?(event: OnPressCallBack): void
+  onChange?(event: OnChangeCallBack): void
+  onAccessoryPress?(event: AccessoryCallBack): void
+  onWillDisplayCell?(event: DisplayCallBack): void
+  onEndDisplayingCell?(event: DisplayCallBack): void
 }
 
 declare class TableView extends React.Component<TableViewProps> {}
