@@ -132,6 +132,9 @@ Checkamrk can also be applied by adding the `selected` prop on the Item.
 <Item selected>
 ```
 
+### Props
+For a full list of props on all components check out [the typescript definitions file](./src/index.d.ts).
+
 ### List item format
 
 Items in the list can be either `TableView.Item` or `TableView.Cell`. An `Item`
