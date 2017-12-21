@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -134,22 +135,6 @@ class TableView extends React.Component {
     headerTextColor: null,
     footerTextColor: null,
     separatorColor: null,
-    fontSize: null,
-    fontWeight: 'normal',
-    fontStyle: 'normal',
-    fontFamily: null,
-    detailFontSize: null,
-    detailFontWeight: 'normal',
-    detailFontStyle: 'normal',
-    detailFontFamily: null,
-    headerFontSize: null,
-    headerFontWeight: 'normal',
-    headerFontStyle: 'normal',
-    headerFontFamily: null,
-    footerFontSize: null,
-    footerFontWeight: 'normal',
-    footerFontStyle: 'normal',
-    footerFontFamily: null,
     onChange: () => null,
     onScroll: () => null,
     onPress: () => null,
