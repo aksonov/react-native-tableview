@@ -21,6 +21,11 @@ RCT_EXPORT_MODULE()
     return [[RNTableView alloc] initWithBridge:self.bridge];
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 - (NSArray *)customDirectEventTypes
 {
     return @[
@@ -52,11 +57,19 @@ RCT_EXPORT_VIEW_PROPERTY(selectedTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(selectedBackgroundColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(detailTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(headerTextColor, UIColor)
+RCT_EXPORT_VIEW_PROPERTY(footerTextColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(separatorColor, UIColor)
 RCT_EXPORT_VIEW_PROPERTY(moveWithinSectionOnly, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsToggle, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(allowsMultipleSelection, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(alwaysBounceVertical, BOOL)
+
+RCT_EXPORT_VIEW_PROPERTY(onEndDisplayingCell, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onWillDisplayCell, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onAccessoryPress, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onScroll, RCTDirectEventBlock)
 
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
@@ -112,43 +125,42 @@ RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
 
 - (NSDictionary *)constantsToExport {
     return @{
-        @"Constants": @{
-             @"Style": @{
-                     @"Plain": @(UITableViewStylePlain),
-                     @"Grouped": @(UITableViewStyleGrouped)
-                     },
-             @"CellStyle": @{
-                     @"Default": @(UITableViewCellStyleDefault),
-                     @"Value1": @(UITableViewCellStyleValue1),
-                     @"Value2": @(UITableViewCellStyleValue2),
-                     @"Subtitle": @(UITableViewCellStyleSubtitle)
-                     },
-             @"CellEditingStyle": @{
-                     @"None": @(UITableViewCellEditingStyleNone),
-                     @"Delete": @(UITableViewCellEditingStyleDelete),
-                     @"Insert": @(UITableViewCellEditingStyleInsert)
-                     },
-             @"CellSelectionStyle": @{
-                     @"None": @(UITableViewCellSelectionStyleNone),
-                     @"Blue": @(UITableViewCellSelectionStyleBlue),
-                     @"Gray": @(UITableViewCellSelectionStyleGray),
-                     @"Default": @(UITableViewCellSelectionStyleDefault)
-                     },
-             @"SeparatorStyle": @{
-                     @"None": @(UITableViewCellSeparatorStyleNone),
-                     @"Line": @(UITableViewCellSeparatorStyleSingleLine),
-                     @"LineEtched": @(UITableViewCellSeparatorStyleSingleLineEtched)
-                     },
-             @"AccessoryType": @{
-                     @"None": @(UITableViewCellAccessoryNone),
-                     @"DisclosureIndicator": @(UITableViewCellAccessoryDisclosureIndicator),
-                     @"DisclosureButton": @(UITableViewCellAccessoryDetailDisclosureButton),
-                     @"Checkmark": @(UITableViewCellAccessoryCheckmark),
-                     @"DetailButton": @(UITableViewCellAccessoryDetailButton)
+             @"Constants": @{
+                     @"Style": @{
+                             @"Plain": @(UITableViewStylePlain),
+                             @"Grouped": @(UITableViewStyleGrouped)
+                             },
+                     @"CellStyle": @{
+                             @"Default": @(UITableViewCellStyleDefault),
+                             @"Value1": @(UITableViewCellStyleValue1),
+                             @"Value2": @(UITableViewCellStyleValue2),
+                             @"Subtitle": @(UITableViewCellStyleSubtitle)
+                             },
+                     @"CellEditingStyle": @{
+                             @"None": @(UITableViewCellEditingStyleNone),
+                             @"Delete": @(UITableViewCellEditingStyleDelete),
+                             @"Insert": @(UITableViewCellEditingStyleInsert)
+                             },
+                     @"CellSelectionStyle": @{
+                             @"None": @(UITableViewCellSelectionStyleNone),
+                             @"Blue": @(UITableViewCellSelectionStyleBlue),
+                             @"Gray": @(UITableViewCellSelectionStyleGray),
+                             @"Default": @(UITableViewCellSelectionStyleDefault)
+                             },
+                     @"SeparatorStyle": @{
+                             @"None": @(UITableViewCellSeparatorStyleNone),
+                             @"Line": @(UITableViewCellSeparatorStyleSingleLine)
+                             },
+                     @"AccessoryType": @{
+                             @"None": @(UITableViewCellAccessoryNone),
+                             @"DisclosureIndicator": @(UITableViewCellAccessoryDisclosureIndicator),
+                             @"DisclosureButton": @(UITableViewCellAccessoryDetailDisclosureButton),
+                             @"Checkmark": @(UITableViewCellAccessoryCheckmark),
+                             @"DetailButton": @(UITableViewCellAccessoryDetailButton)
+                             }
                      }
-        }
-    };
-}
+             };
+    }
 
 RCT_CUSTOM_VIEW_PROPERTY(fontSize, CGFloat, RNTableView)
 {
@@ -238,15 +250,5 @@ RCT_EXPORT_METHOD(scrollTo:(nonnull NSNumber *)reactTag
          [view scrollToOffsetX:x offsetY:y animated:true];
      }];
 }
-
-//
-//- (NSDictionary *)constantsToExport
-//{
-//    UIPickerView *view = [[UIPickerView alloc] init];
-//    return @{
-//             @"ComponentHeight": @(view.intrinsicContentSize.height),
-//             @"ComponentWidth": @(view.intrinsicContentSize.width)
-//             };
-//}
 
 @end
