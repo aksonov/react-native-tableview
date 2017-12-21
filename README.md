@@ -83,10 +83,10 @@ These values are provided to the `tableViewStyle` prop.
 <TableView tableViewStyle={TableView.Consts.Style.Grouped}>
 ```
 
-| Style   | Value                          | Preview                                      |
-| ------- | ------------------------------ | -------------------------------------------- |
-| Plain   | `TableView.Consts.Style.Plain` | ![alt text](./.github/tableview-plain.png)   |
-| Grouped | `TableView.Consts.Style.Plain` | ![alt text](./.github/tableview-grouped.png) |
+| Style   | Value                            | Preview                                      |
+| ------- | -------------------------------- | -------------------------------------------- |
+| Plain   | `TableView.Consts.Style.Plain`   | ![alt text](./.github/tableview-plain.png)   |
+| Grouped | `TableView.Consts.Style.Grouped` | ![alt text](./.github/tableview-grouped.png) |
 
 ### UITableViewCell styles
 
@@ -133,7 +133,9 @@ Checkamrk can also be applied by adding the `selected` prop on the Item.
 ```
 
 ### Props
-For a full list of props on all components check out [the typescript definitions file](./src/index.d.ts).
+
+For a full list of props on all components check out
+[the typescript definitions file](./src/index.d.ts).
 
 ### List item format
 
