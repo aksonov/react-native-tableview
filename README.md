@@ -49,9 +49,8 @@
 ## Installation
 
 1. Installation
-   * Using npm: `npm install https://github.com/iRoachie/react-native-tableview
-     --save`
-   * Using yarn: `yarn add https://github.com/iRoachie/react-native-tableview`
+   * Using npm: `npm install react-native-tableview --save`
+   * Using yarn: `yarn add react-native-tableview`
 2. Link
    * `react-native link react-native-tableview`
    * If fails, follow manual linking steps below
