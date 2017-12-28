@@ -588,6 +588,11 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 #pragma mark - Scrolling
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!self.onScroll) {
+        // When rendering, `self.tableView.delegate` may be set before `onScroll` is passed in.
+        return;
+    }
+
     self.onScroll(@{
                     @"target": self.reactTag,
                     @"contentOffset": @{
