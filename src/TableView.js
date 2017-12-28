@@ -36,7 +36,7 @@ class TableView extends React.Component {
     onAccessoryPress: PropTypes.func,
     onWillDisplayCell: PropTypes.func,
     onEndDisplayingCell: PropTypes.func,
-    selectedValue: PropTypes.oneOf([PropTypes.string, PropTypes.number]), // string or integer basically
+    selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // string or integer basically
     autoFocus: PropTypes.bool,
     autoFocusAnimate: PropTypes.bool,
     alwaysBounceVertical: PropTypes.bool,
