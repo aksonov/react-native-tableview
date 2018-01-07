@@ -211,7 +211,7 @@ interface TableViewProps {
   showsHorizontalScrollIndicator?: boolean
   showsVerticalScrollIndicator?: boolean
   moveWithinSectionOnly?: boolean
-  selectedValue?: any
+  selectedValue?: string | number
   json?: string
   filter?: string
   contentInset?: EdgeInsetsPropType
