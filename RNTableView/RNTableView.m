@@ -22,6 +22,7 @@
 }
 @property (strong, nonatomic) NSMutableArray *selectedIndexes;
 @property (strong, nonatomic) UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -230,6 +231,29 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (self.footerFont){
         footer.textLabel.font = self.footerFont;
     }
+}
+
+-(void)addRefresh  {
+    self.tableView.refreshControl = [[UIRefreshControl alloc] init];
+    
+    [self.tableView.refreshControl addTarget:self action:@selector(onRefreshBegin:) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)onRefreshBegin:(UIRefreshControl *)sender{
+    self.onRefresh(@{});
+    
+    if(self.refreshing == NO) {
+        [self.tableView.refreshControl endRefreshing];
+        self.tableView.refreshControl.layer.zPosition -= 1;
+    }
+}
+
+-(void)startRefreshing {
+    [self.tableView.refreshControl beginRefreshing];
+}
+
+-(void)stopRefreshing {
+    [self.tableView.refreshControl endRefreshing];
 }
 
 

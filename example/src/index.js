@@ -7,6 +7,7 @@ import Example3 from './screens/Example3'
 import Example4 from './screens/Example4'
 import Example5 from './screens/Example5'
 import Example6 from './screens/Example6'
+import Example7 from './screens/Example7'
 
 import TableViewExampleCell from './cells/TableViewExampleCell'
 
@@ -54,6 +55,12 @@ const Stack = StackNavigator(
         title: 'Editing Mode',
       },
     },
+    refresh: {
+      screen: Example7,
+      navigationOptions: {
+        title: 'Pull to Refresh',
+      },
+    },
   },
   {
     navigationOptions: {
@@ -67,7 +74,4 @@ const Stack = StackNavigator(
 )
 
 AppRegistry.registerComponent('TableViewDemo', () => Stack)
-AppRegistry.registerComponent(
-  'TableViewExampleCell',
-  () => TableViewExampleCell,
-)
+AppRegistry.registerComponent('TableViewExampleCell', () => TableViewExampleCell)
