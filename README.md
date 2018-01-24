@@ -28,6 +28,7 @@
   tableview type, sections headers, etc)
 * Display long lists of data (like country list) with no performance loss
 * Built-in accessory types (checkmark or disclosure indicator)
+* Pull to refresh!
 * Automatic scroll to initial selected value during component initialization
   (autoFocus property)
 * Automatic item selection with "checkmark" with old item de-selection
@@ -238,6 +239,67 @@ render() {
           <Item>Item 7</Item>
           <Item>Item 8</Item>
         </Section>
+      </TableView>
+    </View>
+  )
+}
+```
+
+### Pull to Refresh
+
+![pull to refresh example](./.github/pull-to-refresh-example.gif)
+
+```jsx
+state = {
+  loading: true,
+  users: [],
+  refreshing: false,
+  amount: 10,
+}
+
+async componentWillMount() {
+  const users = await this.fetchUsers()
+
+  this.setState({
+    loading: false,
+    users,
+  })
+}
+
+fetchUsers = async () => {
+  const response = await fetch('https://randomuser.me/api/?results=10')
+  const data = await response.json()
+
+  return data.results.map(a => ({
+    name: `${a.name.first} ${a.name.last}`,
+    id: a.registered,
+  }))
+}
+
+fetchMore = () => {
+  this.setState({ refreshing: true }, async () => {
+    const users = await this.fetchUsers()
+    this.setState({ users: [...users, ...this.state.users], refreshing: false, amount: this.state.amount + 10 })
+  })
+}
+
+render() {
+  return (
+    <View style={{ flex: 1 }}>
+      <Text style={styles.title}>
+        {this.state.loading ? 'Fetching' : 'Fetched'} {this.state.amount} users
+      </Text>
+
+      {this.state.loading && <ActivityIndicator />}
+
+      <TableView
+        style={{ flex: 1 }}
+        tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
+        canRefresh
+        refreshing={this.state.refreshing}
+        onRefresh={this.fetchMore}
+      >
+        <Section>{this.state.users.map(a => <Item key={a.id}>{a.name}</Item>)}</Section>
       </TableView>
     </View>
   )

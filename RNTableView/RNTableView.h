@@ -43,6 +43,8 @@
 @property(nonatomic, assign) UIEdgeInsets scrollIndicatorInsets;
 @property(nonatomic, assign) BOOL showsHorizontalScrollIndicator;
 @property(nonatomic, assign) BOOL showsVerticalScrollIndicator;
+@property(nonatomic, assign) BOOL canRefresh;
+@property(nonatomic, assign) BOOL refreshing;
 
 @property(nonatomic, assign) UITableViewStyle tableViewStyle;
 @property(nonatomic, assign) UITableViewCellStyle tableViewCellStyle;
@@ -79,7 +81,11 @@
 @property(nonatomic, copy) RCTBubblingEventBlock onAccessoryPress;
 @property(nonatomic, copy) RCTBubblingEventBlock onChange;
 @property(nonatomic, copy) RCTDirectEventBlock onScroll;
+@property(nonatomic, copy) RCTDirectEventBlock onRefresh;
 
+- (void)addRefresh;
+- (void)stopRefreshing;
+- (void)startRefreshing;
 - (void)scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated;
 
 @end

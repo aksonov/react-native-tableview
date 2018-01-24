@@ -211,6 +211,17 @@ interface TableViewProps {
   showsHorizontalScrollIndicator?: boolean
   showsVerticalScrollIndicator?: boolean
   moveWithinSectionOnly?: boolean
+  /**
+   * If the tableview can pull to refresh
+   */
+  canRefresh?: boolean
+
+  /**
+   * Current refreshing status.
+   *
+   * Used to hide or show the loading indicator while refreshing
+   */
+  refreshing?: boolean
   selectedValue?: string | number
   json?: string
   filter?: string
@@ -242,6 +253,10 @@ interface TableViewProps {
   onScroll?(event: NativeSyntheticEvent<NativeScrollEvent>): void
   onPress?(event: OnPressCallBack): void
   onChange?(event: OnChangeCallBack): void
+  /**
+   * Fired when pull to refresh is active
+   */
+  onRefresh?(): void
   onAccessoryPress?(event: AccessoryCallBack): void
   onWillDisplayCell?(event: DisplayCallBack): void
   onEndDisplayingCell?(event: DisplayCallBack): void

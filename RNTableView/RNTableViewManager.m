@@ -70,7 +70,17 @@ RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onAccessoryPress, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onScroll, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onRefresh, RCTDirectEventBlock)
 
+RCT_CUSTOM_VIEW_PROPERTY(refreshing, BOOL, RNTableView) {
+    view.refreshing = [RCTConvert BOOL:json];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(canRefresh, BOOL, RNTableView) {
+    if([RCTConvert BOOL:json]) {
+        [view addRefresh];
+    }
+}
 
 RCT_CUSTOM_VIEW_PROPERTY(tableViewStyle, UITableViewStyle, RNTableView) {
     [view setTableViewStyle:[RCTConvert NSInteger:json]];
@@ -213,7 +223,6 @@ RCT_CUSTOM_VIEW_PROPERTY(headerFontFamily, NSString, RNTableView)
     view.headerFont = [RCTFont updateFont:view.headerFont withFamily:json ?: defaultView.font.familyName];
 }
 
-
 RCT_CUSTOM_VIEW_PROPERTY(footerFontSize, CGFloat, RNTableView)
 {
     view.footerFont = [RCTFont updateFont:view.footerFont withSize:json ?: @(defaultView.font.pointSize)];
@@ -248,6 +257,34 @@ RCT_EXPORT_METHOD(scrollTo:(nonnull NSNumber *)reactTag
              RCTLogError(@"Invalid view returned from registry, expecting RNTableView, got: %@", view);
          }
          [view scrollToOffsetX:x offsetY:y animated:true];
+     }];
+}
+
+RCT_EXPORT_METHOD(startRefreshing:(nonnull NSNumber *)reactTag)
+{
+    [self.bridge.uiManager addUIBlock:
+     ^(__unused RCTUIManager *uiManager, NSDictionary *viewRegistry){
+         RNTableView *tableView = viewRegistry[reactTag];
+         
+         if ([tableView isKindOfClass:[RNTableView class]]) {
+             [tableView startRefreshing];
+         } else {
+             RCTLogError(@"Cannot startRefreshing: %@ (tag #%@) is not RNTableView", tableView, reactTag);
+         }
+     }];
+}
+
+RCT_EXPORT_METHOD(stopRefreshing:(nonnull NSNumber *)reactTag)
+{
+    [self.bridge.uiManager addUIBlock:
+     ^(__unused RCTUIManager *uiManager, NSDictionary *viewRegistry){
+         RNTableView *tableView = viewRegistry[reactTag];
+         
+         if ([tableView isKindOfClass:[RNTableView class]]) {
+             [tableView stopRefreshing];
+         } else {
+             RCTLogError(@"Cannot stopRefreshing: %@ (tag #%@) is not RNTableView", tableView, reactTag);
+         }
      }];
 }
 
