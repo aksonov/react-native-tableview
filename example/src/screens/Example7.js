@@ -22,28 +22,27 @@ class Example7 extends React.Component {
   }
 
   async componentWillMount() {
-    const response = await fetch('https://randomuser.me/api/?results=10')
-    const data = await response.json()
+    const users = await this.fetchUsers()
 
     this.setState({
       loading: false,
-      users: data.results.map(a => ({
-        name: `${a.name.first} ${a.name.last}`,
-        id: a.registered,
-      })),
+      users,
     })
+  }
+
+  fetchUsers = async () => {
+    const response = await fetch('https://randomuser.me/api/?results=10')
+    const data = await response.json()
+
+    return data.results.map(a => ({
+      name: `${a.name.first} ${a.name.last}`,
+      id: a.registered,
+    }))
   }
 
   fetchMore = () => {
     this.setState({ refreshing: true }, async () => {
-      const response = await fetch('https://randomuser.me/api/?results=10')
-      const data = await response.json()
-
-      const users = data.results.map(a => ({
-        name: `${a.name.first} ${a.name.last}`,
-        id: a.registered,
-      }))
-
+      const users = await this.fetchUsers()
       this.setState({ users: [...users, ...this.state.users], refreshing: false, amount: this.state.amount + 10 })
     })
   }
