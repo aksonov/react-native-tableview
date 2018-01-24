@@ -95,6 +95,9 @@ class TableView extends React.Component {
     tableViewCellStyle: PropTypes.number,
     tableViewCellEditingStyle: PropTypes.number,
     style: ViewPropTypes.style,
+    refreshing: PropTypes.bool,
+    onRefresh: PropTypes.func,
+    canRefresh: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -110,6 +113,8 @@ class TableView extends React.Component {
     showsHorizontalScrollIndicator: true,
     showsVerticalScrollIndicator: true,
     moveWithinSectionOnly: false,
+    canRefresh: false,
+    refreshing: false,
     style: null,
     json: null,
     selectedValue: null,
@@ -138,6 +143,7 @@ class TableView extends React.Component {
     onChange: () => null,
     onScroll: () => null,
     onPress: () => null,
+    onRefresh: () => null,
     onAccessoryPress: () => null,
     onWillDisplayCell: () => null,
     onEndDisplayingCell: () => null,
@@ -152,6 +158,14 @@ class TableView extends React.Component {
   componentWillReceiveProps(nextProps) {
     const state = this._stateFromProps(nextProps)
     this.setState(state)
+
+    if (this.props.refreshing === false && nextProps.refreshing) {
+      NativeModules.RNTableViewManager.startRefreshing(findNodeHandle(this.tableView))
+    }
+
+    if (this.props.refreshing && !nextProps.refreshing) {
+      NativeModules.RNTableViewManager.stopRefreshing(findNodeHandle(this.tableView))
+    }
   }
 
   // Translate TableView prop and children into stuff that RNTableView understands.
