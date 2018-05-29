@@ -87,5 +87,6 @@
 - (void)stopRefreshing;
 - (void)startRefreshing;
 - (void)scrollToOffsetX:(CGFloat)x offsetY:(CGFloat)y animated:(BOOL)animated;
+- (void)scrollToIndex:(NSInteger)index inSection:(NSInteger)inSection animated:(BOOL)animated;
 
 @end
