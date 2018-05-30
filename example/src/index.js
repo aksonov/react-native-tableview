@@ -8,6 +8,7 @@ import Example4 from './screens/Example4'
 import Example5 from './screens/Example5'
 import Example6 from './screens/Example6'
 import Example7 from './screens/Example7'
+import Example8 from './screens/Example8'
 
 import TableViewExampleCell from './cells/TableViewExampleCell'
 
@@ -59,6 +60,12 @@ const Stack = StackNavigator(
       screen: Example7,
       navigationOptions: {
         title: 'Pull to Refresh',
+      },
+    },
+    index: {
+      screen: Example8,
+      navigationOptions: {
+        title: 'Scroll to Index',
       },
     },
   },

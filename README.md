@@ -126,7 +126,7 @@ section.
 <Section arrow>
 ```
 
-Checkamrk can also be applied by adding the `selected` prop on the Item.
+Checkmark can also be applied by adding the `selected` prop on the Item.
 
 ```jsx
 <Item selected>
@@ -136,6 +136,36 @@ Checkamrk can also be applied by adding the `selected` prop on the Item.
 
 For a full list of props on all components check out
 [the typescript definitions file](./src/index.d.ts).
+
+
+### Methods
+
+#### `scrollTo()`
+
+Scrolls to a set of coordinates on the tableview.
+
+```ts
+/**
+  * @param x Horizontal pixels to scroll
+  * @param y Vertical pixels to scroll
+  * @param animated With animation or not
+  */
+  scrollTo(x: number, y: number, animated: boolean): void;
+```
+
+#### `scrollToIndex()`
+
+Scroll to an item in a section
+
+```ts
+/**
+  * @param params scroll params
+  * @param params.index index of the cell
+  * @param params.section index of the section @default 0
+  * @param params.animated scroll with animation @default true
+  */
+  scrollToIndex(params: { index: number, section?: number, animated?: boolean }): void;
+```
 
 ### List item format
 
@@ -366,7 +396,7 @@ Catalog". In this case an `imageWidth` prop is recommended.
 ;<Item image="icon-success.png" imageWidth={40} />
 ```
 
-Alernatively, you can `require` the image from your local app code. In this case
+Alternatively, you can `require` the image from your local app code. In this case
 an `imageWidth` is unnecessary.
 
 ```jsx

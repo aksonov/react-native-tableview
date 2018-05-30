@@ -262,7 +262,26 @@ interface TableViewProps {
   onEndDisplayingCell?(event: DisplayCallBack): void
 }
 
-declare class TableView extends React.Component<TableViewProps> {}
+declare class TableView extends React.Component<TableViewProps> {
+  /**
+   * Scroll to coordinates
+   * 
+   * @param x Horizontal pixels to scroll
+   * @param y Vertical pixels to scroll
+   * @param animated With animation or not
+   */
+  scrollTo(x: number, y: number, animated: boolean): void;
+
+  /**
+   * Scroll to an index
+   * 
+   * @param params scroll params
+   * @param params.index index of the cell
+   * @param params.section index of the section @default 0
+   * @param params.animated scroll with animation @default true
+   */
+  scrollToIndex(params: { index: number, section?: number, animated?: boolean }): void;
+}
 
 declare namespace TableView {
   const Consts: Constants
