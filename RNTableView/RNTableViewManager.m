@@ -260,6 +260,21 @@ RCT_EXPORT_METHOD(scrollTo:(nonnull NSNumber *)reactTag
      }];
 }
 
+RCT_EXPORT_METHOD(scrollToIndex:(nonnull NSNumber *)reactTag
+                  index:(NSInteger)index
+                  inSection:(NSInteger)inSection
+                  animated:(BOOL)animated)
+{
+    [self.bridge.uiManager addUIBlock:
+     ^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry){
+         RNTableView *view = viewRegistry[reactTag];
+         if (![view isKindOfClass:[RNTableView class]]) {
+             RCTLogError(@"Invalid view returned from registry, expecting RNTableView, got: %@", view);
+         }
+         [view scrollToIndex:index inSection:inSection animated:animated];
+     }];
+}
+
 RCT_EXPORT_METHOD(startRefreshing:(nonnull NSNumber *)reactTag)
 {
     [self.bridge.uiManager addUIBlock:

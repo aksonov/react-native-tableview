@@ -196,6 +196,11 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [_tableView setContentOffset:CGPointMake(x, y) animated:animated];
 }
 
+- (void) scrollToIndex:(NSInteger)index inSection:(NSInteger)inSection animated:(BOOL)animated {
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:index inSection:inSection];
+    [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:animated];
+}
+
 #pragma mark - Private APIs
 
 - (void)createTableView {
