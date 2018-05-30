@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation';
 import Home from './screens/Home'
 import Example1 from './screens/Example1'
 import Example2 from './screens/Example2'
@@ -12,7 +12,7 @@ import Example8 from './screens/Example8'
 
 import TableViewExampleCell from './cells/TableViewExampleCell'
 
-const Stack = StackNavigator(
+const Stack = createStackNavigator(
   {
     home: {
       screen: Home,
