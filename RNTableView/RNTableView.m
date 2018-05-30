@@ -256,6 +256,13 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [self.tableView.refreshControl endRefreshing];
 }
 
+-(void)scrollToIndex: (NSInteger)index section:(NSInteger)section animated:(BOOL)animated {
+    if ([self.tableView numberOfRowsInSection:section] > index) {
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:index inSection:section];
+        [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    }
+}
+
 
 -(void)setHeaderHeight:(float)headerHeight {
     _headerHeight = headerHeight;
