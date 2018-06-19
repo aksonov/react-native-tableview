@@ -335,32 +335,24 @@ class TableView extends React.Component {
 
   render() {
     return (
-      <View style={[{ flex: 1 }, this.props.style]}>
-        <RNTableView
-          ref={(ref) => {
-            this.tableView = ref
-          }}
-          style={this.props.style}
-          sections={this.state.sections}
-          additionalItems={this.state.additionalItems}
-          tableViewStyle={this.props.tableViewStyle}
-          tableViewCellStyle={this.props.tableViewCellStyle}
-          tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
-          separatorStyle={this.props.separatorStyle}
-          scrollIndicatorInsets={this.props.contentInset}
-          alwaysBounceVertical={this.props.alwaysBounceVertical}
-          {...this.props}
-          json={this.state.json}
-          onScroll={(...args) => this._onScroll(...args)}
-          onPress={(...args) => this._onPress(...args)}
-          onAccessoryPress={(...args) => this._onAccessoryPress(...args)}
-          onChange={(...args) => this._onChange(...args)}
-          onWillDisplayCell={(...args) => this._onWillDisplayCell(...args)}
-          onEndDisplayingCell={(...args) => this._onEndDisplayingCell(...args)}
-        >
-          {this.state.children}
-        </RNTableView>
-      </View>
+      <RNTableView
+        ref={(ref) => {
+          this.tableView = ref
+        }}
+        sections={this.state.sections}
+        scrollIndicatorInsets={this.props.contentInset}
+        {...this.props}
+        style={[{ flex: 1 }, this.props.style]}
+        json={this.state.json}
+        onScroll={(...args) => this._onScroll(...args)}
+        onPress={(...args) => this._onPress(...args)}
+        onAccessoryPress={(...args) => this._onAccessoryPress(...args)}
+        onChange={(...args) => this._onChange(...args)}
+        onWillDisplayCell={(...args) => this._onWillDisplayCell(...args)}
+        onEndDisplayingCell={(...args) => this._onEndDisplayingCell(...args)}
+      >
+        {this.state.children}
+      </RNTableView>
     )
   }
 }
