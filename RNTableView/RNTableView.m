@@ -53,6 +53,12 @@
     [self.tableView setScrollEnabled:scrollEnabled];
 }
 
+- (void)setAlwaysBounceVertical:(BOOL)alwaysBounceVertical {
+    _alwaysBounceVertical = alwaysBounceVertical;
+    
+    [self.tableView setAlwaysBounceVertical:alwaysBounceVertical];
+}
+
 -(void)setSectionIndexTitlesEnabled:(BOOL)sectionIndexTitlesEnabled
 {
     _sectionIndexTitlesEnabled = sectionIndexTitlesEnabled;
@@ -222,6 +228,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [_tableView registerClass:[RNReactModuleCell class] forCellReuseIdentifier:_reactModuleCellReuseIndentifier];
     [self addSubview:_tableView];
 }
+
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *footer = (UITableViewHeaderFooterView *)view;
     
@@ -263,10 +270,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 }
 
-
 -(void)setHeaderHeight:(float)headerHeight {
     _headerHeight = headerHeight;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (_sections[section][@"headerHeight"]){
         return [_sections[section][@"headerHeight"] floatValue] ? [_sections[section][@"headerHeight"] floatValue] : 0.000001;
@@ -383,7 +390,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     self.onEndDisplayingCell(@{@"target":self.reactTag, @"row":@(indexPath.row), @"section": @(indexPath.section)});
 }
-
 
 - (void)setSections:(NSArray *)sections
 {
