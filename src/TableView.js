@@ -101,7 +101,6 @@ class TableView extends React.Component {
   }
 
   static defaultProps = {
-    tableViewStyle: RNTableViewConsts.Style.Plain,
     tableViewCellStyle: RNTableViewConsts.CellStyle.Subtitle,
     tableViewCellEditingStyle: RNTableViewConsts.CellEditingStyle.Delete,
     separatorStyle: RNTableViewConsts.SeparatorStyle.Line,
