@@ -4,7 +4,7 @@
 // TypeScript Version: 2.6
 
 import * as React from 'react'
-import { ViewStyle, EdgeInsetsPropType, PointPropType, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
+import { ViewStyle, Insets, PointPropType, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
 
 type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'bold' | 'normal'
 
@@ -225,9 +225,9 @@ interface TableViewProps {
   selectedValue?: string | number
   json?: string
   filter?: string
-  contentInset?: EdgeInsetsPropType
+  contentInset?: Insets
   contentOffset?: PointPropType
-  scrollIndicatorInsets?: EdgeInsetsPropType
+  scrollIndicatorInsets?: Insets
   textColor?: string
   detailTextColor?: string
   tintColor?: string
