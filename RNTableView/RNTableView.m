@@ -488,8 +488,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if ([item[@"transparent"] intValue]) {
         cell.backgroundColor = [UIColor clearColor];
     }
-    if (item[@"selectionStyle"]) {
-        cell.selectionStyle = [item[@"selectionStyle"] intValue];
+    if (item[@"selectionStyle"] != nil) {
+        cell.selectionStyle = [RCTConvert int:item[@"selectionStyle"]];
     }
     return cell;
 }

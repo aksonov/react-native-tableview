@@ -182,6 +182,11 @@ interface ItemProps {
    * If cell can be deleted in editing mode
    */
   canEdit?: boolean
+  
+  /**
+   * Cell selection style
+   */
+  selectionStyle?: CellSelectionStyle
 
   /**
    * Callback fired on pressing an accessory
