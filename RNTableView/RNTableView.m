@@ -303,21 +303,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.emptyInsets){
-        // Remove separator inset
-        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-            [cell setSeparatorInset:UIEdgeInsetsZero];
-        }
-        
-        // Prevent the cell from inheriting the Table View's margin settings
-        if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-            [cell setPreservesSuperviewLayoutMargins:NO];
-        }
-        
-        // Explictly set your cell's layout margins
-        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-        }
+    if (self.hasCellLayoutMargins && [cell respondsToSelector:@selector(setLayoutMargins:)] && [cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+        [cell setLayoutMargins:self.cellLayoutMargins];
+    }
+    if (self.hasCellSeparatorInset && [cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:self.cellSeparatorInset];
     }
     if (self.font){
         cell.detailTextLabel.font = self.font;

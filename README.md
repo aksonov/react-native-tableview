@@ -346,6 +346,8 @@ The following style props are supported:
 * `contentInset`
 * `contentOffset`
 * `scrollIndicatorInsets`
+* `cellLayoutMargins`
+* `cellSeparatorInset`
 
 Colors:
 

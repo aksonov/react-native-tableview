@@ -259,7 +259,9 @@ interface TableViewProps {
   onRefresh?(): void
   onAccessoryPress?(event: AccessoryCallBack): void
   onWillDisplayCell?(event: DisplayCallBack): void
-  onEndDisplayingCell?(event: DisplayCallBack): void
+  onEndDisplayingCell?(event: DisplayCallBack): void,
+  cellSeparatorInset: Insets,
+  cellLayoutMargins: Insets
 }
 
 declare class TableView extends React.Component<TableViewProps> {
