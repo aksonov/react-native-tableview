@@ -138,7 +138,8 @@ RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
              @"Constants": @{
                      @"Style": @{
                              @"Plain": @(UITableViewStylePlain),
-                             @"Grouped": @(UITableViewStyleGrouped)
+                             @"Grouped": @(UITableViewStyleGrouped),
+                             @"None": [NSNull null]
                              },
                      @"CellStyle": @{
                              @"Default": @(UITableViewCellStyleDefault),

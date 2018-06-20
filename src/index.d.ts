@@ -94,7 +94,8 @@ export enum AccessoryType {
 
 export enum TableViewStyle {
   Plain = 0,
-  Grouped,
+  Grouped = 1,
+  None = null
 }
 
 export enum TableViewCellStyle {
