@@ -448,8 +448,13 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
               #import <RNTableView/RNAppGlobals.h>\n\
               [[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge]");
     RNReactModuleCell *cell = [tableView dequeueReusableCellWithIdentifier:_reactModuleCellReuseIndentifier];
+    NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
     if (cell == nil) {
-        cell = [[RNReactModuleCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:_reactModuleCellReuseIndentifier bridge: _bridge data:data indexPath:indexPath reactModule:_reactModuleForCell tableViewTag:self.reactTag];
+        int cellStyle = [RCTConvert int:item[@"cellStyle"]];
+        if (cellStyle == nil) {
+            cellStyle = self.tableViewCellStyle;
+        }
+        cell = [[RNReactModuleCell alloc] initWithStyle:cellStyle reuseIdentifier:_reactModuleCellReuseIndentifier bridge: _bridge data:data indexPath:indexPath reactModule:_reactModuleForCell tableViewTag:self.reactTag];
     } else {
         [cell setUpAndConfigure:data bridge:_bridge indexPath:indexPath reactModule:_reactModuleForCell tableViewTag:self.reactTag];
     }
@@ -468,7 +473,11 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:self.tableViewCellStyle reuseIdentifier:@"Cell"];
+            int cellStyle = [RCTConvert int:item[@"cellStyle"]];
+            if (cellStyle == nil) {
+                cellStyle = self.tableViewCellStyle;
+            }
+            cell = [[UITableViewCell alloc] initWithStyle:cellStyle reuseIdentifier:@"Cell"];
         }
         cell.textLabel.text = item[@"label"];
         cell.detailTextLabel.text = item[@"detail"];
@@ -600,8 +609,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView
-          editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
+    int cellEditingStyle = [RCTConvert int:item[@"cellEditingStyle"]];
+    if (cellEditingStyle != nil) {
+        return cellEditingStyle;
+    }
     return self.tableViewCellEditingStyle;
 }
 
