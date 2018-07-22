@@ -4,7 +4,7 @@
 // TypeScript Version: 2.6
 
 import * as React from 'react'
-import { ViewStyle, EdgeInsetsPropType, PointPropType, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
+import { ViewStyle, Insets, PointPropType, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
 
 type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'bold' | 'normal'
 
@@ -182,6 +182,11 @@ interface ItemProps {
    * If cell can be deleted in editing mode
    */
   canEdit?: boolean
+  
+  /**
+   * Cell selection style
+   */
+  selectionStyle?: CellSelectionStyle
 
   /**
    * Callback fired on pressing an accessory
@@ -225,9 +230,9 @@ interface TableViewProps {
   selectedValue?: string | number
   json?: string
   filter?: string
-  contentInset?: EdgeInsetsPropType
+  contentInset?: Insets
   contentOffset?: PointPropType
-  scrollIndicatorInsets?: EdgeInsetsPropType
+  scrollIndicatorInsets?: Insets
   textColor?: string
   detailTextColor?: string
   tintColor?: string
@@ -259,7 +264,9 @@ interface TableViewProps {
   onRefresh?(): void
   onAccessoryPress?(event: AccessoryCallBack): void
   onWillDisplayCell?(event: DisplayCallBack): void
-  onEndDisplayingCell?(event: DisplayCallBack): void
+  onEndDisplayingCell?(event: DisplayCallBack): void,
+  cellSeparatorInset: Insets,
+  cellLayoutMargins: Insets
 }
 
 declare class TableView extends React.Component<TableViewProps> {

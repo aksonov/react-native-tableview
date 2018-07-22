@@ -41,7 +41,6 @@ RCT_EXPORT_VIEW_PROPERTY(json, NSString)
 RCT_EXPORT_VIEW_PROPERTY(editing, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(autoFocus, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(autoFocusAnimate, BOOL)
-RCT_EXPORT_VIEW_PROPERTY(emptyInsets, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(filter, NSString)
 RCT_EXPORT_VIEW_PROPERTY(selectedValue, id)
 RCT_EXPORT_VIEW_PROPERTY(filterArgs, NSArray)
@@ -131,6 +130,16 @@ RCT_CUSTOM_VIEW_PROPERTY(showsHorizontalScrollIndicator, BOOL, RNTableView) {
 
 RCT_CUSTOM_VIEW_PROPERTY(showsVerticalScrollIndicator, BOOL, RNTableView) {
     [view setShowsVerticalScrollIndicator:[RCTConvert BOOL:json]];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(cellSeparatorInset, UIEdgeInsets, RNTableView) {
+    view.hasCellSeparatorInset = YES;
+    view.cellSeparatorInset = [RCTConvert UIEdgeInsets:json];
+}
+
+RCT_CUSTOM_VIEW_PROPERTY(cellLayoutMargins, UIEdgeInsets, RNTableView) {
+    view.hasCellLayoutMargins = YES;
+    view.cellLayoutMargins = [RCTConvert UIEdgeInsets:json];
 }
 
 - (NSDictionary *)constantsToExport {

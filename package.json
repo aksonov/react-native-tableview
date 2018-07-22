@@ -1,6 +1,6 @@
 {
   "name": "react-native-tableview",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Native iOS TableView wrapper for React Native",
   "main": "src/index.js",
   "types": "src/index.d.ts",
@@ -11,7 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/aksonov/react-native-tableview.git"
   },
-  "keywords": ["react-native", "react-component", "UITableView", "tableview", "iOS"],
+  "keywords": [
+    "react-native",
+    "react-component",
+    "UITableView",
+    "tableview",
+    "iOS"
+  ],
   "author": {
     "name": "Pavlo Aksonov",
     "email": "akso.nov@gmail.com",
@@ -23,23 +29,23 @@
   },
   "homepage": "https://github.com/aksonov/react-native-tableview#readme",
   "dependencies": {
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.2"
   },
   "peerDependencies": {
     "react": ">=15.1 || >=16.0.0",
     "react-native": ">=0.40"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.2",
-    "eslint": "^4.9.0",
+    "babel-eslint": "^8.2.6",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "eslint-plugin-react-native": "^3.1.0",
-    "prettier": "^1.8.2",
-    "prettier-eslint": "^8.2.1",
-    "react": "16.0.0",
-    "react-native": "^0.50.3"
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "eslint-plugin-react-native": "^3.2.1",
+    "prettier": "^1.13.7",
+    "prettier-eslint": "^8.8.2",
+    "react": "16.4.1",
+    "react-native": "0.56.0"
   }
 }

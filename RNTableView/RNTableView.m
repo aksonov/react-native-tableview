@@ -53,6 +53,12 @@
     [self.tableView setScrollEnabled:scrollEnabled];
 }
 
+- (void)setAlwaysBounceVertical:(BOOL)alwaysBounceVertical {
+    _alwaysBounceVertical = alwaysBounceVertical;
+    
+    [self.tableView setAlwaysBounceVertical:alwaysBounceVertical];
+}
+
 -(void)setSectionIndexTitlesEnabled:(BOOL)sectionIndexTitlesEnabled
 {
     _sectionIndexTitlesEnabled = sectionIndexTitlesEnabled;
@@ -222,6 +228,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [_tableView registerClass:[RNReactModuleCell class] forCellReuseIdentifier:_reactModuleCellReuseIndentifier];
     [self addSubview:_tableView];
 }
+
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(nonnull UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *footer = (UITableViewHeaderFooterView *)view;
     
@@ -263,10 +270,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     }
 }
 
-
 -(void)setHeaderHeight:(float)headerHeight {
     _headerHeight = headerHeight;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (_sections[section][@"headerHeight"]){
         return [_sections[section][@"headerHeight"] floatValue] ? [_sections[section][@"headerHeight"] floatValue] : 0.000001;
@@ -303,21 +310,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.emptyInsets){
-        // Remove separator inset
-        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-            [cell setSeparatorInset:UIEdgeInsetsZero];
-        }
-        
-        // Prevent the cell from inheriting the Table View's margin settings
-        if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-            [cell setPreservesSuperviewLayoutMargins:NO];
-        }
-        
-        // Explictly set your cell's layout margins
-        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-        }
+    if (self.hasCellLayoutMargins && [cell respondsToSelector:@selector(setLayoutMargins:)] && [cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+        [cell setLayoutMargins:self.cellLayoutMargins];
+    }
+    if (self.hasCellSeparatorInset && [cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:self.cellSeparatorInset];
     }
     if (self.font){
         cell.detailTextLabel.font = self.font;
@@ -383,7 +381,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     self.onEndDisplayingCell(@{@"target":self.reactTag, @"row":@(indexPath.row), @"section": @(indexPath.section)});
 }
-
 
 - (void)setSections:(NSArray *)sections
 {
@@ -491,8 +488,8 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if ([item[@"transparent"] intValue]) {
         cell.backgroundColor = [UIColor clearColor];
     }
-    if (item[@"selectionStyle"]) {
-        cell.selectionStyle = [item[@"selectionStyle"] intValue];
+    if (item[@"selectionStyle"] != nil) {
+        cell.selectionStyle = [RCTConvert int:item[@"selectionStyle"]];
     }
     return cell;
 }
