@@ -36,13 +36,16 @@
 @property(nonatomic) float headerHeight;
 @property(nonatomic) BOOL customCells;
 @property(nonatomic) BOOL editing;
-@property(nonatomic) BOOL emptyInsets;
 @property(nonatomic) BOOL moveWithinSectionOnly;
 @property(nonatomic, assign) UIEdgeInsets contentInset;
 @property(nonatomic, assign) CGPoint contentOffset;
 @property(nonatomic, assign) UIEdgeInsets scrollIndicatorInsets;
 @property(nonatomic, assign) BOOL showsHorizontalScrollIndicator;
 @property(nonatomic, assign) BOOL showsVerticalScrollIndicator;
+@property(nonatomic, assign) UIEdgeInsets cellSeparatorInset;
+@property(nonatomic, assign) BOOL hasCellSeparatorInset;
+@property(nonatomic, assign) UIEdgeInsets cellLayoutMargins;
+@property(nonatomic, assign) BOOL hasCellLayoutMargins;
 @property(nonatomic, assign) BOOL canRefresh;
 @property(nonatomic, assign) BOOL refreshing;
 

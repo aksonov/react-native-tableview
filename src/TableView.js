@@ -98,6 +98,8 @@ class TableView extends React.Component {
     refreshing: PropTypes.bool,
     onRefresh: PropTypes.func,
     canRefresh: PropTypes.bool,
+    cellSeparatorInset: EdgeInsetsPropType,
+    cellLayoutMargins: EdgeInsetsPropType,
   }
 
   static defaultProps = {
