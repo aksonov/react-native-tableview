@@ -4,14 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "postinstall": "rm -rf node_modules/react-native-tableview/node_modules node_modules/react-native-tableview/example"
+    "test": "jest"
   },
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "16.0.0",
     "react-native": "0.50.4",
-    "react-native-tableview": "file:..",
+    "react-native-tableview": "latest",
     "react-navigation": "^2.0.4"
   },
   "devDependencies": {
