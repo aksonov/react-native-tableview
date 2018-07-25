@@ -4,9 +4,26 @@
 // TypeScript Version: 2.6
 
 import * as React from 'react'
-import { ViewStyle, Insets, PointPropType, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
+import {
+  ViewStyle,
+  Insets,
+  PointPropType,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from 'react-native'
 
-type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'bold' | 'normal'
+type FontWeight =
+  | 100
+  | 200
+  | 300
+  | 400
+  | 500
+  | 600
+  | 700
+  | 800
+  | 900
+  | 'bold'
+  | 'normal'
 
 type FontStyle = 'italic' | 'normal' | 'oblique'
 
@@ -115,6 +132,13 @@ export enum SeparatorStyle {
   Line,
 }
 
+export enum CellSelectionStyle {
+  None = 0,
+  Blue,
+  Gray,
+  Default,
+}
+
 interface SectionProps {
   /**
    * Show the DisclosureIndicator accessory type
@@ -182,7 +206,7 @@ interface ItemProps {
    * If cell can be deleted in editing mode
    */
   canEdit?: boolean
-  
+
   /**
    * Cell selection style
    */
@@ -216,6 +240,7 @@ interface TableViewProps {
   showsHorizontalScrollIndicator?: boolean
   showsVerticalScrollIndicator?: boolean
   moveWithinSectionOnly?: boolean
+  reactModuleForCell?: string
   /**
    * If the tableview can pull to refresh
    */
@@ -264,30 +289,34 @@ interface TableViewProps {
   onRefresh?(): void
   onAccessoryPress?(event: AccessoryCallBack): void
   onWillDisplayCell?(event: DisplayCallBack): void
-  onEndDisplayingCell?(event: DisplayCallBack): void,
-  cellSeparatorInset: Insets,
+  onEndDisplayingCell?(event: DisplayCallBack): void
+  cellSeparatorInset: Insets
   cellLayoutMargins: Insets
 }
 
 declare class TableView extends React.Component<TableViewProps> {
   /**
    * Scroll to coordinates
-   * 
+   *
    * @param x Horizontal pixels to scroll
    * @param y Vertical pixels to scroll
    * @param animated With animation or not
    */
-  scrollTo(x: number, y: number, animated: boolean): void;
+  scrollTo(x: number, y: number, animated: boolean): void
 
   /**
    * Scroll to an index
-   * 
+   *
    * @param params scroll params
    * @param params.index index of the cell
    * @param params.section index of the section @default 0
    * @param params.animated scroll with animation @default true
    */
-  scrollToIndex(params: { index: number, section?: number, animated?: boolean }): void;
+  scrollToIndex(params: {
+    index: number
+    section?: number
+    animated?: boolean
+  }): void
 }
 
 declare namespace TableView {
