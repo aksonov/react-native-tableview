@@ -346,8 +346,6 @@ class TableView extends React.Component {
           sections={this.state.sections}
           additionalItems={this.state.additionalItems}
           tableViewStyle={this.props.tableViewStyle}
-          tableViewCellStyle={this.props.tableViewCellStyle}
-          tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
           separatorStyle={this.props.separatorStyle}
           scrollIndicatorInsets={this.props.contentInset}
           alwaysBounceVertical={this.props.alwaysBounceVertical}
