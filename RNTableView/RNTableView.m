@@ -594,6 +594,15 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         
         [_sections[indexPath.section][@"items"] removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
+        newValue[@"target"] = self.reactTag;
+        newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
+        newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
+        newValue[@"mode"] = @"insert";
+        
+        self.onChange(newValue);
+        [self.tableView reloadData];
     }
 }
 
