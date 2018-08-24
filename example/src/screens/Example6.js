@@ -34,10 +34,20 @@ class Example6 extends React.Component {
             <Item>Item 2</Item>
             <Item>Item 3</Item>
             <Item>Item 4</Item>
-            <Item>Item 5</Item>
-            <Item>Item 6</Item>
-            <Item>Item 7</Item>
-            <Item>Item 8</Item>
+          </Section>
+        </TableView>
+        <TableView
+          style={{ flex: 1 }}
+          editing={this.props.navigation.state.params.editing}
+          tableViewCellEditingStyle={Consts.CellEditingStyle.Insert}
+          onPress={event => alert(JSON.stringify(event))}
+          onChange={event => alert(`CHANGED:${JSON.stringify(event)}`)}
+        >
+          <Section canMove canEdit>
+            <Item canEdit={false}>Item 1</Item>
+            <Item>Item 2</Item>
+            <Item>Item 3</Item>
+            <Item>Item 4</Item>
           </Section>
         </TableView>
       </View>
