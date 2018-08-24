@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { View, Button } from 'react-native'
 import TableView from 'react-native-tableview'
 
-const { Item, Section } = TableView
+const { Item, Section, Consts } = TableView
 
 class Example6 extends React.Component {
   static navigationOptions = ({ navigation }) => ({
