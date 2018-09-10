@@ -408,7 +408,7 @@ an `imageWidth` is unnecessary.
 ## TableView inside ScrollView (like iOS Customise Control Center)
 
 In some cases you need place your TableView into ScrollView. There is some problems with handling
-scroll events,so we don't recommend do it with large large number of items
+scroll events,so we don't recommend do it with large number of items
 ### Without reordering
 
 Just explicitly set height for `TableView` and disable it's scrolling.
