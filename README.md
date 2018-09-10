@@ -405,6 +405,81 @@ an `imageWidth` is unnecessary.
 ;<Item image={require('../images/icon-success.png')} />
 ```
 
+## TableView inside ScrollView (like iOS Customise Control Center)
+
+In some cases you need place your TableView into ScrollView. There is some problems with handling
+scroll events,so we don't recommend do it with large large number of items
+### Without reordering
+
+Just explicitly set height for `TableView` and disable it's scrolling.
+
+```jsx
+render() {
+    return (
+        <ScrollView  style={{ flex: 1 }>
+            <TableView
+                scrollEnabled={false}
+                style={{
+                    // You should explicitly set height for TableView
+                    // default height of header in iOS is 26, row height is 44
+                    height: headerHeight + (items.count * itemHeight),
+                }}
+            >
+                <Section>
+                    {items.map(obj => (
+                        <Item key={obj.id} label={obj.name} />
+                    ));}
+                </Section>
+            </TableView>
+        </ScrollView>
+    )
+}
+```
+
+### With reordering
+
+Explicitly set height for `TableView`, disable it's scrolling and handle reorder actions
+for toggling `scrollEnabled` prop of container `ScrollView`:
+
+```jsx
+render() {
+    return (
+        <ScrollView 
+            scrollEnabled={this.state.scrollEnabled}
+            style={{ flex: 1 }
+        >
+            <TableView
+                editing
+                scrollEnabled={false}
+                onReorderingStart={() => {
+                    this.setState({ scrollEnabled: false });
+                }}
+                onReorderingEnd={() => {
+                    this.setState({ scrollEnabled: true });
+                }}
+                onReorderingCancel={() => {
+                    this.setState({ scrollEnabled: true });
+                }}
+                style={{
+                    // You should explicitly set height for TableView
+                    // default height of header in iOS is 26, row height is 44
+                    height: headerHeight + (items.count * itemHeight),
+                }}
+            >
+                <Section canMove canEdit>
+                    {items.map(obj => (
+                        <Item
+                            key={obj.id}
+                            label={obj.name}
+                        />
+                    ));}
+                </Section>
+            </TableView>
+        </ScrollView>
+    )
+}
+```
+
 ### Editable Complex Components
 
 Only `Item`s can be edited or moved. However you can create a complex component

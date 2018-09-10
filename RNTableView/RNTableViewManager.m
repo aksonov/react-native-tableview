@@ -71,6 +71,10 @@ RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onScroll, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onRefresh, RCTDirectEventBlock)
 
+RCT_EXPORT_VIEW_PROPERTY(onReorderingStart, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onReorderingEnd, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onReorderingCancel, RCTBubblingEventBlock)
+
 RCT_CUSTOM_VIEW_PROPERTY(refreshing, BOOL, RNTableView) {
     view.refreshing = [RCTConvert BOOL:json];
 }

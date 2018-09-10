@@ -86,6 +86,10 @@
 @property(nonatomic, copy) RCTDirectEventBlock onScroll;
 @property(nonatomic, copy) RCTDirectEventBlock onRefresh;
 
+@property(nonatomic, copy) RCTBubblingEventBlock onReorderingStart;
+@property(nonatomic, copy) RCTBubblingEventBlock onReorderingEnd;
+@property(nonatomic, copy) RCTBubblingEventBlock onReorderingCancel;
+
 - (void)addRefresh;
 - (void)stopRefreshing;
 - (void)startRefreshing;
