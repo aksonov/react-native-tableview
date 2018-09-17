@@ -59,6 +59,7 @@
 @property(nonatomic, strong) UIFont *detailFont;
 @property(nonatomic, strong) UIFont *headerFont;
 @property(nonatomic, strong) UIColor *headerTextColor;
+@property(nonatomic, strong) UIColor *headerBackgroundColor;
 @property(nonatomic, strong) UIFont *footerFont;
 @property(nonatomic, strong) UIColor *footerTextColor;
 
