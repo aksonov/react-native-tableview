@@ -357,6 +357,7 @@ Colors:
 * `detailTextColor`
 * `separatorColor`
 * `headerTextColor`
+* `headerBackgroundColor`
 * `footerTextColor`
 
 Base font:
