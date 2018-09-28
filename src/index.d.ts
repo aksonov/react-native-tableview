@@ -287,6 +287,9 @@ interface TableViewProps {
    * Fired when pull to refresh is active
    */
   onRefresh?(): void
+  onReorderingStart?(): void
+  onReorderingEnd?(): void
+  onReorderingCancel?(): void
   onAccessoryPress?(event: AccessoryCallBack): void
   onWillDisplayCell?(event: DisplayCallBack): void
   onEndDisplayingCell?(event: DisplayCallBack): void
