@@ -306,6 +306,11 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (self.headerFont){
         header.textLabel.font = self.headerFont;
     }
+
+    if (self.headerBackgroundColor) {
+
+        header.contentView.backgroundColor = self.headerBackgroundColor;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

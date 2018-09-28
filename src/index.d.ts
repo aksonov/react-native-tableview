@@ -262,6 +262,7 @@ interface TableViewProps {
   detailTextColor?: string
   tintColor?: string
   headerTextColor?: string
+  headerBackgroundColor?: string
   footerTextColor?: string
   separatorColor?: string
   fontSize?: number
