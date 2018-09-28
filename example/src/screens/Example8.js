@@ -7,7 +7,7 @@ const { Section, Item } = TableView
 class Example8 extends React.Component{
   render() {
     return(
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
 
         <Button title="Scroll To Section 2" onPress={() => this.tableView.scrollToIndex({index: 2, section: 1})} />
 

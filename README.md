@@ -408,31 +408,31 @@ an `imageWidth` is unnecessary.
 ## TableView inside ScrollView (like iOS Customise Control Center)
 
 In some cases you need place your TableView into ScrollView. There is some problems with handling
-scroll events,so we don't recommend do it with large number of items
+scroll events, so we don't recommend do it with large number of items
 ### Without reordering
 
 Just explicitly set height for `TableView` and disable it's scrolling.
 
 ```jsx
 render() {
-    return (
-        <ScrollView  style={{ flex: 1 }>
-            <TableView
-                scrollEnabled={false}
-                style={{
-                    // You should explicitly set height for TableView
-                    // default height of header in iOS is 26, row height is 44
-                    height: headerHeight + (items.count * itemHeight),
-                }}
-            >
-                <Section>
-                    {items.map(obj => (
-                        <Item key={obj.id} label={obj.name} />
-                    ));}
-                </Section>
-            </TableView>
-        </ScrollView>
-    )
+  return (
+    <ScrollView style={{ flex: 1 }}>
+      <TableView
+        scrollEnabled={false}
+        style={{
+            // You should explicitly set height for TableView
+            // default height of header in iOS is 26, row height is 44
+            height: headerHeight + (items.count * itemHeight),
+        }}
+      >
+        <Section>
+          {items.map(obj => (
+            <Item key={obj.id} label={obj.name} />
+          ))}
+        </Section>
+      </TableView>
+    </ScrollView>
+  )
 }
 ```
 
@@ -443,40 +443,40 @@ for toggling `scrollEnabled` prop of container `ScrollView`:
 
 ```jsx
 render() {
-    return (
-        <ScrollView 
-            scrollEnabled={this.state.scrollEnabled}
-            style={{ flex: 1 }
-        >
-            <TableView
-                editing
-                scrollEnabled={false}
-                onReorderingStart={() => {
-                    this.setState({ scrollEnabled: false });
-                }}
-                onReorderingEnd={() => {
-                    this.setState({ scrollEnabled: true });
-                }}
-                onReorderingCancel={() => {
-                    this.setState({ scrollEnabled: true });
-                }}
-                style={{
-                    // You should explicitly set height for TableView
-                    // default height of header in iOS is 26, row height is 44
-                    height: headerHeight + (items.count * itemHeight),
-                }}
-            >
-                <Section canMove canEdit>
-                    {items.map(obj => (
-                        <Item
-                            key={obj.id}
-                            label={obj.name}
-                        />
-                    ));}
-                </Section>
-            </TableView>
-        </ScrollView>
-    )
+  return (
+    <ScrollView
+      scrollEnabled={this.state.scrollEnabled}
+      style={{ flex: 1 }}
+    >
+      <TableView
+          editing
+          scrollEnabled={false}
+          onReorderingStart={() => {
+              this.setState({ scrollEnabled: false });
+          }}
+          onReorderingEnd={() => {
+              this.setState({ scrollEnabled: true });
+          }}
+          onReorderingCancel={() => {
+              this.setState({ scrollEnabled: true });
+          }}
+          style={{
+              // You should explicitly set height for TableView
+              // default height of header in iOS is 26, row height is 44
+              height: headerHeight + (items.count * itemHeight),
+          }}
+      >
+        <Section canMove canEdit>
+          {items.map(obj => (
+            <Item
+              key={obj.id}
+              label={obj.name}
+            />
+          ))}
+        </Section>
+      </TableView>
+    </ScrollView>
+  )
 }
 ```
 

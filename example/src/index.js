@@ -9,6 +9,7 @@ import Example5 from './screens/Example5'
 import Example6 from './screens/Example6'
 import Example7 from './screens/Example7'
 import Example8 from './screens/Example8'
+import Example9 from './screens/Example9'
 
 import TableViewExampleCell from './cells/TableViewExampleCell'
 
@@ -66,6 +67,12 @@ const Stack = createStackNavigator(
       screen: Example8,
       navigationOptions: {
         title: 'Scroll to Index',
+      },
+    },
+    index: {
+      screen: Example9,
+      navigationOptions: {
+        title: 'Reorderable TableView in ScrollView',
       },
     },
   },
