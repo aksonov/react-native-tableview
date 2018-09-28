@@ -52,4 +52,5 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 
-yarn.lock
+# Bundle artifact
+*.jsbundle
