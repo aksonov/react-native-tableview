@@ -69,7 +69,7 @@ const Stack = createStackNavigator(
         title: 'Scroll to Index',
       },
     },
-    index: {
+    insideScrollView: {
       screen: Example9,
       navigationOptions: {
         title: 'Reorderable TableView in ScrollView',

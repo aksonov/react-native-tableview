@@ -25,31 +25,31 @@ class Example9 extends React.Component {
     return(
       <ScrollView
         scrollEnabled={scrollEnabled}
-        style={{ flex: 1 }}
+        contentContainerStyle={{ flex: 1 }}
       >
         <TableView
           editing
           scrollEnabled={false}
           onReorderingStart={() => {
-              this.setState({ scrollEnabled: false });
+            this.setState({ scrollEnabled: false });
           }}
           onReorderingEnd={() => {
-              this.setState({ scrollEnabled: true });
+            this.setState({ scrollEnabled: true });
           }}
           onReorderingCancel={() => {
-              this.setState({ scrollEnabled: true });
+            this.setState({ scrollEnabled: true });
           }}
           style={{
-              // You should explicitly set height for TableView
-              // default height of header in iOS is 26, row height is 44
-              height: headerHeight + (items.count * itemHeight),
+            // You should explicitly set height for TableView
+            // default height of header in iOS is 26, row height is 44
+            height: headerHeight + (items.length * itemHeight),
           }}
         >
-          <Section canMove>
+          <Section canMove canEdit>
             {items.map(obj => (
-                <Item
-                  key={obj.id}
-                  label={obj.name}
+              <Item
+                key={obj.id}
+                label={obj.name}
               />
             ))}
           </Section>

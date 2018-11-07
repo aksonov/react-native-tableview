@@ -28,6 +28,7 @@ const App = ({ navigation }: NavigationScreenConfigProps) => {
         <Item onPress={() => navigate('edit', { editing: true })}>Editing mode</Item>
         <Item onPress={() => navigate('refresh')}>Pull to Refresh</Item>
         <Item onPress={() => navigate('index')}>Scroll To Index</Item>
+        <Item onPress={() => navigate('insideScrollView')}>Reorderable Table in ScrollView</Item>
       </Section>
     </TableView>
   )
