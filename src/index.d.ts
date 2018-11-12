@@ -4,26 +4,9 @@
 // TypeScript Version: 2.6
 
 import * as React from 'react'
-import {
-  ViewStyle,
-  Insets,
-  PointPropType,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-} from 'react-native'
+import { ViewStyle, Insets, PointPropType, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
 
-type FontWeight =
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900
-  | 'bold'
-  | 'normal'
+type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 'bold' | 'normal'
 
 type FontStyle = 'italic' | 'normal' | 'oblique'
 
@@ -213,6 +196,11 @@ interface ItemProps {
   selectionStyle?: CellSelectionStyle
 
   /**
+   * Allow transparent cell background
+   */
+  transparent?: boolean
+
+  /**
    * Callback fired on pressing an accessory
    */
   onAccessoryPress?(event: AccessoryCallBack): void
@@ -313,11 +301,7 @@ declare class TableView extends React.Component<TableViewProps> {
    * @param params.section index of the section @default 0
    * @param params.animated scroll with animation @default true
    */
-  scrollToIndex(params: {
-    index: number
-    section?: number
-    animated?: boolean
-  }): void
+  scrollToIndex(params: { index: number; section?: number; animated?: boolean }): void
 }
 
 declare namespace TableView {
