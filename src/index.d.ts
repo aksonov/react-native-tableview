@@ -33,6 +33,7 @@ interface OnPressCallBack extends CallBack {
   children: string
   selectedIndex: number
   selectedSection: number
+  selectedOrigin: PointPropType
   footerLabel?: string
   label?: string
 }
