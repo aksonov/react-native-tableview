@@ -530,6 +530,13 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     newValue[@"target"] = self.reactTag;
     newValue[@"selectedIndex"] = [NSNumber numberWithInteger:indexPath.item];
     newValue[@"selectedSection"] = [NSNumber numberWithInteger:indexPath.section];
+
+    CGRect selectedCellRect = [tableView rectForRowAtIndexPath:indexPath];
+    selectedCellRect = CGRectOffset(selectedCellRect, -tableView.contentOffset.x, -tableView.contentOffset.y);
+    newValue[@"selectedOrigin"] = @{
+                                    @"x": @(selectedCellRect.origin.x),
+                                    @"y": @(selectedCellRect.origin.y)
+                                    };
     
     /*
      * if allowToggle is enabled and we tap an already selected row, then remove the selection.
