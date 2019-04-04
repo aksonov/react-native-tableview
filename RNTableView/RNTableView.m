@@ -604,8 +604,12 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         
         self.onChange(newValue);
         
-        [_sections[indexPath.section][@"items"] removeObjectAtIndex:indexPath.row];
-        [self.tableView reloadData];
+        if ([newValue[@"shouldOnlyEdit"] boolValue]) {
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        } else {
+            [_sections[indexPath.section][@"items"] removeObjectAtIndex:indexPath.row];
+            [self.tableView reloadData];
+        }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
         newValue[@"target"] = self.reactTag;
@@ -616,6 +620,11 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         self.onChange(newValue);
         [self.tableView reloadData];
     }
+}
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *item = [self dataForRow:indexPath.item section:indexPath.section];
+    return item[@"buttonTitleOnEdit"] ? item[@"buttonTitleOnEdit"]: @"Delete";
 }
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView
