@@ -55,7 +55,7 @@
 
 - (void)setAlwaysBounceVertical:(BOOL)alwaysBounceVertical {
     _alwaysBounceVertical = alwaysBounceVertical;
-    
+     self.tableView.bounces = alwaysBounceVertical;
     [self.tableView setAlwaysBounceVertical:alwaysBounceVertical];
 }
 
