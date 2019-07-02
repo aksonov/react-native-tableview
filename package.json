@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint --ext js,ts,tsx ."
   },
   "repository": {
     "type": "git",
@@ -42,8 +42,21 @@
     "@types/react": "^16.8.22",
     "@types/react-native": "^0.57.63",
     "eslint": "^6.0.1",
+    "husky": ">=1",
+    "lint-staged": ">=8",
     "react": "16.8.3",
     "react-native": "0.59.9",
     "typescript": "^3.5.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
