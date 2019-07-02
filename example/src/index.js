@@ -1,5 +1,5 @@
 import { AppRegistry } from 'react-native'
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 import Home from './screens/Home'
 import Example1 from './screens/Example1'
 import Example2 from './screens/Example2'
@@ -70,15 +70,20 @@ const Stack = createStackNavigator(
     },
   },
   {
-    navigationOptions: {
+    defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#47A1D7',
       },
       headerTintColor: '#fff',
     },
     initialRouteName: 'home',
-  },
+  }
 )
 
-AppRegistry.registerComponent('TableViewDemo', () => Stack)
-AppRegistry.registerComponent('TableViewExampleCell', () => TableViewExampleCell)
+const App = createAppContainer(Stack)
+
+AppRegistry.registerComponent('TableViewDemo', () => App)
+AppRegistry.registerComponent(
+  'TableViewExampleCell',
+  () => TableViewExampleCell
+)
