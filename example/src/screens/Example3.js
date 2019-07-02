@@ -1,6 +1,7 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import TableView from 'react-native-tableview'
+/* eslint-disable no-alert */
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import TableView from 'react-native-tableview';
 
 const styles = StyleSheet.create({
   title: {
@@ -9,12 +10,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   },
-})
+});
 
 const Example3 = () => {
   // list spanish provinces and add 'All states' item at the beginning
 
-  const country = 'ES'
+  const country = 'ES';
 
   return (
     <View style={{ flex: 1 }}>
@@ -28,7 +29,7 @@ const Example3 = () => {
         onPress={event => alert(JSON.stringify(event))}
       />
     </View>
-  )
-}
+  );
+};
 
-export default Example3
+export default Example3;

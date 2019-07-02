@@ -1,12 +1,10 @@
-/* eslint-disable */
-
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class TableViewItem extends React.Component {
   render() {
     // These items don't get rendered directly.
-    return null
+    return null;
   }
 }
 
@@ -16,6 +14,6 @@ TableViewItem.propTypes = {
   selected: PropTypes.bool,
   detail: PropTypes.string,
   accessoryType: PropTypes.number,
-}
+};
 
-export default TableViewItem
+export default TableViewItem;

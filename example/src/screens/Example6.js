@@ -1,11 +1,10 @@
-/* eslint-disable react/forbid-prop-types */
+/* eslint-disable no-alert */
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View, Button } from 'react-native';
+import TableView from 'react-native-tableview';
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { View, Button } from 'react-native'
-import TableView from 'react-native-tableview'
-
-const { Item, Section, Consts } = TableView
+const { Item, Section, Consts } = TableView;
 
 class Example6 extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -18,7 +17,7 @@ class Example6 extends React.Component {
         }
       />
     ),
-  })
+  });
 
   render() {
     return (
@@ -51,12 +50,12 @@ class Example6 extends React.Component {
           </Section>
         </TableView>
       </View>
-    )
+    );
   }
 }
 
 Example6.propTypes = {
   navigation: PropTypes.object.isRequired,
-}
+};
 
-export default Example6
+export default Example6;

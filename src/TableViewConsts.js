@@ -1,5 +1,5 @@
-import { NativeModules } from 'react-native'
+import { NativeModules } from 'react-native';
 
-const RNTableViewConsts = NativeModules.RNTableViewManager.Constants
+const RNTableViewConsts = NativeModules.RNTableViewManager.Constants;
 
-export default RNTableViewConsts
+export default RNTableViewConsts;

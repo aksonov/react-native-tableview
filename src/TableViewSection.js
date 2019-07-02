@@ -1,12 +1,10 @@
-/* eslint-disable */
-
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class TableViewSection extends React.Component {
   render() {
     // These items don't get rendered directly.
-    return null
+    return null;
   }
 }
 
@@ -16,6 +14,6 @@ TableViewSection.propTypes = {
   arrow: PropTypes.bool,
   footerHeight: PropTypes.number,
   headerHeight: PropTypes.number,
-}
+};
 
-export default TableViewSection
+export default TableViewSection;

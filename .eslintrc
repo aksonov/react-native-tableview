@@ -1,20 +1,6 @@
 {
-  "parser": "babel-eslint",
-  "extends": "airbnb",
-  "plugins": ["react", "react-native", "jsx-a11y", "import"],
+  "extends": "@react-native-community",
   "rules": {
-    "semi": "off",
-    "no-underscore-dangle": "off",
-    "no-plusplus": "off",
-    "react/jsx-filename-extension": "off",
-    "no-unused-expressions": "off",
-    "no-alert": "off",
-    "no-debugger": "off",
-    "max-len": ["warn", 120],
-    "no-restricted-syntax": "off",
-    "no-param-reassign": "off"
-  },
-  "env": {
-    "browser": true
+    "react-native/no-inline-styles": 0
   }
 }

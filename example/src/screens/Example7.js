@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, ActivityIndicator, Text, StyleSheet } from 'react-native'
-import TableView from 'react-native-tableview'
+import React from 'react';
+import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import TableView from 'react-native-tableview';
 
-const { Section, Item } = TableView
+const { Section, Item } = TableView;
 
 const styles = StyleSheet.create({
   title: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   },
-})
+});
 
 class Example7 extends React.Component {
   state = {
@@ -19,39 +19,44 @@ class Example7 extends React.Component {
     users: [],
     refreshing: false,
     amount: 10,
-  }
+  };
 
   async componentWillMount() {
-    const users = await this.fetchUsers()
+    const users = await this.fetchUsers();
 
     this.setState({
       loading: false,
       users,
-    })
+    });
   }
 
   fetchUsers = async () => {
-    const response = await fetch('https://randomuser.me/api/?results=10')
-    const data = await response.json()
+    const response = await fetch('https://randomuser.me/api/?results=10');
+    const data = await response.json();
 
     return data.results.map(a => ({
       name: `${a.name.first} ${a.name.last}`,
       id: a.registered,
-    }))
-  }
+    }));
+  };
 
   fetchMore = () => {
     this.setState({ refreshing: true }, async () => {
-      const users = await this.fetchUsers()
-      this.setState({ users: [...users, ...this.state.users], refreshing: false, amount: this.state.amount + 10 })
-    })
-  }
+      const users = await this.fetchUsers();
+      this.setState({
+        users: [...users, ...this.state.users],
+        refreshing: false,
+        amount: this.state.amount + 10,
+      });
+    });
+  };
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <Text style={styles.title}>
-          {this.state.loading ? 'Fetching' : 'Fetched'} {this.state.amount} users
+          {this.state.loading ? 'Fetching' : 'Fetched'} {this.state.amount}{' '}
+          users
         </Text>
 
         {this.state.loading && <ActivityIndicator />}
@@ -63,11 +68,15 @@ class Example7 extends React.Component {
           refreshing={this.state.refreshing}
           onRefresh={this.fetchMore}
         >
-          <Section>{this.state.users.map(a => <Item key={a.id}>{a.name}</Item>)}</Section>
+          <Section>
+            {this.state.users.map(a => (
+              <Item key={a.id}>{a.name}</Item>
+            ))}
+          </Section>
         </TableView>
       </View>
-    )
+    );
   }
 }
 
-export default Example7
+export default Example7;

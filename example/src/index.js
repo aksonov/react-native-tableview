@@ -1,16 +1,16 @@
-import { AppRegistry } from 'react-native'
-import { createStackNavigator, createAppContainer } from 'react-navigation'
-import Home from './screens/Home'
-import Example1 from './screens/Example1'
-import Example2 from './screens/Example2'
-import Example3 from './screens/Example3'
-import Example4 from './screens/Example4'
-import Example5 from './screens/Example5'
-import Example6 from './screens/Example6'
-import Example7 from './screens/Example7'
-import Example8 from './screens/Example8'
+import { AppRegistry } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Home from './screens/Home';
+import Example1 from './screens/Example1';
+import Example2 from './screens/Example2';
+import Example3 from './screens/Example3';
+import Example4 from './screens/Example4';
+import Example5 from './screens/Example5';
+import Example6 from './screens/Example6';
+import Example7 from './screens/Example7';
+import Example8 from './screens/Example8';
 
-import TableViewExampleCell from './cells/TableViewExampleCell'
+import TableViewExampleCell from './cells/TableViewExampleCell';
 
 const Stack = createStackNavigator(
   {
@@ -78,12 +78,12 @@ const Stack = createStackNavigator(
     },
     initialRouteName: 'home',
   }
-)
+);
 
-const App = createAppContainer(Stack)
+const App = createAppContainer(Stack);
 
-AppRegistry.registerComponent('TableViewDemo', () => App)
+AppRegistry.registerComponent('TableViewDemo', () => App);
 AppRegistry.registerComponent(
   'TableViewExampleCell',
   () => TableViewExampleCell
-)
+);

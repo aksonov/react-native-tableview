@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
-    "lint": "eslint **/*.js"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -36,16 +36,14 @@
     "react-native": ">=0.40"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.9.1",
-    "eslint-plugin-react-native": "^3.2.1",
-    "prettier": "^1.13.7",
-    "prettier-eslint": "^8.8.2",
-    "react": "16.4.1",
-    "react-native": "0.56.0"
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "@types/react": "^16.8.22",
+    "@types/react-native": "^0.57.63",
+    "eslint": "^6.0.1",
+    "react": "16.8.3",
+    "react-native": "0.59.9",
+    "typescript": "^3.5.2"
   }
 }

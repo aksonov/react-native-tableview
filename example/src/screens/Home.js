@@ -4,15 +4,15 @@
  * @flow
  */
 
-import React from 'react'
-import { StatusBar } from 'react-native'
-import type { NavigationScreenConfigProps } from 'react-navigation'
-import TableView from 'react-native-tableview'
+import React from 'react';
+import { StatusBar } from 'react-native';
+import type { NavigationScreenConfigProps } from 'react-navigation';
+import TableView from 'react-native-tableview';
 
-const { Section, Item } = TableView
+const { Section, Item } = TableView;
 
 const App = ({ navigation }: NavigationScreenConfigProps) => {
-  const { navigate } = navigation
+  const { navigate } = navigation;
 
   return (
     <>
@@ -39,7 +39,7 @@ const App = ({ navigation }: NavigationScreenConfigProps) => {
         </Section>
       </TableView>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

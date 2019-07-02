@@ -1,7 +1,7 @@
-import React from 'react'
-import TableView from 'react-native-tableview'
+import React from 'react';
+import TableView from 'react-native-tableview';
 
-const { Section, Item } = TableView
+const { Section, Item } = TableView;
 
 const Example1 = () => (
   <TableView
@@ -32,6 +32,6 @@ const Example1 = () => (
       <Item>Item 3</Item>
     </Section>
   </TableView>
-)
+);
 
-export default Example1
+export default Example1;
