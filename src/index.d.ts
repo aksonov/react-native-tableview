@@ -8,7 +8,7 @@ import {
   NativeScrollEvent,
 } from 'react-native';
 
-type FontWeight =
+export type FontWeight =
   | 100
   | 200
   | 300
@@ -21,14 +21,14 @@ type FontWeight =
   | 'bold'
   | 'normal';
 
-type FontStyle = 'italic' | 'normal' | 'oblique';
+export type FontStyle = 'italic' | 'normal' | 'oblique';
 
-interface CallBack {
+export interface CallBack {
   cancelBubble: boolean;
   target: number;
 }
 
-interface AccessoryCallBack extends CallBack {
+export interface AccessoryCallBack extends CallBack {
   accessoryIndex: number;
   accessorySection: number;
   accessoryType: number;
@@ -37,12 +37,12 @@ interface AccessoryCallBack extends CallBack {
   label?: string;
 }
 
-interface DisplayCallBack extends CallBack {
+export interface DisplayCallBack extends CallBack {
   row: number;
   section: number;
 }
 
-interface OnPressCallBack extends CallBack {
+export interface OnPressCallBack extends CallBack {
   children: string;
   selectedIndex: number;
   selectedSection: number;
@@ -51,7 +51,7 @@ interface OnPressCallBack extends CallBack {
   label?: string;
 }
 
-interface OnChangeCallBack extends CallBack {
+export interface OnChangeCallBack extends CallBack {
   sourceIndex: number;
   sourceSection: number;
   destinationIndex?: number;
@@ -136,7 +136,7 @@ export enum CellSelectionStyle {
   Default,
 }
 
-interface SectionProps {
+export interface SectionProps {
   /**
    * Show the DisclosureIndicator accessory type
    */
@@ -173,7 +173,7 @@ interface SectionProps {
   footerHeight?: number;
 }
 
-interface ItemProps {
+export interface ItemProps {
   /**
    * This value will be returned on event callbacks
    */
@@ -225,7 +225,7 @@ interface ItemProps {
   onPress?(event: OnPressCallBack): void;
 }
 
-interface TableViewProps {
+export interface TableViewProps {
   style?: ViewStyle;
   tableViewStyle?: TableViewStyle;
   tableViewCellStyle?: TableViewCellStyle;
