@@ -16,50 +16,50 @@
 
 ## Contents
 
-* [Features](#features)
-* [Installation](#installation)
-* [Styles](#supported-styles)
-* [Examples](#examples)
-* [Customization](#customization)
+- [Features](#features)
+- [Installation](#installation)
+- [Styles](#supported-styles)
+- [Examples](#examples)
+- [Customization](#customization)
 
 ## Features
 
-* Look and feel of iOS TableView - **because it is!** (with group/plain
+- Look and feel of iOS TableView - **because it is!** (with group/plain
   tableview type, sections headers, etc)
-* Display long lists of data (like country list) with no performance loss
-* Built-in accessory types (checkmark or disclosure indicator)
-* Pull to refresh!
-* Automatic scroll to initial selected value during component initialization
+- Display long lists of data (like country list) with no performance loss
+- Built-in accessory types (checkmark or disclosure indicator)
+- Pull to refresh!
+- Automatic scroll to initial selected value during component initialization
   (autoFocus property)
-* Automatic item selection with "checkmark" with old item de-selection
+- Automatic item selection with "checkmark" with old item de-selection
   (optionally), see demo, useful to select country/state/etc.
-* Render Native Section Index Titles (sectionIndexTitlesEnabled property)
-* Native JSON support for datasource. If you need to display large dataset,
+- Render Native Section Index Titles (sectionIndexTitlesEnabled property)
+- Native JSON support for datasource. If you need to display large dataset,
   generated Javascript will became very large and impact js loading time. To
   solve this problem the component could read JSON directly from app bundle
   without JS!
-* Filter JSON datasources using NSPredicate syntax. For example you could select
+- Filter JSON datasources using NSPredicate syntax. For example you could select
   states for given country only (check demo)
-* Create custom UITableView cells with flexible height using React Native syntax
+- Create custom UITableView cells with flexible height using React Native syntax
   (TableView.Cell tag)
-* Use TableView as menu to navigate to other screens (check included demo, using
+- Use TableView as menu to navigate to other screens (check included demo, using
   react-navigation https://reactnavigation.org)
-* Native editing mode for table - move/delete option is supported by using
+- Native editing mode for table - move/delete option is supported by using
   attributes canMove, canEdit for items/sections
 
 ## Installation
 
 1. Installation
-   * Using npm: `npm install react-native-tableview --save`
-   * Using yarn: `yarn add react-native-tableview`
+   - Using npm: `npm install react-native-tableview --save`
+   - Using yarn: `yarn add react-native-tableview`
 2. Link
-   * `react-native link react-native-tableview`
-   * If fails, follow manual linking steps below
+   - `react-native link react-native-tableview`
+   - If fails, follow manual linking steps below
 3. (optional) If you will use JSON file, add it to iOS application bundle
 4. Import it in your JS:
 
    ```js
-   import TableView from 'react-native-tableview'
+   import TableView from 'react-native-tableview';
    ```
 
 ### Manual Linking
@@ -70,7 +70,7 @@
 3. In the XCode project navigator, select your project, select the Build Phases
    tab and in the Link Binary With Libraries section add libRNTableView.a
 4. And in the Build Settings tab in the Search Paths/Header Search Paths section
-   add $(SRCROOT)/../node_modules/react-native-tableview (make sure it's
+   add \$(SRCROOT)/../node_modules/react-native-tableview (make sure it's
    recursive).
 
 ## Supported Styles
@@ -136,7 +136,6 @@ Checkmark can also be applied by adding the `selected` prop on the Item.
 
 For a full list of props on all components check out
 [the typescript definitions file](./src/index.d.ts).
-
 
 ### Methods
 
@@ -230,7 +229,7 @@ render() {
 ```jsx
 // list spanish provinces and add 'All states' item at the beginning
 
-const country = 'ES'
+const country = 'ES';
 
 return (
   <View style={{ flex: 1 }}>
@@ -244,7 +243,7 @@ return (
       onPress={event => alert(JSON.stringify(event))}
     />
   </View>
-)
+);
 ```
 
 ### Built-in editing
@@ -340,53 +339,53 @@ render() {
 
 The following style props are supported:
 
-* `tableViewCellStyle`
-* `tableViewCellEditingStyle`
-* `separatorStyle`
-* `contentInset`
-* `contentOffset`
-* `scrollIndicatorInsets`
-* `cellLayoutMargins`
-* `cellSeparatorInset`
+- `tableViewCellStyle`
+- `tableViewCellEditingStyle`
+- `separatorStyle`
+- `contentInset`
+- `contentOffset`
+- `scrollIndicatorInsets`
+- `cellLayoutMargins`
+- `cellSeparatorInset`
 
 Colors:
 
-* `textColor`
-* `tintColor`
-* `selectedTextColor`
-* `detailTextColor`
-* `separatorColor`
-* `headerTextColor`
-* `headerBackgroundColor`
-* `footerTextColor`
+- `textColor`
+- `tintColor`
+- `selectedTextColor`
+- `detailTextColor`
+- `separatorColor`
+- `headerTextColor`
+- `headerBackgroundColor`
+- `footerTextColor`
 
 Base font:
 
-* `fontSize`
-* `fontWeight`
-* `fontStyle`
-* `fontFamily`
+- `fontSize`
+- `fontWeight`
+- `fontStyle`
+- `fontFamily`
 
 "Subtitle" font:
 
-* `detailFontSize`
-* `detailFontWeight`
-* `detailFontStyle`
-* `detailFontFamily`
+- `detailFontSize`
+- `detailFontWeight`
+- `detailFontStyle`
+- `detailFontFamily`
 
 Header font:
 
-* `headerFontSize`
-* `headerFontWeight`
-* `headerFontStyle`
-* `headerFontFamily`
+- `headerFontSize`
+- `headerFontWeight`
+- `headerFontStyle`
+- `headerFontFamily`
 
 Footer font:
 
-* `footerFontSize`
-* `footerFontWeight`
-* `footerFontStyle`
-* `footerFontFamily`
+- `footerFontSize`
+- `footerFontWeight`
+- `footerFontStyle`
+- `footerFontFamily`
 
 ## Images / Icons
 
@@ -396,14 +395,14 @@ An `image` prop can be a string pointing to the name of an asset in your "Asset
 Catalog". In this case an `imageWidth` prop is recommended.
 
 ```jsx
-;<Item image="icon-success.png" imageWidth={40} />
+<Item image="icon-success.png" imageWidth={40} />;
 ```
 
 Alternatively, you can `require` the image from your local app code. In this case
 an `imageWidth` is unnecessary.
 
 ```jsx
-;<Item image={require('../images/icon-success.png')} />
+<Item image={require('../images/icon-success.png')} />;
 ```
 
 ### Editable Complex Components
@@ -449,24 +448,25 @@ For example,
 
 class TableViewExampleCell extends React.Component {
   render() {
-    var style = { borderColor: '#aaaaaa', borderWidth: 1, borderRadius: 3 }
+    var style = { borderColor: '#aaaaaa', borderWidth: 1, borderRadius: 3 };
 
     // Fill the full native table cell height.
-    style.flex = 1
+    style.flex = 1;
 
     // All Item props get passed to this cell inside this.props.data. Use them to control the rendering, for example background color:
     if (this.props.data.backgroundColor !== undefined) {
-      style.backgroundColor = this.props.data.backgroundColor
+      style.backgroundColor = this.props.data.backgroundColor;
     }
 
     return (
       <View style={style}>
         <Text>
-          section:{this.props.section},row:{this.props.row},label:{this.props.data.label}
+          section:{this.props.section},row:{this.props.row},label:
+          {this.props.data.label}
         </Text>
         <Text> message:{this.props.data.message}</Text>
       </View>
-    )
+    );
   }
 }
 ```
@@ -482,7 +482,7 @@ For more examples, see examples/TableViewDemo.
 #### Create list of items, passing props
 
 ```jsx
-;<Section canEdit={true}>
+<Section canEdit={true}>
   {this.props.items.map(function(item) {
     return (
       <Item
@@ -490,9 +490,9 @@ For more examples, see examples/TableViewDemo.
         label={item.label}
         message={item.message}
       />
-    )
+    );
   })}
-</Section>
+</Section>;
 ```
 
 Note that the props you pass must be primitive types: they cannot be objects.

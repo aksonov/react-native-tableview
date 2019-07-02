@@ -1,13 +1,14 @@
-import React from 'react'
-import TableView from 'react-native-tableview'
+/* eslint-disable no-alert */
+import React from 'react';
+import TableView from 'react-native-tableview';
 
-const { Section, Item } = TableView
+const { Section, Item } = TableView;
 const {
   DisclosureIndicator,
   DisclosureButton,
   Checkmark,
   DetailButton,
-} = TableView.Consts.AccessoryType
+} = TableView.Consts.AccessoryType;
 
 const Example2 = () => (
   <TableView
@@ -34,6 +35,6 @@ const Example2 = () => (
       </Item>
     </Section>
   </TableView>
-)
+);
 
-export default Example2
+export default Example2;

@@ -1,7 +1,8 @@
-import React from 'react'
-import TableView from 'react-native-tableview'
+/* eslint-disable no-alert */
+import React from 'react';
+import TableView from 'react-native-tableview';
 
-const { Item, Section } = TableView
+const { Item, Section } = TableView;
 
 const Example5 = () => (
   // list spanish provinces and add 'All states' item at the beginning
@@ -47,6 +48,6 @@ const Example5 = () => (
       <Item>Item 3</Item>
     </Section>
   </TableView>
-)
+);
 
-export default Example5
+export default Example5;

@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, ActivityIndicator, Text, StyleSheet } from 'react-native'
-import TableView from 'react-native-tableview'
+import React from 'react';
+import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import TableView from 'react-native-tableview';
 
-const { Section, Item } = TableView
+const { Section, Item } = TableView;
 
 const styles = StyleSheet.create({
   title: {
@@ -11,17 +11,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
   },
-})
+});
 
 class Example4 extends React.Component {
   state = {
     loading: true,
     users: [],
-  }
+  };
 
   async componentWillMount() {
-    const response = await fetch('https://randomuser.me/api/?results=5000')
-    const data = await response.json()
+    const response = await fetch('https://randomuser.me/api/?results=5000');
+    const data = await response.json();
 
     this.setState({
       loading: false,
@@ -29,7 +29,7 @@ class Example4 extends React.Component {
         name: `${a.name.first} ${a.name.last}`,
         id: a.registered,
       })),
-    })
+    });
   }
 
   render() {
@@ -46,12 +46,14 @@ class Example4 extends React.Component {
           tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
         >
           <Section>
-            {this.state.users.map(a => <Item key={a.id}>{a.name}</Item>)}
+            {this.state.users.map(a => (
+              <Item key={a.id}>{a.name}</Item>
+            ))}
           </Section>
         </TableView>
       </View>
-    )
+    );
   }
 }
 
-export default Example4
+export default Example4;

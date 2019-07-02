@@ -1,20 +1,22 @@
-import React from 'react'
-import { Button, View } from 'react-native'
-import TableView from 'react-native-tableview'
+import React from 'react';
+import { Button, View } from 'react-native';
+import TableView from 'react-native-tableview';
 
-const { Section, Item } = TableView
+const { Section, Item } = TableView;
 
-class Example8 extends React.Component{
+class Example8 extends React.Component {
   render() {
-    return(
-      <View style={{flex: 1}}>
-
-        <Button title="Scroll To Section 2" onPress={() => this.tableView.scrollToIndex({index: 2, section: 1})} />
+    return (
+      <View style={{ flex: 1 }}>
+        <Button
+          title="Scroll To Section 2"
+          onPress={() => this.tableView.scrollToIndex({ index: 2, section: 1 })}
+        />
 
         <TableView
           style={{ flex: 1 }}
           allowsToggle
-          ref={ref => this.tableView = ref}
+          ref={ref => (this.tableView = ref)}
           allowsMultipleSelection
           tableViewStyle={TableView.Consts.Style.Grouped}
           tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
@@ -27,13 +29,13 @@ class Example8 extends React.Component{
             <Item value="2">Item 2</Item>
             <Item>Item 3</Item>
           </Section>
-      
+
           <Section label="Section 2" arrow={false}>
             <Item>Item 1</Item>
             <Item>Item 2</Item>
             <Item>Item 3</Item>
           </Section>
-      
+
           <Section label="Section 3" arrow={false}>
             <Item>Item 1</Item>
             <Item>Item 2</Item>
@@ -48,8 +50,8 @@ class Example8 extends React.Component{
           </Section>
         </TableView>
       </View>
-    )
+    );
   }
-} 
+}
 
-export default Example8
+export default Example8;
