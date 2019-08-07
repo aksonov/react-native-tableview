@@ -12,6 +12,7 @@
 #import <React/RCTConvert.h>
 #import <React/RCTFont.h>
 #import <React/RCTUIManager.h>
+#import <React/RCTComponentEvent.h>
 
 @implementation RNTableViewManager
 
