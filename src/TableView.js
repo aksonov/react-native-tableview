@@ -43,6 +43,7 @@ const FontWeight = PropTypes.oneOf([
 ]);
 const FontStyle = PropTypes.oneOf(['italic', 'normal', 'oblique']);
 
+// Translate TableView prop and children into stuff that RNTableView understands.
 function stateFromProps(props) {
   const sections = [];
   const additionalItems = [];
