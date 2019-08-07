@@ -6,12 +6,11 @@
 
 import React from 'react';
 import { StatusBar } from 'react-native';
-import type { NavigationScreenConfigProps } from 'react-navigation';
 import TableView from 'react-native-tableview';
 
 const { Section, Item } = TableView;
 
-const App = ({ navigation }: NavigationScreenConfigProps) => {
+const App = ({ navigation }) => {
   const { navigate } = navigation;
 
   return (
