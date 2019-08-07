@@ -4948,10 +4948,10 @@ react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   dependencies:
     prop-types "^15.6.1"
 
-react-native-tableview@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-tableview/-/react-native-tableview-2.5.0.tgz#364547b13004d873bda55b03041489cca8e7e349"
-  integrity sha512-qE5Q+jYVQ61YwAmO+HPLQ9AJlXHmCfR4Ai0HBtJX/2aBIQgwjgv9nrm9M/7ni2VHLAVVfcBCYKuGuDjoCs+bIg==
+react-native-tableview@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-tableview/-/react-native-tableview-2.6.1.tgz#1b7a36e0e5f9bca59f0ee4842175d8d51363600d"
+  integrity sha512-lu7dkjU6bkdJF6lqUIT7KUiJ5tQEryDRifLWDRZlP3FucY1RnwlNEa+HR+szRe8soaF8Ha+uL9Mmb7Twe1DtjQ==
   dependencies:
     prop-types "^15.6.2"
 
