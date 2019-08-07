@@ -182,44 +182,48 @@ in [Editable Complex Components](#editable-complex-components).
 ![demo-3](./.github/large-network-example.gif)
 
 ```jsx
-state = {
-  loading: true,
-  users: [],
-}
+() => {
+  const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState([]);
 
-async componentWillMount() {
-  const response = await fetch('https://randomuser.me/api/?results=5000')
-  const data = await response.json()
+  useEffect(() => {
+    const getUsers = async () => {
+      const response = await fetch('https://randomuser.me/api/?results=5000');
+      const data = await response.json();
 
-  this.setState({
-    loading: false,
-    users: data.results.map(a => ({
-      name: `${a.name.first} ${a.name.last}`,
-      id: a.registered,
-    })),
-  })
-}
+      setLoading(false);
+      setUsers(
+        data.results.map(a => ({
+          name: `${a.name.first} ${a.name.last}`,
+          id: a.registered,
+        }))
+      );
+    };
 
-render() {
+    getUsers();
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
       <Text style={styles.title}>
-        {this.state.loading ? 'Fetching' : 'Fetched'} 5000 users
+        {loading ? 'Fetching' : 'Fetched'} 5000 users
       </Text>
 
-      {this.state.loading && <ActivityIndicator />}
+      {loading && <ActivityIndicator />}
 
       <TableView
         style={{ flex: 1 }}
         tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
       >
         <Section>
-          {this.state.users.map(a => <Item key={a.id}>{a.name}</Item>)}
+          {users.map(a => (
+            <Item key={a.id}>{a.name}</Item>
+          ))}
         </Section>
       </TableView>
     </View>
-  )
-}
+  );
+};
 ```
 
 ### App-bundled JSON with filter and selected value checkmarked
@@ -256,7 +260,7 @@ render() {
     <View style={{ flex: 1 }}>
       <TableView
         style={{ flex: 1 }}
-        editing={this.props.navigation.state.params.editing}
+        editing={navigation.getParam('editing')}
       >
         <Section canMove canEdit>
           <Item canEdit={false}>Item 1</Item>
@@ -279,59 +283,84 @@ render() {
 ![pull to refresh example](./.github/pull-to-refresh-example.gif)
 
 ```jsx
-state = {
-  loading: true,
-  users: [],
-  refreshing: false,
-  amount: 10,
+function reducer(state, action) {
+  switch (action.type) {
+    case 'getUsers':
+      return { ...state, loading: false, users: action.payload };
+    case 'startRefresh':
+      return { ...state, refreshing: true };
+    case 'endRefresh':
+      return {
+        ...state,
+        refreshing: false,
+        amount: state.amount + 10,
+        users: [...state.users, ...action.payload],
+      };
+    default:
+      return state;
+  }
 }
 
-async componentWillMount() {
-  const users = await this.fetchUsers()
+() => {
+  const [{ loading, amount, refreshing, users }, dispatch] = useReducer(
+    reducer,
+    {
+      loading: true,
+      users: [],
+      refreshing: false,
+      amount: 10,
+    }
+  );
 
-  this.setState({
-    loading: false,
-    users,
-  })
-}
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await fetchUsers();
+      dispatch({ type: 'getUsers', payload: data });
+    };
 
-fetchUsers = async () => {
-  const response = await fetch('https://randomuser.me/api/?results=10')
-  const data = await response.json()
+    getUsers();
+  }, []);
 
-  return data.results.map(a => ({
-    name: `${a.name.first} ${a.name.last}`,
-    id: a.registered,
-  }))
-}
+  const fetchUsers = async () => {
+    const response = await fetch('https://randomuser.me/api/?results=10');
+    const data = await response.json();
 
-fetchMore = () => {
-  this.setState({ refreshing: true }, async () => {
-    const users = await this.fetchUsers()
-    this.setState({ users: [...users, ...this.state.users], refreshing: false, amount: this.state.amount + 10 })
-  })
-}
+    return data.results.map(a => ({
+      name: `${a.name.first} ${a.name.last}`,
+      id: a.login.uuid,
+    }));
+  };
 
-render() {
+  const fetchMore = async () => {
+    dispatch({ type: 'startRefresh' });
+    const data = await fetchUsers();
+    dispatch({ type: 'endRefresh', payload: data });
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <Text style={styles.title}>
-        {this.state.loading ? 'Fetching' : 'Fetched'} {this.state.amount} users
+        {loading ? 'Fetching' : 'Fetched'} {amount} users
       </Text>
 
-      {this.state.loading && <ActivityIndicator />}
+      {loading && <ActivityIndicator />}
 
       <TableView
         style={{ flex: 1 }}
         tableViewCellStyle={TableView.Consts.CellStyle.Subtitle}
         canRefresh
-        refreshing={this.state.refreshing}
-        onRefresh={this.fetchMore}
+        refreshing={refreshing}
+        onRefresh={fetchMore}
       >
-        <Section>{this.state.users.map(a => <Item key={a.id}>{a.name}</Item>)}</Section>
+        <Section>
+          {users.map(a => (
+            <Item key={a.id}>{a.name}</Item>
+          ))}
+        </Section>
       </TableView>
     </View>
-  )
+  );
+};
 }
 ```
 
@@ -395,14 +424,14 @@ An `image` prop can be a string pointing to the name of an asset in your "Asset
 Catalog". In this case an `imageWidth` prop is recommended.
 
 ```jsx
-<Item image="icon-success.png" imageWidth={40} />;
+<Item image="icon-success.png" imageWidth={40} />
 ```
 
 Alternatively, you can `require` the image from your local app code. In this case
 an `imageWidth` is unnecessary.
 
 ```jsx
-<Item image={require('../images/icon-success.png')} />;
+<Item image={require('../images/icon-success.png')} />
 ```
 
 ### Editable Complex Components
@@ -492,7 +521,7 @@ For more examples, see examples/TableViewDemo.
       />
     );
   })}
-</Section>;
+</Section>
 ```
 
 Note that the props you pass must be primitive types: they cannot be objects.

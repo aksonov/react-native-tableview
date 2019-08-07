@@ -43,6 +43,78 @@ const FontWeight = PropTypes.oneOf([
 ]);
 const FontStyle = PropTypes.oneOf(['italic', 'normal', 'oblique']);
 
+// Translate TableView prop and children into stuff that RNTableView understands.
+function stateFromProps(props) {
+  const sections = [];
+  const additionalItems = [];
+  const children = [];
+
+  // iterate over sections
+  React.Children.forEach(props.children, (section, index) => {
+    const items = [];
+    let count = 0;
+
+    if (section && section.type === TableViewSection) {
+      let customCells = false;
+
+      React.Children.forEach(section.props.children, (child, itemIndex) => {
+        const el = {};
+        extend(el, section.props);
+        extend(el, child.props);
+
+        if (el.children) {
+          el.label = el.children;
+        }
+
+        if (el.image && typeof el.image === 'number') {
+          el.image = resolveAssetSource(el.image);
+        }
+
+        count++;
+        items.push(el);
+
+        if (child.type === TableViewCell) {
+          customCells = true;
+          count++;
+
+          const element = React.cloneElement(child, {
+            key: `${index} ${itemIndex}`,
+            section: index,
+            row: itemIndex,
+          });
+          children.push(element);
+        }
+      });
+
+      sections.push({
+        customCells,
+        label: section.props.label,
+        footerLabel: section.props.footerLabel,
+        footerHeight: section.props.footerHeight,
+        headerHeight: section.props.headerHeight,
+        items,
+        count,
+      });
+    } else if (section && section.type === TableViewItem) {
+      const el = extend({}, section.props);
+
+      if (!el.label) {
+        el.label = el.children;
+      }
+
+      additionalItems.push(el);
+    } else if (section) {
+      children.push(section);
+    }
+  });
+
+  return {
+    sections,
+    additionalItems,
+    children,
+  };
+}
+
 class TableView extends React.Component {
   static propTypes = {
     onPress: PropTypes.func,
@@ -167,100 +239,25 @@ class TableView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this._stateFromProps(props);
+    this.state = stateFromProps(props);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const state = this._stateFromProps(nextProps);
-    this.setState(state);
-
-    if (this.props.refreshing === false && nextProps.refreshing) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.refreshing === false && this.props.refreshing) {
       NativeModules.RNTableViewManager.startRefreshing(
         findNodeHandle(this.tableView)
       );
     }
 
-    if (this.props.refreshing && !nextProps.refreshing) {
+    if (prevProps.refreshing && !this.props.refreshing) {
       NativeModules.RNTableViewManager.stopRefreshing(
         findNodeHandle(this.tableView)
       );
     }
   }
 
-  // Translate TableView prop and children into stuff that RNTableView understands.
-  _stateFromProps(props) {
-    const sections = [];
-    const additionalItems = [];
-    const children = [];
-    const { json } = props;
-
-    // iterate over sections
-    React.Children.forEach(props.children, (section, index) => {
-      const items = [];
-      let count = 0;
-
-      if (section && section.type === TableViewSection) {
-        let customCells = false;
-
-        React.Children.forEach(section.props.children, (child, itemIndex) => {
-          const el = {};
-          extend(el, section.props);
-          extend(el, child.props);
-
-          if (el.children) {
-            el.label = el.children;
-          }
-
-          if (el.image && typeof el.image === 'number') {
-            el.image = resolveAssetSource(el.image);
-          }
-
-          count++;
-          items.push(el);
-
-          if (child.type === TableViewCell) {
-            customCells = true;
-            count++;
-
-            const element = React.cloneElement(child, {
-              key: `${index} ${itemIndex}`,
-              section: index,
-              row: itemIndex,
-            });
-            children.push(element);
-          }
-        });
-
-        sections.push({
-          customCells,
-          label: section.props.label,
-          footerLabel: section.props.footerLabel,
-          footerHeight: section.props.footerHeight,
-          headerHeight: section.props.headerHeight,
-          items,
-          count,
-        });
-      } else if (section && section.type === TableViewItem) {
-        const el = extend({}, section.props);
-
-        if (!el.label) {
-          el.label = el.children;
-        }
-
-        additionalItems.push(el);
-      } else if (section) {
-        children.push(section);
-      }
-    });
-
-    this.sections = sections;
-
-    return {
-      sections,
-      additionalItems,
-      children,
-      json,
-    };
+  static getDerivedStateFromProps(props) {
+    return stateFromProps(props);
   }
 
   scrollTo(x, y, animated) {
@@ -288,16 +285,16 @@ class TableView extends React.Component {
   _onPress(event) {
     const data = event.nativeEvent;
 
+    const { sections } = this.state;
+
     if (
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex] &&
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex].onPress
+      sections[data.selectedSection] &&
+      sections[data.selectedSection].items[data.selectedIndex] &&
+      sections[data.selectedSection] &&
+      sections[data.selectedSection].items[data.selectedIndex].onPress
     ) {
-      this.sections[data.selectedSection] &&
-        this.sections[data.selectedSection].items[data.selectedIndex].onPress(
-          data
-        );
+      sections[data.selectedSection] &&
+        sections[data.selectedSection].items[data.selectedIndex].onPress(data);
     }
 
     this.props.onPress(data);
@@ -306,13 +303,13 @@ class TableView extends React.Component {
 
   _onAccessoryPress(event) {
     const data = event.nativeEvent;
+    const { sections } = this.state;
 
     this.props.onAccessoryPress(data);
 
-    if (this.sections) {
-      const pressedItem = this.sections[data.accessorySection].items[
-        data.accessoryIndex
-      ];
+    if (sections) {
+      const pressedItem =
+        sections[data.accessorySection].items[data.accessoryIndex];
 
       pressedItem.onAccessoryPress && pressedItem.onAccessoryPress(data);
     }
@@ -322,17 +319,16 @@ class TableView extends React.Component {
 
   _onChange(event) {
     const data = event.nativeEvent;
+    const { sections } = this.state;
 
     if (
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex] &&
-      this.sections[data.selectedSection] &&
-      this.sections[data.selectedSection].items[data.selectedIndex].onChange
+      sections[data.selectedSection] &&
+      sections[data.selectedSection].items[data.selectedIndex] &&
+      sections[data.selectedSection] &&
+      sections[data.selectedSection].items[data.selectedIndex].onChange
     ) {
-      this.sections[data.selectedSection] &&
-        this.sections[data.selectedSection].items[data.selectedIndex].onChange(
-          data
-        );
+      sections[data.selectedSection] &&
+        sections[data.selectedSection].items[data.selectedIndex].onChange(data);
     }
 
     this.props.onChange(data);
@@ -341,13 +337,14 @@ class TableView extends React.Component {
 
   _onWillDisplayCell(event) {
     const data = event.nativeEvent;
+    const { sections } = this.state;
 
     if (
-      this.sections[data.section] &&
-      this.sections[data.section].items[data.row] &&
-      this.sections[data.section].items[data.row].onWillDisplayCell
+      sections[data.section] &&
+      sections[data.section].items[data.row] &&
+      sections[data.section].items[data.row].onWillDisplayCell
     ) {
-      this.sections[data.section].items[data.row].onWillDisplayCell(data);
+      sections[data.section].items[data.row].onWillDisplayCell(data);
     }
 
     this.props.onWillDisplayCell(data);
@@ -356,13 +353,14 @@ class TableView extends React.Component {
 
   _onEndDisplayingCell(event) {
     const data = event.nativeEvent;
+    const { sections } = this.state;
 
     if (
-      this.sections[data.section] &&
-      this.sections[data.section].items[data.row] &&
-      this.sections[data.section].items[data.row].onEndDisplayingCell
+      sections[data.section] &&
+      sections[data.section].items[data.row] &&
+      sections[data.section].items[data.row].onEndDisplayingCell
     ) {
-      this.sections[data.section].items[data.row].onEndDisplayingCell(data);
+      sections[data.section].items[data.row].onEndDisplayingCell(data);
     }
 
     this.props.onEndDisplayingCell(data);
@@ -376,17 +374,10 @@ class TableView extends React.Component {
           ref={ref => {
             this.tableView = ref;
           }}
-          style={this.props.style}
           sections={this.state.sections}
           additionalItems={this.state.additionalItems}
-          tableViewStyle={this.props.tableViewStyle}
-          tableViewCellStyle={this.props.tableViewCellStyle}
-          tableViewCellEditingStyle={this.props.tableViewCellEditingStyle}
-          separatorStyle={this.props.separatorStyle}
           scrollIndicatorInsets={this.props.contentInset}
-          alwaysBounceVertical={this.props.alwaysBounceVertical}
           {...this.props}
-          json={this.state.json}
           onScroll={(...args) => this._onScroll(...args)}
           onPress={(...args) => this._onPress(...args)}
           onAccessoryPress={(...args) => this._onAccessoryPress(...args)}
