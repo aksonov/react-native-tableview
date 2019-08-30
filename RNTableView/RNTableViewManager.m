@@ -12,6 +12,7 @@
 #import <React/RCTConvert.h>
 #import <React/RCTFont.h>
 #import <React/RCTUIManager.h>
+#import <React/RCTComponentEvent.h>
 
 @implementation RNTableViewManager
 
@@ -253,7 +254,10 @@ RCT_CUSTOM_VIEW_PROPERTY(footerFontFamily, NSString, RNTableView)
 
 RCT_EXPORT_METHOD(sendNotification:(NSDictionary *)data)
 {
-    [self.bridge.eventDispatcher sendInputEventWithName:@"onItemNotification" body:data];
+    RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"onItemNotification"
+                                                               viewTag:nil
+                                                                  body:data];
+    [self.bridge.eventDispatcher sendEvent:event];
 }
 
 RCT_EXPORT_METHOD(scrollTo:(nonnull NSNumber *)reactTag
@@ -276,7 +280,7 @@ RCT_EXPORT_METHOD(startRefreshing:(nonnull NSNumber *)reactTag)
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary *viewRegistry){
          RNTableView *tableView = viewRegistry[reactTag];
-         
+
          if ([tableView isKindOfClass:[RNTableView class]]) {
              [tableView startRefreshing];
          } else {
@@ -290,7 +294,7 @@ RCT_EXPORT_METHOD(stopRefreshing:(nonnull NSNumber *)reactTag)
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary *viewRegistry){
          RNTableView *tableView = viewRegistry[reactTag];
-         
+
          if ([tableView isKindOfClass:[RNTableView class]]) {
              [tableView stopRefreshing];
          } else {
@@ -307,7 +311,7 @@ RCT_EXPORT_METHOD(scrollToIndex:(nonnull NSNumber *)reactTag
     [self.bridge.uiManager addUIBlock:
      ^(__unused RCTUIManager *uiManager, NSDictionary *viewRegistry){
          RNTableView *tableView = viewRegistry[reactTag];
-         
+
          if ([tableView isKindOfClass:[RNTableView class]]) {
              [tableView scrollToIndex:index section:section animated:animated];
          } else {

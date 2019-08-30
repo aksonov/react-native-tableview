@@ -49,20 +49,39 @@
 
 ## Installation
 
-1. Installation
-   - Using npm: `npm install react-native-tableview --save`
-   - Using yarn: `yarn add react-native-tableview`
-2. Link
-   - `react-native link react-native-tableview`
-   - If fails, follow manual linking steps below
-3. (optional) If you will use JSON file, add it to iOS application bundle
-4. Import it in your JS:
+Using npm:
 
-   ```js
-   import TableView from 'react-native-tableview';
-   ```
+```bash
+npm install react-native-tableview --save
+```
 
-### Manual Linking
+or using yarn:
+
+```bash
+yarn add react-native-tableview
+```
+
+> ⚠️ If you are on React Native < 0.60.0, you must use version 2.x.x of this library
+
+### Pods
+
+> If using CocoaPods or React Native version >= 0.60.0
+
+```bash
+cd ios && pod install && cd ..
+```
+
+### Linking
+
+> For React Native <= 0.59 only
+
+```bash
+react-native link react-native-tableview
+```
+
+If fails, follow manual linking steps below,
+
+#### Manual Linking
 
 1. In XCode, in the project navigator, right click Libraries ➜ Add Files to
    [your project's name]
