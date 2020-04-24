@@ -16,7 +16,6 @@
 #import "RNTableFooterView.h"
 #import "RNTableHeaderView.h"
 #import "RNReactModuleCell.h"
-#import <AVFoundation/AVFoundation.h>
 
 @interface RNTableView()<UITableViewDataSource, UITableViewDelegate> {
     id<RNTableViewDatasource> datasource;
@@ -108,7 +107,7 @@
         _autoFocus = YES;
         _autoFocusAnimate = YES;
         _allowsToggle = NO;
-        _allowsMultipleSelection = YES;
+        _allowsMultipleSelection = NO;
     }
     return self;
 }
@@ -210,7 +209,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    _tableView.allowsMultipleSelectionDuringEditing = YES;
+    _tableView.allowsMultipleSelectionDuringEditing = NO;
     _tableView.contentInset = self.contentInset;
     _tableView.contentOffset = self.contentOffset;
     _tableView.scrollIndicatorInsets = self.scrollIndicatorInsets;
@@ -348,9 +347,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         }
         
     }
-
-    // Every cell can have it's own text color.
-    cell.textLabel.textColor = [RCTConvert UIColor:item[@"textColor"]];
     
     if (self.selectedBackgroundColor && [item[@"selected"] intValue])
     {
@@ -381,38 +377,6 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
             UIGraphicsEndImageContext();
         } else {
             cell.imageView.image = image;
-
-            // Load artwork.
-            NSURL *fileURL = [NSURL fileURLWithPath:item[@"filePath"]];
-            AVAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
-            for (NSString *format in [asset availableMetadataFormats]) {
-                for (AVMetadataItem *item in [asset metadataForFormat:format]) {
-                    if ([[item commonKey] isEqualToString:@"artwork"]) {
-                        UIImage *artwork = nil;
-                        if ([item.keySpace isEqualToString:AVMetadataKeySpaceiTunes]) {
-                            artwork = [UIImage imageWithData:[item.value copyWithZone:nil]];
-                        }
-                        else { // if ([item.keySpace isEqualToString:AVMetadataKeySpaceID3]) {
-                            if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
-                                artwork = [UIImage imageWithData:item.dataValue];
-                            } else {
-                                NSDictionary *dict;
-                                [item.value copyWithZone:nil];
-                                artwork = [UIImage imageWithData:[dict objectForKey:@"data"]];
-                            }
-                        }
-                        cell.imageView.image = artwork;
-                    }
-                }
-            }
-            
-            // Custom size.
-            CGSize itemSize = CGSizeMake(48, 48);
-            UIGraphicsBeginImageContextWithOptions(itemSize, NO, UIScreen.mainScreen.scale);
-            CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
-            [cell.imageView.image drawInRect:imageRect];
-            cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
         }
     }
     
@@ -532,27 +496,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     if (item[@"selectionStyle"] != nil) {
         cell.selectionStyle = [RCTConvert int:item[@"selectionStyle"]];
     }
-
-    // Add a custom accessory button.
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"\uF1D8" forState:UIControlStateNormal];
-    [button setTitleColor:[RCTConvert UIColor:item[@"accessoryColor"]] forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont fontWithName: @"Material Design Icons" size: 22.0f]];
-    button.frame = CGRectMake(0, 0, 48, 64);
-    cell.accessoryView = button;
-
     return cell;
-}
-
-- (void)checkButtonTapped:(id)sender event:(id)event{
-    NSSet *touches = [event allTouches];
-    UITouch *touch = [touches anyObject];
-    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint: currentTouchPosition];
-    if (indexPath != nil){
-        [self tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
-    }
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -580,9 +524,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (!_editing) {
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     NSMutableDictionary *newValue = [self dataForRow:indexPath.item section:indexPath.section];
     newValue[@"target"] = self.reactTag;
