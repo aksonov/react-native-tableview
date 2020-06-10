@@ -10,7 +10,6 @@
 
 @implementation RNCellView
 
-
 -(void)setTableView:(UITableView *)tableView {
     _tableView = tableView;
     _tableViewCell = [[RNTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CustomCell"];
@@ -23,13 +22,5 @@
         [_tableView reloadData];
     }
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end
