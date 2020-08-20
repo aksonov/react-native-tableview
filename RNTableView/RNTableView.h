@@ -37,6 +37,7 @@
 @property(nonatomic) BOOL customCells;
 @property(nonatomic) BOOL editing;
 @property(nonatomic) BOOL moveWithinSectionOnly;
+@property(nonatomic) BOOL allowsSelectionDuringEditing;
 @property(nonatomic, assign) UIEdgeInsets contentInset;
 @property(nonatomic, assign) CGPoint contentOffset;
 @property(nonatomic, assign) UIEdgeInsets scrollIndicatorInsets;
