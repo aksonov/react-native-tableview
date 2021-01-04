@@ -200,9 +200,19 @@ export interface ItemProps {
   canMove?: boolean;
 
   /**
-   * If cell can be deleted in editing mode
+   * If cell can be deleted or edited in editing mode
    */
   canEdit?: boolean;
+
+  /**
+   * If cell should be only edited without deletion of the cell in editing mode
+   */
+  shouldOnlyEdit?: boolean
+
+  /**
+   * Custom button title in editing mode, default is "Delete" without localization support
+   */
+  buttonTitleOnEdit?: string
 
   /**
    * Cell selection style
