@@ -41,6 +41,12 @@
     [self.tableView setEditing:editing animated:YES];
 }
 
+- (void)setAllowsSelectionDuringEditing:(BOOL)allowsSelectionDuringEditing {
+    _allowsSelectionDuringEditing = allowsSelectionDuringEditing;
+
+    [self.tableView setAllowsSelectionDuringEditing: allowsSelectionDuringEditing];
+}
+
 - (void)setSeparatorColor:(UIColor *)separatorColor {
     _separatorColor = separatorColor;
     
@@ -210,6 +216,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.delegate = self;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tableView.allowsMultipleSelectionDuringEditing = NO;
+    _tableView.allowsSelectionDuringEditing = self.allowsSelectionDuringEditing;
     _tableView.contentInset = self.contentInset;
     _tableView.contentOffset = self.contentOffset;
     _tableView.scrollIndicatorInsets = self.scrollIndicatorInsets;

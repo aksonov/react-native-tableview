@@ -196,6 +196,7 @@ class TableView extends React.Component {
     autoFocus: false,
     alwaysBounceVertical: true,
     scrollEnabled: true,
+    allowsSelectionDuringEditing: false,
     sectionIndexTitlesEnabled: false,
     showsHorizontalScrollIndicator: true,
     showsVerticalScrollIndicator: true,
