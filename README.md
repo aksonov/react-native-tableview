@@ -459,33 +459,12 @@ Only `Item`s can be edited or moved. However you can create a complex component
 that is referenced by an Item using `reactModuleForCell`. You will need to do
 several things to set this up.
 
-1. Add some lines to `AppDelegate.m`
-2. Write your view component.
-3. Pass the name of your view component as a prop in your `<TableView>`
+1. Write your view component.
+2. Pass the name of your view component as a prop in your `<TableView>`
    component.
-4. Create a list of `<Item>`s in your TableView, passing props intended for your
+3. Create a list of `<Item>`s in your TableView, passing props intended for your
    view component.
-5. Register your view component as an `App` root view.
-
-#### Modifying `AppDelegate.m`
-
-Add the following import statement with the other imports at the top of the
-file:
-
-```objective-c
-#import <RNTableView/RNAppGlobals.h>
-```
-
-Add the following two lines
-
-```objective-c
-//Save main bridge so that RNTableView could access our bridge to create its RNReactModuleCells
-[[RNAppGlobals sharedInstance] setAppBridge:rootView.bridge];
-```
-
-just before the `self.window =` line near the bottom of the file. If you have
-not already done so, add the header search path as shown in
-[Getting Started](#getting-started).
+4. Register your view component as an `App` root view.
 
 ### Write your cell view component.
 
