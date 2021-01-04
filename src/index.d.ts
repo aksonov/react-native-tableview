@@ -232,6 +232,7 @@ export interface TableViewProps {
   tableViewCellEditingStyle?: CellEditingStyle;
   separatorStyle?: SeparatorStyle;
   editing?: boolean;
+  allowsSelectionDuringEditing?: boolean;
   autoFocusAnimate?: boolean;
   autoFocus?: boolean;
   alwaysBounceVertical?: boolean;
