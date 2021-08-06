@@ -5,6 +5,8 @@
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "lint": "eslint --ext js,ts,tsx ."
   },
   "repository": {
@@ -36,16 +38,16 @@
     "react-native": ">=0.40"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/runtime": "^7.4.5",
-    "@react-native-community/eslint-config": "^0.0.5",
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^1.1.0",
     "@types/react": "^16.8.22",
     "@types/react-native": "^0.57.63",
     "eslint": "^5.16.0",
     "husky": ">=1",
     "lint-staged": ">=8",
-    "react": "16.8.3",
-    "react-native": "0.59.9",
+    "react": "16.13.1",
+    "react-native": "0.63.0",
     "typescript": "^3.5.2"
   },
   "husky": {

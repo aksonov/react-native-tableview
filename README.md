@@ -67,8 +67,16 @@ yarn add react-native-tableview
 
 > If using CocoaPods or React Native version >= 0.60.0
 
+Intel macOS
+
 ```bash
 cd ios && pod install && cd ..
+```
+
+M1 macOS
+
+```bash
+cd ios && arch -x86_64 pod install && cd ..
 ```
 
 ### Linking

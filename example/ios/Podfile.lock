@@ -1,100 +1,376 @@
 PODS:
   - boost-for-react-native (1.63.0)
+  - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
-  - Folly (2018.10.22.00):
+  - FBLazyVector (0.63.0)
+  - FBReactNativeSpec (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - RCTRequired (= 0.63.0)
+    - RCTTypeSafety (= 0.63.0)
+    - React-Core (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - Flipper (0.93.0):
+    - Flipper-Folly (~> 2.6)
+    - Flipper-RSocket (~> 1.4)
+  - Flipper-Boost-iOSX (1.76.0.1.11)
+  - Flipper-DoubleConversion (1.1.7)
+  - Flipper-Fmt (7.1.7)
+  - Flipper-Folly (2.6.7):
+    - Flipper-Boost-iOSX
+    - Flipper-DoubleConversion
+    - Flipper-Fmt (= 7.1.7)
+    - Flipper-Glog
+    - libevent (~> 2.1.12)
+    - OpenSSL-Universal (= 1.1.180)
+  - Flipper-Glog (0.3.6)
+  - Flipper-PeerTalk (0.0.4)
+  - Flipper-RSocket (1.4.3):
+    - Flipper-Folly (~> 2.6)
+  - FlipperKit (0.93.0):
+    - FlipperKit/Core (= 0.93.0)
+  - FlipperKit/Core (0.93.0):
+    - Flipper (~> 0.93.0)
+    - FlipperKit/CppBridge
+    - FlipperKit/FBCxxFollyDynamicConvert
+    - FlipperKit/FBDefines
+    - FlipperKit/FKPortForwarding
+  - FlipperKit/CppBridge (0.93.0):
+    - Flipper (~> 0.93.0)
+  - FlipperKit/FBCxxFollyDynamicConvert (0.93.0):
+    - Flipper-Folly (~> 2.6)
+  - FlipperKit/FBDefines (0.93.0)
+  - FlipperKit/FKPortForwarding (0.93.0):
+    - CocoaAsyncSocket (~> 7.6)
+    - Flipper-PeerTalk (~> 0.0.4)
+  - FlipperKit/FlipperKitHighlightOverlay (0.93.0)
+  - FlipperKit/FlipperKitLayoutHelpers (0.93.0):
+    - FlipperKit/Core
+    - FlipperKit/FlipperKitHighlightOverlay
+    - FlipperKit/FlipperKitLayoutTextSearchable
+  - FlipperKit/FlipperKitLayoutIOSDescriptors (0.93.0):
+    - FlipperKit/Core
+    - FlipperKit/FlipperKitHighlightOverlay
+    - FlipperKit/FlipperKitLayoutHelpers
+    - YogaKit (~> 1.18)
+  - FlipperKit/FlipperKitLayoutPlugin (0.93.0):
+    - FlipperKit/Core
+    - FlipperKit/FlipperKitHighlightOverlay
+    - FlipperKit/FlipperKitLayoutHelpers
+    - FlipperKit/FlipperKitLayoutIOSDescriptors
+    - FlipperKit/FlipperKitLayoutTextSearchable
+    - YogaKit (~> 1.18)
+  - FlipperKit/FlipperKitLayoutTextSearchable (0.93.0)
+  - FlipperKit/FlipperKitNetworkPlugin (0.93.0):
+    - FlipperKit/Core
+  - FlipperKit/FlipperKitReactPlugin (0.93.0):
+    - FlipperKit/Core
+  - FlipperKit/FlipperKitUserDefaultsPlugin (0.93.0):
+    - FlipperKit/Core
+  - FlipperKit/SKIOSNetworkPlugin (0.93.0):
+    - FlipperKit/Core
+    - FlipperKit/FlipperKitNetworkPlugin
+  - Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
-    - Folly/Default (= 2018.10.22.00)
+    - Folly/Default (= 2020.01.13.00)
     - glog
-  - Folly/Default (2018.10.22.00):
+  - Folly/Default (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - React (0.60.5):
-    - React-Core (= 0.60.5)
-    - React-DevSupport (= 0.60.5)
-    - React-RCTActionSheet (= 0.60.5)
-    - React-RCTAnimation (= 0.60.5)
-    - React-RCTBlob (= 0.60.5)
-    - React-RCTImage (= 0.60.5)
-    - React-RCTLinking (= 0.60.5)
-    - React-RCTNetwork (= 0.60.5)
-    - React-RCTSettings (= 0.60.5)
-    - React-RCTText (= 0.60.5)
-    - React-RCTVibration (= 0.60.5)
-    - React-RCTWebSocket (= 0.60.5)
-  - React-Core (0.60.5):
-    - Folly (= 2018.10.22.00)
-    - React-cxxreact (= 0.60.5)
-    - React-jsiexecutor (= 0.60.5)
-    - yoga (= 0.60.5.React)
-  - React-cxxreact (0.60.5):
+  - libevent (2.1.12)
+  - OpenSSL-Universal (1.1.180)
+  - RCTRequired (0.63.0)
+  - RCTTypeSafety (0.63.0):
+    - FBLazyVector (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - RCTRequired (= 0.63.0)
+    - React-Core (= 0.63.0)
+  - React (0.63.0):
+    - React-Core (= 0.63.0)
+    - React-Core/DevSupport (= 0.63.0)
+    - React-Core/RCTWebSocket (= 0.63.0)
+    - React-RCTActionSheet (= 0.63.0)
+    - React-RCTAnimation (= 0.63.0)
+    - React-RCTBlob (= 0.63.0)
+    - React-RCTImage (= 0.63.0)
+    - React-RCTLinking (= 0.63.0)
+    - React-RCTNetwork (= 0.63.0)
+    - React-RCTSettings (= 0.63.0)
+    - React-RCTText (= 0.63.0)
+    - React-RCTVibration (= 0.63.0)
+  - React-callinvoker (0.63.0)
+  - React-Core (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default (= 0.63.0)
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/CoreModulesHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/Default (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/DevSupport (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default (= 0.63.0)
+    - React-Core/RCTWebSocket (= 0.63.0)
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - React-jsinspector (= 0.63.0)
+    - Yoga
+  - React-Core/RCTActionSheetHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTAnimationHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTBlobHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTImageHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTLinkingHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTNetworkHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTSettingsHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTTextHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTVibrationHeaders (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-Core/RCTWebSocket (0.63.0):
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-Core/Default (= 0.63.0)
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-jsiexecutor (= 0.63.0)
+    - Yoga
+  - React-CoreModules (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - RCTTypeSafety (= 0.63.0)
+    - React-Core/CoreModulesHeaders (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-RCTImage (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - React-cxxreact (0.63.0):
     - boost-for-react-native (= 1.63.0)
     - DoubleConversion
-    - Folly (= 2018.10.22.00)
+    - Folly (= 2020.01.13.00)
     - glog
-    - React-jsinspector (= 0.60.5)
-  - React-DevSupport (0.60.5):
-    - React-Core (= 0.60.5)
-    - React-RCTWebSocket (= 0.60.5)
-  - React-jsi (0.60.5):
+    - React-callinvoker (= 0.63.0)
+    - React-jsinspector (= 0.63.0)
+  - React-jsi (0.63.0):
     - boost-for-react-native (= 1.63.0)
     - DoubleConversion
-    - Folly (= 2018.10.22.00)
+    - Folly (= 2020.01.13.00)
     - glog
-    - React-jsi/Default (= 0.60.5)
-  - React-jsi/Default (0.60.5):
+    - React-jsi/Default (= 0.63.0)
+  - React-jsi/Default (0.63.0):
     - boost-for-react-native (= 1.63.0)
     - DoubleConversion
-    - Folly (= 2018.10.22.00)
+    - Folly (= 2020.01.13.00)
     - glog
-  - React-jsiexecutor (0.60.5):
+  - React-jsiexecutor (0.63.0):
     - DoubleConversion
-    - Folly (= 2018.10.22.00)
+    - Folly (= 2020.01.13.00)
     - glog
-    - React-cxxreact (= 0.60.5)
-    - React-jsi (= 0.60.5)
-  - React-jsinspector (0.60.5)
-  - React-RCTActionSheet (0.60.5):
-    - React-Core (= 0.60.5)
-  - React-RCTAnimation (0.60.5):
-    - React-Core (= 0.60.5)
-  - React-RCTBlob (0.60.5):
-    - React-Core (= 0.60.5)
-    - React-RCTNetwork (= 0.60.5)
-    - React-RCTWebSocket (= 0.60.5)
-  - React-RCTImage (0.60.5):
-    - React-Core (= 0.60.5)
-    - React-RCTNetwork (= 0.60.5)
-  - React-RCTLinking (0.60.5):
-    - React-Core (= 0.60.5)
-  - React-RCTNetwork (0.60.5):
-    - React-Core (= 0.60.5)
-  - React-RCTSettings (0.60.5):
-    - React-Core (= 0.60.5)
-  - React-RCTText (0.60.5):
-    - React-Core (= 0.60.5)
-  - React-RCTVibration (0.60.5):
-    - React-Core (= 0.60.5)
-  - React-RCTWebSocket (0.60.5):
-    - React-Core (= 0.60.5)
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+  - React-jsinspector (0.63.0)
+  - React-RCTActionSheet (0.63.0):
+    - React-Core/RCTActionSheetHeaders (= 0.63.0)
+  - React-RCTAnimation (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - RCTTypeSafety (= 0.63.0)
+    - React-Core/RCTAnimationHeaders (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - React-RCTBlob (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - React-Core/RCTBlobHeaders (= 0.63.0)
+    - React-Core/RCTWebSocket (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-RCTNetwork (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - React-RCTImage (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - RCTTypeSafety (= 0.63.0)
+    - React-Core/RCTImageHeaders (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - React-RCTNetwork (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - React-RCTLinking (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - React-Core/RCTLinkingHeaders (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - React-RCTNetwork (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - RCTTypeSafety (= 0.63.0)
+    - React-Core/RCTNetworkHeaders (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - React-RCTSettings (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - RCTTypeSafety (= 0.63.0)
+    - React-Core/RCTSettingsHeaders (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - React-RCTText (0.63.0):
+    - React-Core/RCTTextHeaders (= 0.63.0)
+  - React-RCTVibration (0.63.0):
+    - FBReactNativeSpec (= 0.63.0)
+    - Folly (= 2020.01.13.00)
+    - React-Core/RCTVibrationHeaders (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+  - ReactCommon (0.63.0):
+    - ReactCommon/turbomodule (= 0.63.0)
+  - ReactCommon/turbomodule (0.63.0):
+    - DoubleConversion
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-callinvoker (= 0.63.0)
+    - React-Core (= 0.63.0)
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
+    - ReactCommon/turbomodule/samples (= 0.63.0)
+  - ReactCommon/turbomodule/core (0.63.0):
+    - DoubleConversion
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-callinvoker (= 0.63.0)
+    - React-Core (= 0.63.0)
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+  - ReactCommon/turbomodule/samples (0.63.0):
+    - DoubleConversion
+    - Folly (= 2020.01.13.00)
+    - glog
+    - React-callinvoker (= 0.63.0)
+    - React-Core (= 0.63.0)
+    - React-cxxreact (= 0.63.0)
+    - React-jsi (= 0.63.0)
+    - ReactCommon/turbomodule/core (= 0.63.0)
   - RNGestureHandler (1.4.1):
     - React
   - RNReanimated (1.2.0):
     - React
   - RNTableView (3.0.0):
     - React
-  - yoga (0.60.5.React)
+  - Yoga (1.14.0)
+  - YogaKit (1.18.1):
+    - Yoga (~> 1.14)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
+  - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
+  - Flipper (= 0.93.0)
+  - Flipper-DoubleConversion (= 1.1.7)
+  - Flipper-Folly (= 2.6.7)
+  - Flipper-Glog (= 0.3.6)
+  - Flipper-PeerTalk (~> 0.0.4)
+  - Flipper-RSocket (~> 1.1)
+  - FlipperKit (= 0.93.0)
+  - FlipperKit/Core (= 0.93.0)
+  - FlipperKit/CppBridge (= 0.93.0)
+  - FlipperKit/FBCxxFollyDynamicConvert (= 0.93.0)
+  - FlipperKit/FBDefines (= 0.93.0)
+  - FlipperKit/FKPortForwarding (= 0.93.0)
+  - FlipperKit/FlipperKitHighlightOverlay (= 0.93.0)
+  - FlipperKit/FlipperKitLayoutPlugin (= 0.93.0)
+  - FlipperKit/FlipperKitLayoutTextSearchable (= 0.93.0)
+  - FlipperKit/FlipperKitNetworkPlugin (= 0.93.0)
+  - FlipperKit/FlipperKitReactPlugin (= 0.93.0)
+  - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.93.0)
+  - FlipperKit/SKIOSNetworkPlugin (= 0.93.0)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
+  - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
-  - React-Core (from `../node_modules/react-native/React`)
+  - React-callinvoker (from `../node_modules/react-native/ReactCommon/callinvoker`)
+  - React-Core (from `../node_modules/react-native/`)
+  - React-CoreModules (from `../node_modules/react-native/React/CoreModules`)
   - React-cxxreact (from `../node_modules/react-native/ReactCommon/cxxreact`)
-  - React-DevSupport (from `../node_modules/react-native/React`)
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
@@ -107,31 +383,54 @@ DEPENDENCIES:
   - React-RCTSettings (from `../node_modules/react-native/Libraries/Settings`)
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
-  - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
+  - ReactCommon (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNTableView (from `../node_modules/react-native-tableview`)
-  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+  - Yoga (from `../node_modules/react-native/ReactCommon/Yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - boost-for-react-native
+    - CocoaAsyncSocket
+    - Flipper
+    - Flipper-Boost-iOSX
+    - Flipper-DoubleConversion
+    - Flipper-Fmt
+    - Flipper-Folly
+    - Flipper-Glog
+    - Flipper-PeerTalk
+    - Flipper-RSocket
+    - FlipperKit
+    - libevent
+    - OpenSSL-Universal
+    - YogaKit
 
 EXTERNAL SOURCES:
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  FBLazyVector:
+    :path: "../node_modules/react-native/Libraries/FBLazyVector"
+  FBReactNativeSpec:
+    :path: "../node_modules/react-native/Libraries/FBReactNativeSpec"
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  RCTRequired:
+    :path: "../node_modules/react-native/Libraries/RCTRequired"
+  RCTTypeSafety:
+    :path: "../node_modules/react-native/Libraries/TypeSafety"
   React:
     :path: "../node_modules/react-native/"
+  React-callinvoker:
+    :path: "../node_modules/react-native/ReactCommon/callinvoker"
   React-Core:
-    :path: "../node_modules/react-native/React"
+    :path: "../node_modules/react-native/"
+  React-CoreModules:
+    :path: "../node_modules/react-native/React/CoreModules"
   React-cxxreact:
     :path: "../node_modules/react-native/ReactCommon/cxxreact"
-  React-DevSupport:
-    :path: "../node_modules/react-native/React"
   React-jsi:
     :path: "../node_modules/react-native/ReactCommon/jsi"
   React-jsiexecutor:
@@ -156,44 +455,62 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Text"
   React-RCTVibration:
     :path: "../node_modules/react-native/Libraries/Vibration"
-  React-RCTWebSocket:
-    :path: "../node_modules/react-native/Libraries/WebSocket"
+  ReactCommon:
+    :path: "../node_modules/react-native/ReactCommon"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNTableView:
     :path: "../node_modules/react-native-tableview"
-  yoga:
-    :path: "../node_modules/react-native/ReactCommon/yoga"
+  Yoga:
+    :path: "../node_modules/react-native/ReactCommon/Yoga"
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
-  Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
-  glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  React: 53c53c4d99097af47cf60594b8706b4e3321e722
-  React-Core: ba421f6b4f4cbe2fb17c0b6fc675f87622e78a64
-  React-cxxreact: 8384287780c4999351ad9b6e7a149d9ed10a2395
-  React-DevSupport: 197fb409737cff2c4f9986e77c220d7452cb9f9f
-  React-jsi: 4d8c9efb6312a9725b18d6fc818ffc103f60fec2
-  React-jsiexecutor: 90ad2f9db09513fc763bc757fdc3c4ff8bde2a30
-  React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
-  React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
-  React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
-  React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24
-  React-RCTImage: f5f1c50922164e89bdda67bcd0153952a5cfe719
-  React-RCTLinking: d0ecbd791e9ddddc41fa1f66b0255de90e8ee1e9
-  React-RCTNetwork: e26946300b0ab7bb6c4a6348090e93fa21f33a9d
-  React-RCTSettings: d0d37cb521b7470c998595a44f05847777cc3f42
-  React-RCTText: b074d89033583d4f2eb5faf7ea2db3a13c7553a2
-  React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
-  React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  DoubleConversion: cde416483dac037923206447da6e1454df403714
+  FBLazyVector: 6f1045c66f816849b33c4ff28930b611e89059a0
+  FBReactNativeSpec: e856d5103d749483f86f53afafd8df4ed8a776bd
+  Flipper: b1fddf9a17c32097b2b4c806ad158b2f36bb2692
+  Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
+  Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
+  Flipper-Fmt: 60cbdd92fc254826e61d669a5d87ef7015396a9b
+  Flipper-Folly: 83af37379faa69497529e414bd43fbfc7cae259a
+  Flipper-Glog: 1dfd6abf1e922806c52ceb8701a3599a79a200a6
+  Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
+  Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
+  FlipperKit: aec2d931adeee48a07bab1ea8bcc8a6bb87dfce4
+  Folly: b73c3869541e86821df3c387eb0af5f65addfab4
+  glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
+  libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
+  OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
+  RCTRequired: e46bb77db03887b3e200d34b08515c804669db99
+  RCTTypeSafety: 270fed6675c42f80fb87b47d626ef3cede1505e6
+  React: e008906ff1328f9bccb345ff4f7826397ad223fc
+  React-callinvoker: f547824e0a626f4bce516ee65f548004b0784e7e
+  React-Core: 1c28d2ecde60ded3fe42d8db4f684afb8709757b
+  React-CoreModules: 8e6139e59f5347e2cf3ceb63e4532fb5b4b39a2d
+  React-cxxreact: 98fef06e1ca59eb075ef5bc4c6f256d5c6840936
+  React-jsi: 254710f3a97e587427bfbf3011dacec2af66a1fc
+  React-jsiexecutor: 0e0cb4e170ca72d4bb1179843d08dcbea3d100ac
+  React-jsinspector: fc661eff8edbfb7e22119382c13f33bcadde0f3c
+  React-RCTActionSheet: aadd91a1d6cbfae50dd41f140004f816e9e47ade
+  React-RCTAnimation: 7fa2ef6c0ef1e3f0b7d2261c827ec94412deb5e6
+  React-RCTBlob: ccbbc70295aee3a76a70323b48f63fb7a7fcffd6
+  React-RCTImage: d94eb3080b37a4527ade4dd5f9f1289b7ba68089
+  React-RCTLinking: ddd2a1ddb699bade352d4747d5652f4c425c747a
+  React-RCTNetwork: 4590b11cc6e99eb01a48f1c03bcadfb8b792d005
+  React-RCTSettings: 9197a492268a088c5213ef8a08cfc60b7a141369
+  React-RCTText: ba503bf4cce41881ca258ba789c33e017955efdd
+  React-RCTVibration: 77ab1cf4a5eb854b88ad5ed3e9d8509ed124525e
+  ReactCommon: f63556ee9e41e9802257228237e5e660451a03cf
   RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
   RNTableView: 410a8e2944841e103d2d9b9cc389400c2fa7c327
-  yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
+  Yoga: 7d2edc5b410474191962e6dee88ee67f9b328b6b
+  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 939816b29539e742498e930333f7ff807ff5b982
+PODFILE CHECKSUM: 6454155735c232291bf2226823b4996ec8d42c48
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.10.1
