@@ -229,6 +229,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     _tableView.tableFooterView = view;
     _tableView.separatorStyle = self.separatorStyle;
     _tableView.separatorColor = self.separatorColor;
+    _tableView.sectionIndexColor = self.sectionIndexColor;
     _tableView.scrollEnabled = self.scrollEnabled;
     _tableView.editing = self.editing;
     _reactModuleCellReuseIndentifier = @"ReactModuleCell";

@@ -403,6 +403,7 @@ Colors:
 - `selectedTextColor`
 - `detailTextColor`
 - `separatorColor`
+- `sectionIndexColor`
 - `headerTextColor`
 - `headerBackgroundColor`
 - `footerTextColor`

@@ -268,6 +268,7 @@ export interface TableViewProps {
   headerBackgroundColor?: string;
   footerTextColor?: string;
   separatorColor?: string;
+  sectionIndexColor?: string;
   fontSize?: number;
   fontWeight?: FontWeight;
   fontStyle?: FontStyle;
