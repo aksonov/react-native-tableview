@@ -70,6 +70,7 @@
 @property(nonatomic, strong) UIColor *selectedBackgroundColor;
 @property(nonatomic, strong) UIColor *detailTextColor;
 @property(nonatomic, strong) UIColor *separatorColor;
+@property(nonatomic, strong) UIColor *sectionIndexColor;
 @property(nonatomic) BOOL autoFocus;
 @property(nonatomic) BOOL autoFocusAnimate;
 @property(nonatomic) BOOL allowsToggle;
